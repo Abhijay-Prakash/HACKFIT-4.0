@@ -4,7 +4,7 @@ import { tr } from "framer-motion/client";
 
 export const Header: React.FC = () => {
   return (
-    <header className="min-h-[50vh] bg-gradient-to-br  from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden relative">
+    <header className="min-h-[50vh] bg-gradient-to-br  from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden  min-w-[100%] *:relative">
       {/* Hero Section */}
       <div className="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-8  min-h-[50vh] py-20">
         <div className="flex-1 space-y-6">
@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
             >
               FIT
             </GradientText>
-            <span className="font-[paladins] flex m-0  text-lime-400 flex text-[69px]">4.0</span>
+            <span className="font-[paladins] flex m-0  text-lime-400 flex text-[90px]">4.0</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-lg"></p>
 
@@ -55,9 +55,6 @@ export const Header: React.FC = () => {
         {/* Prize Card */}
 
       </div>
-
-
-      //
     </header>
   );
 };
