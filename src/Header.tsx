@@ -30,9 +30,11 @@ export const Header: React.FC = () => {
         <NavBody>
           <a
             href="#"
-            className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-3xl font-bold text-lime-400 font-[progress]"
+            className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-3xl font-bold text-lime-400 font-[progress] sm:text-xl sm:inline"
           >
-            <span className="font-bold text-3xl text-lime-400">HACKFIT</span>
+            <span className="font-bold text-3xl text-lime-400 sm:text-xl">
+              HACKFIT
+            </span>
           </a>
           <NavItems
             items={navItems}
@@ -52,10 +54,10 @@ export const Header: React.FC = () => {
           <MobileNavHeader>
             <a
               href="#"
-              className="relative z-20 flex items-center space-x-2 px-2 py-1 text-xl font-normal text-lime-400 font-[progress]"
+              className="relative z-20 flex items-center space-x-2 px-2 py-1 text-xl font-normal text-lime-400 font-[progress] sm:inline"
             >
-              <span className="font-bold text-xl text-lime-400">
-                HACKFIT 4.0
+              <span className="font-bold text-xl text-lime-400 sm:text-sm">
+                HACKFIT
               </span>
             </a>
             <MobileNavToggle
@@ -101,7 +103,7 @@ export const Header: React.FC = () => {
       {/* Content Overlay */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[100vh] py-20 pt-40">
         {/* Centered HACKFIT Title */}
-        <h1 className="text-[120px] font-bold mb-[200px] font-[progress] leading-tight flex flex-wrap items-center justify-center gap-1">
+        <h1 className="lg:text-[120px] sm:text-xl font-bold mb-8 font-[progress] leading-tight flex flex-wrap items-center justify-center gap-1">
           <GradientText
             colors={["#93cd2d", "#d4e21c", "#e1ce10", "#93cd2d"]}
             animationSpeed={3}
@@ -126,21 +128,55 @@ export const Header: React.FC = () => {
           </span>
         </h1>
 
-        {/* Info Grid */}
-        <div className="grid grid-cols-3 gap-8 pt-8 text-center">
-          <div>
-            <p className="text-gray-400 text-sm">Date</p>
-            <p className="text-lg font-semibold">Mar 15-17, 2026</p>
+        {/* Prize Pool & Dates – Hero Highlights */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 mb-12 mt-4">
+          {/* 🏆 Prize Pool */}
+          <div className="prize-highlight flex items-center gap-4 px-8 py-5 rounded-2xl border border-[#d4e21c]/30 bg-black/60 backdrop-blur-md">
+            {/* Trophy SVG */}
+
+            <div className="flex flex-col items-start">
+              <span className="font-[progress] text-[#d4e21c] text-lg tracking-widest uppercase">
+                Prize Pool
+              </span>
+              <span className="font-[paladins] text-5xl md:text-6xl text-white prize-glow leading-none">
+                ₹50K
+              </span>
+            </div>
           </div>
-          <div>
-            <p className="text-gray-400 text-sm">Location</p>
-            <p className="text-lg font-semibold">Tech Hub Center</p>
-          </div>
-          <div>
-            <p className="text-gray-400 text-sm">Participants</p>
-            <p className="text-lg font-semibold">500+ Hackers</p>
+
+          {/* 📅 Dates */}
+          <div className="flex items-center gap-4 px-8 py-5 rounded-2xl border border-[#32bbd2]/30 bg-black/60 backdrop-blur-md">
+            {/* Calendar SVG */}
+
+            <div className="flex flex-col items-start">
+              <span className="font-[progress] text-[#32bbd2] text-lg tracking-widest uppercase">
+                MARK the DateS
+              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="font-[paladins] text-4xl md:text-5xl text-white leading-none">
+                  6
+                </span>
+                <span className="font-[raceguard] text-2xl text-[#8cb798]">
+                  •
+                </span>
+                <span className="font-[paladins] text-4xl md:text-5xl text-white leading-none">
+                  7
+                </span>
+                <span className="font-[raceguard] text-2xl text-[#8cb798]">
+                  •
+                </span>
+                <span className="font-[paladins] text-4xl md:text-5xl text-white leading-none">
+                  8
+                </span>
+                <span className="font-[progress] text-xl text-[#8cb798] ml-2 self-end mb-1">
+                  MARCH
+                </span>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Info Grid */}
       </div>
     </header>
   );

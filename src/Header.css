@@ -86,7 +86,7 @@
 
 .palette-text {
     margin-top: 25px;
-  font-size: 1em; 
+  font-size: 0.8em; 
   z-index: 1;
 
   /* - 3s duration: Slower loop so the specific colors are noticeable.
@@ -96,5 +96,11 @@
   animation: palette-glitch 3s steps(1) infinite;
 }
 
-a{font-size: x-large;
-margin: 15px 0 18px 0;}
+a{font-size: large;
+  
+margin: 9px 0 4px 0;
+padding: auto;
+align-items: center;
+justify-content: center;
+}
+
