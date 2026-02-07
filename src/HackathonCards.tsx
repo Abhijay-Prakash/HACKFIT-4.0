@@ -57,7 +57,7 @@ const HackathonCards = () => {
                   <div className="card-wrapper">
         <div className="card-glow"></div>
         <div className="card">
-          <h2 className="card-title">{tracksData.title}</h2>
+          <h2 className="card-title">Benefits</h2>
           <div className="card-underline"></div>
           <div className="track-list">
             {tracksData.items.map((track, index) => (

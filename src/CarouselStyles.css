@@ -1,0 +1,143 @@
+/* CarouselStyles.css */
+
+/* --- NEON CIRCUIT THEME --- */
+.neon-container {
+  background: linear-gradient(135deg, rgba(147, 205, 45, 0.05), rgba(50, 187, 210, 0.05));
+  border: 2px solid transparent;
+  /* Using border-image for the gradient border */
+  border-image: linear-gradient(135deg, #93cd2d, #32bbd2) 1;
+  /* The angled shape */
+  clip-path: polygon(5% 0%, 100% 0%, 100% 90%, 95% 100%, 0% 100%, 0% 10%);
+  box-shadow: 0 0 30px rgba(50, 187, 210, 0.1);
+}
+
+.circuit-bg-pattern {
+  background-image:
+    radial-gradient(circle at 20% 20%, #93cd2d 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, #32bbd2 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.pulse-glow-anim {
+  animation: pulse-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* --- CORRUPTED FILE THEME --- */
+/* The violent palette glitch animation for text */
+@keyframes palette-glitch {
+  0%,
+  10%,
+  25%,
+  45%,
+  55%,
+  70%,
+  100% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+  5% {
+    text-shadow: -4px -2px #93cd2d, 4px 2px #1b759f;
+    transform: translate(2px, 1px);
+  }
+  15% {
+    text-shadow: 0px -4px #d4e21c, 0px 4px #32bbd2;
+    transform: translate(-2px, 0);
+  }
+  20% {
+    text-shadow: 4px -4px #e1ce10, -4px 4px #8cb798;
+    transform: translate(0, -2px);
+  }
+  50% {
+    text-shadow: -6px 0 #93cd2d, 6px 0 #32bbd2, 0 8px #e1ce10;
+    transform: translate(1px, 1px);
+  }
+  60% {
+    text-shadow: 4px -4px #1b759f, -4px 4px #d4e21c;
+    transform: translate(-1px, -1px);
+  }
+}
+
+.palette-glitch-text {
+  position: relative;
+  z-index: 1;
+  animation: palette-glitch 3s steps(1) infinite;
+}
+
+.corrupted-visual-clip {
+  clip-path: polygon(10% 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.glitch-overlay-anim {
+  background: repeating-linear-gradient(
+    transparent 0px,
+    rgba(212, 226, 28, 0.1) 2px,
+    transparent 4px
+  );
+  mix-blend-mode: overlay;
+  animation: shift-glitch 0.5s steps(1) infinite;
+}
+
+@keyframes shift-glitch {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 0 10px;
+  }
+}
+
+/* --- HOLOGRAPHIC THEME --- */
+.holo-float-anim {
+  animation: holo-float 6s ease-in-out infinite;
+}
+
+@keyframes holo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.holo-projector-base {
+  background: linear-gradient(to top, rgba(27, 117, 159, 0.4), transparent 70%);
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+  box-shadow: 0 10px 40px rgba(50, 187, 210, 0.3);
+  mask-image: linear-gradient(to top, black, transparent);
+}
+
+.holo-text-container {
+  background: rgba(27, 117, 159, 0.1);
+  background-image: linear-gradient(transparent 95%, rgba(50, 187, 210, 0.3) 100%);
+  background-size: 100% 5px;
+  clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+}
+
+/* Reuse HackathonCards gradient border for topic cards */
+.combined-card {
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, #84cc16 0%, #a3e635 30%, #22d3ee 70%, #84cc16 100%) 1;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.combined-card::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: calc(1rem - 2px);
+  pointer-events: none;
+}

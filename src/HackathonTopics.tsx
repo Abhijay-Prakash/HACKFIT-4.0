@@ -1,0 +1,218 @@
+import React, { useEffect, useRef, useState } from "react";
+import "./CarouselStyles.css";
+
+// Declare the lottie-player intrinsic element for TSX
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "lottie-player": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      > & {
+        src?: string;
+        background?: string;
+        speed?: string | number;
+        loop?: boolean;
+        autoplay?: boolean;
+      };
+    }
+  }
+}
+
+interface TopicData {
+  id: string;
+  title: string;
+  subtitle: string;
+  badges: string[];
+}
+
+const topicsData: TopicData[] = [
+  {
+    id: "topic 1",
+    title: "Lorem Ipsum1",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    badges: ["Lorem", "Ipsum", "Dolor"],
+  },
+  {
+    id: "topic2",
+    title: "Lorem Ipsum2",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    badges: ["Lorem", "Ipsum", "Dolor"],
+  },
+  {
+    id: "topic 3",
+    title: "Lorem Ipsum3",
+    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    badges: ["Lorem", "Ipsum", "Dolor"],
+  },
+];
+const CombinedTopicCard: React.FC<{ topic: TopicData }> = ({ topic }) => {
+  return (
+    <div className="neon-container relative overflow-hidden w-full h-full flex flex-col md:flex-row gap-10 p-8 md:p-12 circuit-bg-pattern">
+      <div className="absolute inset-0 opacity-10 glitch-overlay-anim" />
+
+      <div className="flex-1 flex flex-col gap-6 z-10">
+        <div className="inline-flex items-center gap-3 px-4 py-1 rounded-full border border-lime/40 bg-bgBlack/70 backdrop-blur">
+          <span className="w-2 h-2 rounded-full bg-lime shadow-[0_0_8px_rgba(147,205,45,0.9)]" />
+          <span className="text-[11px] md:text-xs tracking-[0.3em] uppercase text-lime font-roboto">
+            Hackfit Signal
+          </span>
+        </div>
+
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-geist font-semibold tracking-tight text-lime palette-glitch-text">
+          {topic.title}
+        </h2>
+        <p className="text-sm md:text-base text-sage/85 max-w-xl font-roboto">
+          {topic.subtitle}
+        </p>
+
+        <div className="flex flex-wrap gap-3 mt-4">
+          {topic.badges.map((badge) => (
+            <span
+              key={badge}
+              className="px-3 py-1 rounded-full text-[11px] md:text-xs font-roboto bg-bgBlack/80 border border-lime/40 text-lime/90 shadow-[0_0_12px_rgba(147,205,45,0.35)]"
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex-1 relative flex items-center justify-center z-0">
+        <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md aspect-square rounded-3xl bg-bgBlack/70 combined-card shadow-[0_0_40px_rgba(147,205,45,0.45)] overflow-hidden">
+          <div className="absolute inset-0 pulse-glow-anim bg-[radial-gradient(circle_at_10%_20%,rgba(147,205,45,0.25)_0,transparent_60%),radial-gradient(circle_at_80%_80%,rgba(50,187,210,0.25)_0,transparent_60%)] mix-blend-screen" />
+          <div className="absolute inset-0 glitch-overlay-anim opacity-20" />
+          <div className="absolute inset-[1px] rounded-[1.5rem] bg-gradient-to-br from-bgBlack via-bgBlack to-bgBlack/80" />
+
+          <div className="relative z-10 flex flex-col items-center justify-center h-full gap-4">
+            <div className="relative w-32 h-32 md:w-40 md:h-40">
+              <lottie-player
+                src="https://lottie.host/05b3ee80-5ec2-4d3b-8e6d-1b5a2094fd58/D2wazsKDcW.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                style={{ width: "100%", height: "100%" }}
+              />
+              <div className="absolute inset-0 rounded-full border border-lime/40 border-dashed animate-spin-slow" />
+              <div className="absolute -inset-6 rounded-full bg-gradient-to-tr from-lime/10 via-acid/10 to-cyan/10 blur-3xl" />
+            </div>
+
+            <div className="flex flex-wrap gap-2 text-[10px] md:text-xs uppercase tracking-[0.25em] text-sage/60 font-roboto justify-center">
+              <span>Motion Capture</span>
+              <span className="opacity-40">•</span>
+              <span>Adaptive AI</span>
+              <span className="opacity-40">•</span>
+              <span>Real-time Feedback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const HackathonTopicsCarousel: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const autoPlayRef = useRef<number | null>(null);
+
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev + 1) % topicsData.length);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex(
+      (prev) => (prev - 1 + topicsData.length) % topicsData.length,
+    );
+  };
+
+  useEffect(() => {
+    if (autoPlayRef.current) {
+      window.clearInterval(autoPlayRef.current);
+    }
+
+    autoPlayRef.current = window.setInterval(nextSlide, 8000);
+
+    return () => {
+      if (autoPlayRef.current) {
+        window.clearInterval(autoPlayRef.current);
+      }
+    };
+  }, []);
+
+  const currentTopic = topicsData[activeIndex];
+
+  return (
+    <section className="bg-bgBlack min-h-screen py-24 px-4 text-white">
+      <div className="max-w-6xl mx-auto flex flex-col gap-10">
+        <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-sage/70 font-roboto mb-2">
+              Hackathon Tracks
+            </p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-geist font-semibold tracking-tight">
+              Choose your <span className="text-lime font-[impact]">Topic </span>.
+            </h1>
+            <p className="mt-3 text-sm md:text-base text-sage/80 max-w-2xl font-roboto">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Accusantium officiis quaerat, ex molestias, ducimus modi facere
+              exercitationem incidunt iste illum autem ipsa corporis beatae
+              placeat non. Rerum odio mollitia cum?
+            </p>
+          </div>
+
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-bgBlack/80 border border-sage/40 backdrop-blur-md self-start">
+            <span className="w-2 h-2 rounded-full bg-lime shadow-[0_0_10px_rgba(147,205,45,0.8)] animate-pulse" />
+            <span className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-sage/80 font-roboto">
+              Swipe, scroll or tap through the realms
+            </span>
+          </div>
+        </header>
+
+        <div className="relative w-full">
+          <div className="relative w-full overflow-hidden rounded-3xl border border-sage/40 bg-bgBlack/80 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+            <div className="relative w-full h-full min-h-[420px] md:min-h-[460px] lg:min-h-[480px]">
+              <CombinedTopicCard topic={currentTopic} />
+            </div>
+          </div>
+
+          <div className="mt-6 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              {topicsData.map((topic, index) => (
+                <button
+                  key={topic.id}
+                  onClick={() => setActiveIndex(index)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    index === activeIndex
+                      ? "w-8 bg-lime"
+                      : "w-3 bg-sage/40 hover:bg-sage/80"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={prevSlide}
+                className="w-9 h-9 rounded-full border border-sage/50 flex items-center justify-center text-sage/80 hover:text-lime hover:border-lime transition-colors"
+                aria-label="Previous topic"
+              >
+                <span className="text-sm">←</span>
+              </button>
+              <button
+                onClick={nextSlide}
+                className="w-9 h-9 rounded-full border border-sage/50 flex items-center justify-center text-sage/80 hover:text-lime hover:border-lime transition-colors"
+                aria-label="Next topic"
+              >
+                <span className="text-sm">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HackathonTopicsCarousel;

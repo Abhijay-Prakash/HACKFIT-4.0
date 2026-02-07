@@ -76,7 +76,7 @@ const PrizePodium: React.FC = () => {
     <section className="w-full  py-20 px-4 flex flex-col items-center justify-center min-h-[600px]">
       {/* Section Title */}
       <h2 className="text-4xl md:text-5xl font-bold text-white mb-20 text-center">
-        Prize Section
+        Prize Section (//to be modified)
       </h2>
 
       {/* Podium Container - items-end aligns them to the bottom to show height differences */}
@@ -88,7 +88,7 @@ const PrizePodium: React.FC = () => {
           <PrizeCard
             place="2"
             title="2nd Place"
-            reward="$5,000 + SWAG"
+            reward="50,000 "
             heightClass="h-[350px]" // Medium height
             borderClass="border-green-500 shadow-[0_0_15px_-3px_rgba(34,197,94,0.4)]" // Green border + subtle glow
             iconColorClass="text-green-500"
@@ -100,7 +100,7 @@ const PrizePodium: React.FC = () => {
           <PrizeCard
             place="1"
             title="1st Place - Grand Prize"
-            reward="$10,000 + Kit + Mentorship"
+            reward="100,000 "
             heightClass="h-[420px]" // Tallest height
             // Using lime-400 for that bright yellow-green look
             borderClass="border-lime-400 shadow-[0_0_20px_-3px_rgba(163,230,53,0.5)]"
@@ -113,7 +113,7 @@ const PrizePodium: React.FC = () => {
           <PrizeCard
             place="3"
             title="3rd Place"
-            reward="$2,500"
+            reward="2,5000"
             heightClass="h-[300px]" // Shortest Height
             borderClass="border-yellow-400 shadow-[0_0_15px_-3px_rgba(250,204,21,0.4)]" // Yellow border
             iconColorClass="text-yellow-400"
