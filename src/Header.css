@@ -103,10 +103,10 @@
 }
 
 a {
-
   font-size: large;
   margin: 9px 0 4px 0;
   padding: auto;
   align-items: center;
   justify-content: center;
+  letter-spacing: 2px;
 }
