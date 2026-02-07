@@ -11,7 +11,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "./components/ui/resizable-navbar";
- import "./Header.css";
+import "./Header.css";
 export const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -30,31 +30,29 @@ export const Header: React.FC = () => {
         <NavBody>
           <a
             href="#"
-            className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-lime-400 font-[progress]"
+            className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-3xl font-bold text-lime-400 font-[progress]"
           >
-            <span className="font-bold text-2xl text-lime-400">
-              HACKFIT 
-            </span>
+            <span className="font-bold text-3xl text-lime-400">HACKFIT</span>
           </a>
           <NavItems
             items={navItems}
-            className="!absolute inset-0 flex-1 flex-row items-center justify-center !text-lime-400 font-[progress] dark:!text-lime-400"
+            className="!absolute inset-0 flex-1 flex-row items-center justify-center font-[progress]"
             onItemClick={() => setMobileOpen(false)}
           />
-          <NavbarButton
+          {/* <NavbarButton
             href="#register"
             className="relative z-20 ml-auto"
             variant="dark"
           >
             Register
-          </NavbarButton>
+          </NavbarButton> */}
         </NavBody>
 
         <MobileNav>
           <MobileNavHeader>
             <a
               href="#"
-              className="relative z-20 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-lime-400 font-[progress]"
+              className="relative z-20 flex items-center space-x-2 px-2 py-1 text-xl font-normal text-lime-400 font-[progress]"
             >
               <span className="font-bold text-xl text-lime-400">
                 HACKFIT 4.0
@@ -73,7 +71,7 @@ export const Header: React.FC = () => {
               <a
                 key={idx}
                 href={item.link}
-                className="text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900"
+                className={`text-sm font-semibold text-white rounded-full px-4 py-3 transition-colors duration-200 hover:text-black ${idx < Math.floor(navItems.length / 2) ? "hover:bg-[#d4e21c]" : "hover:bg-[#8cb798]"}`}
                 onClick={() => setMobileOpen(false)}
               >
                 {item.name}

@@ -1,21 +1,19 @@
-import { useState } from "react";
 import HackathonCards from "./HackathonCards";
 import { Header } from "./Header";
-import { div } from "framer-motion/client";
 import VideoHeader from "./components/VideoHeader";
 
 export default function App() {
   return (
-    <div className="bg-slate-950">
-      <div className="p-2 m-0 flex flex-row min-w-screen min-h-[50vh]">
+    <div className="bg-black text-white min-h-screen w-full">
+      <div className="flex flex-col min-w-full min-h-[50vh]">
         <Header />
       </div>
       {/* <div>
         <VideoHeader />
       </div> */}
-      <div className="p-22 m-20 flex flex-row">
+      <section className="flex justify-center px-6 py-16 bg-black">
         <HackathonCards />
-      </div>
+      </section>
     </div>
   );
 }
