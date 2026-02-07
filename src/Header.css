@@ -1,0 +1,97 @@
+@import url(https://fonts.googleapis.com/css?family=Abril+Fatface|Roboto:400,500);
+
+/* YOUR PALETTE:
+   #93cd2d (Lime Green)
+   #d4e21c (Acid Green)
+   #e1ce10 (Golden Yellow)
+   #1b759f (Deep Blue)
+   #8cb798 (Sage Green)
+   #32bbd2 (Cyan)
+*/
+
+@keyframes palette-glitch {
+  0% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+  
+  /* STEP 1: Lime Green (Left) vs Deep Blue (Right) */
+  5% {
+    text-shadow: 
+      -6px -2px #93cd2d, 
+      6px 2px #1b759f;
+    transform: translate(2px, 1px);
+  }
+  
+  /* STEP 2: PAUSE (Clean) */
+  10% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+  
+  /* STEP 3: Acid Green (Up) vs Cyan (Down) */
+  15% {
+    text-shadow: 
+      0px -6px #d4e21c, 
+      0px 6px #32bbd2;
+    transform: translate(-2px, 0);
+  }
+  
+  /* STEP 4: Golden Yellow (Top-Right) vs Sage (Bottom-Left) */
+  20% {
+    text-shadow: 
+      6px -4px #e1ce10, 
+      -6px 4px #8cb798;
+    transform: translate(0, -2px);
+  }
+  
+  /* STEP 5: LONG PAUSE */
+  25%, 45% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+  
+  /* STEP 6: COMPLEX SPLIT (Three colors at once) */
+  50% {
+    text-shadow: 
+      -8px 0 #93cd2d,   /* Lime far left */
+      8px 0 #32bbd2,    /* Cyan far right */
+      0 10px #e1ce10;   /* Yellow dropped down */
+    transform: translate(1px, 1px);
+  }
+  
+  /* STEP 7: Quick Flash */
+  55% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+  
+  /* STEP 8: INVERTED SCRAMBLE */
+  60% {
+    text-shadow: 
+      5px -5px #1b759f,  /* Blue Top-Right */
+      -5px 5px #d4e21c;  /* Acid Bottom-Left */
+    transform: translate(-1px, -1px);
+  }
+  
+  /* STEP 9: RESET */
+  70%, 100% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+}
+
+
+
+
+.palette-text {
+    margin-top: 25px;
+  font-size: 2em; 
+  z-index: 1;
+
+  /* - 3s duration: Slower loop so the specific colors are noticeable.
+     - steps(1): Keeps the hard "digital snap" feel.
+     - infinite: Loops forever.
+  */
+  animation: palette-glitch 3s steps(1) infinite;
+}

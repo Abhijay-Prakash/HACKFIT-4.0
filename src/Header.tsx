@@ -11,7 +11,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "./components/ui/resizable-navbar";
-
+ import "./Header.css";
 export const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
             className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-lime-400 font-[progress]"
           >
             <span className="font-bold text-2xl text-lime-400">
-              HACKFIT 4.0
+              HACKFIT 
             </span>
           </a>
           <NavItems
@@ -123,7 +123,7 @@ export const Header: React.FC = () => {
           >
             FIT
           </GradientText>
-          <span className="font-[paladins] flex m-0 text-lime-400 mt-[20px] text-[110px]">
+          <span className="font-[paladins] flex m-0 text-lime-400 mt-[20px] palette-text text-[110px]">
             4.0
           </span>
         </h1>
