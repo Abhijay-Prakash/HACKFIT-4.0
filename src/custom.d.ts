@@ -4,6 +4,10 @@ declare global {
       "lottie-player": any;
     }
   }
+
+  interface Window {
+    UnicornStudio: any;
+  }
 }
 
 export {};

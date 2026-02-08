@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./CarouselStyles.css";
 
-const LottiePlayer: any = "lottie-player";
-
 interface TopicData {
   id: string;
   title: string;
@@ -70,15 +68,12 @@ const CombinedTopicCard: React.FC<{ topic: TopicData }> = ({ topic }) => {
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full gap-4">
             <div className="relative w-32 h-32 md:w-40 md:h-40">
-              <LottiePlayer
-                src="https://lottie.host/05b3ee80-5ec2-4d3b-8e6d-1b5a2094fd58/D2wazsKDcW.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                style={{ width: "100%", height: "100%" }}
-              />
-              <div className="absolute inset-0 rounded-full border border-lime/40 border-dashed animate-spin-slow" />
+              {/* Animated Placeholder - CSS only */}
+              <div className="absolute inset-0 rounded-full border-2 border-lime/40 animate-spin-slow"></div>
+              <div className="absolute inset-2 rounded-full border border-cyan/30 animate-pulse"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-lime to-cyan rounded-full animate-pulse shadow-lg"></div>
+              </div>
               <div className="absolute -inset-6 rounded-full bg-gradient-to-tr from-lime/10 via-acid/10 to-cyan/10 blur-3xl" />
             </div>
 
@@ -135,7 +130,8 @@ const HackathonTopicsCarousel: React.FC = () => {
               Hackathon Tracks
             </p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-geist font-semibold tracking-tight">
-              Choose your <span className="text-lime font-[impact]">Topic </span>.
+              Choose your{" "}
+              <span className="text-lime font-[impact]">Topic </span>.
             </h1>
             <p className="mt-3 text-sm md:text-base text-sage/80 max-w-2xl font-roboto">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.

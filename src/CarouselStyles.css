@@ -2,7 +2,11 @@
 
 /* --- NEON CIRCUIT THEME --- */
 .neon-container {
-  background: linear-gradient(135deg, rgba(147, 205, 45, 0.05), rgba(50, 187, 210, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(147, 205, 45, 0.05),
+    rgba(50, 187, 210, 0.05)
+  );
   border: 2px solid transparent;
   /* Using border-image for the gradient border */
   border-image: linear-gradient(135deg, #93cd2d, #32bbd2) 1;
@@ -33,6 +37,20 @@
   }
 }
 
+/* Slow spin animation for loading elements */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
 /* --- CORRUPTED FILE THEME --- */
 /* The violent palette glitch animation for text */
 @keyframes palette-glitch {
@@ -47,23 +65,34 @@
     transform: translate(0, 0);
   }
   5% {
-    text-shadow: -4px -2px #93cd2d, 4px 2px #1b759f;
+    text-shadow:
+      -4px -2px #93cd2d,
+      4px 2px #1b759f;
     transform: translate(2px, 1px);
   }
   15% {
-    text-shadow: 0px -4px #d4e21c, 0px 4px #32bbd2;
+    text-shadow:
+      0px -4px #d4e21c,
+      0px 4px #32bbd2;
     transform: translate(-2px, 0);
   }
   20% {
-    text-shadow: 4px -4px #e1ce10, -4px 4px #8cb798;
+    text-shadow:
+      4px -4px #e1ce10,
+      -4px 4px #8cb798;
     transform: translate(0, -2px);
   }
   50% {
-    text-shadow: -6px 0 #93cd2d, 6px 0 #32bbd2, 0 8px #e1ce10;
+    text-shadow:
+      -6px 0 #93cd2d,
+      6px 0 #32bbd2,
+      0 8px #e1ce10;
     transform: translate(1px, 1px);
   }
   60% {
-    text-shadow: 4px -4px #1b759f, -4px 4px #d4e21c;
+    text-shadow:
+      4px -4px #1b759f,
+      -4px 4px #d4e21c;
     transform: translate(-1px, -1px);
   }
 }
@@ -121,7 +150,10 @@
 
 .holo-text-container {
   background: rgba(27, 117, 159, 0.1);
-  background-image: linear-gradient(transparent 95%, rgba(50, 187, 210, 0.3) 100%);
+  background-image: linear-gradient(
+    transparent 95%,
+    rgba(50, 187, 210, 0.3) 100%
+  );
   background-size: 100% 5px;
   clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
 }
@@ -129,7 +161,14 @@
 /* Reuse HackathonCards gradient border for topic cards */
 .combined-card {
   border: 2px solid transparent;
-  border-image: linear-gradient(135deg, #84cc16 0%, #a3e635 30%, #22d3ee 70%, #84cc16 100%) 1;
+  border-image: linear-gradient(
+      135deg,
+      #84cc16 0%,
+      #a3e635 30%,
+      #22d3ee 70%,
+      #84cc16 100%
+    )
+    1;
   border-radius: 1rem;
   position: relative;
 }

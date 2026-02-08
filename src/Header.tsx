@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GradientText from "./components/GradientText";
 import UnicornScene from "unicornstudio-react";
+import patternBg from "./assets/patterb.webp";
 import {
   Navbar,
   NavBody,
@@ -90,6 +91,15 @@ export const Header: React.FC = () => {
           sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"
           width="100%"
           height="100%"
+          onLoad={() => console.log("UnicornScene loaded successfully")}
+          onError={(error) => console.error("UnicornScene error:", error)}
+        />
+        {/* Fallback background */}
+        <div 
+          className="absolute inset-0 -z-10 opacity-30"
+          style={{
+            background: `url(${patternBg}) center/cover, linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)`
+          }}
         />
       </div>
 
