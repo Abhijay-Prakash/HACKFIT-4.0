@@ -5,7 +5,6 @@ import PrizePodium from "./PrizePodium";
 import HackathonTopicsCarousel from "./HackathonTopics";
 import Footer from "./Footer";
 import LoadingScreen from "./components/LoadingScreen";
-import patternBg from "./assets/patterb.webp";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
