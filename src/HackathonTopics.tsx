@@ -1,23 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./CarouselStyles.css";
 
-// Declare the lottie-player intrinsic element for TSX
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "lottie-player": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & {
-        src?: string;
-        background?: string;
-        speed?: string | number;
-        loop?: boolean;
-        autoplay?: boolean;
-      };
-    }
-  }
-}
+const LottiePlayer: any = "lottie-player";
 
 interface TopicData {
   id: string;
@@ -86,7 +70,7 @@ const CombinedTopicCard: React.FC<{ topic: TopicData }> = ({ topic }) => {
 
           <div className="relative z-10 flex flex-col items-center justify-center h-full gap-4">
             <div className="relative w-32 h-32 md:w-40 md:h-40">
-              <lottie-player
+              <LottiePlayer
                 src="https://lottie.host/05b3ee80-5ec2-4d3b-8e6d-1b5a2094fd58/D2wazsKDcW.json"
                 background="transparent"
                 speed="1"
