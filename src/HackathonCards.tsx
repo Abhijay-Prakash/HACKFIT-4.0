@@ -10,7 +10,7 @@ const HackathonCards = () => {
 
   const tracksData = {
     title: "Tracks",
-    items: ["GeAI", "Transformation", "Hugging", "Data Science"],
+    items: ["GenAI", "Transformation", "Hugging", "Data Science"],
   };
 
 

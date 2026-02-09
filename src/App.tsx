@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import HackathonCards from "./HackathonCards";
 import { Header } from "./Header";
 import PrizePodium from "./PrizePodium";
-import HackathonTopicsCarousel from "./HackathonTopics";
-import Footer from "./Footer";
+import HackathonTopicsCarousel from "./HackathonTopics"
 import LoadingScreen from "./components/LoadingScreen";
-
+import Footer from "./components/Footer";
+import ContactSection from "./components/ContactSection";
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,6 +35,7 @@ export default function App() {
       <section className="flex justify-center px-6 py-16 bg-black">
         <HackathonCards />
       </section>
+      <ContactSection />
       <Footer />
     </div>
   );
