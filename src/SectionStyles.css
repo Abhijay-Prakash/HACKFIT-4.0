@@ -1,0 +1,760 @@
+/* SectionStyles.css - Cyberpunk dither backgrounds and section dividers */
+
+/* ============================================
+   CYBERPUNK DITHER TEXTURE BACKGROUND
+   Pure black with subtle dither overlay
+   ============================================ */
+
+.section-dither {
+  position: relative;
+  background: #000000;
+  overflow: hidden;
+}
+
+/* Dither texture overlay using the same pattern as landing page */
+.section-dither::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/src/assets/patterb.webp") center top/80% no-repeat;
+  background-blend-mode: difference;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Alternative: CSS-only dither pattern (smaller dots like pixel art) */
+.section-cyber-grid {
+  position: relative;
+  background: #000000;
+  overflow: hidden;
+}
+
+.section-cyber-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      circle at center,
+      rgba(147, 205, 45, 0.06) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(50, 187, 210, 0.04) 1px,
+      transparent 1px
+    );
+  background-size:
+    3px 3px,
+    6px 6px;
+  background-position:
+    0 0,
+    1.5px 1.5px;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   CYBERPUNK GLITCH SECTION DIVIDERS
+   ============================================ */
+
+.cyber-divider {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10;
+  background: #000000;
+}
+
+/* Main horizontal line */
+.cyber-divider::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(147, 205, 45, 0.3) 10%,
+    #93cd2d 30%,
+    #32bbd2 50%,
+    #93cd2d 70%,
+    rgba(147, 205, 45, 0.3) 90%,
+    transparent 100%
+  );
+  animation: dividerGlitch 4s ease-in-out infinite;
+}
+
+/* Secondary glitch lines */
+.cyber-divider::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(50, 187, 210, 0.5) 20%,
+    transparent 35%,
+    #d4e21c 50%,
+    transparent 65%,
+    rgba(50, 187, 210, 0.5) 80%,
+    transparent 100%
+  );
+  animation: dividerGlitchAlt 3s steps(1) infinite;
+}
+
+/* Center accent element */
+.cyber-divider-center {
+  position: relative;
+  width: 120px;
+  height: 10px;
+  z-index: 2;
+}
+
+.cyber-divider-center::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #93cd2d, #32bbd2);
+  clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+  animation: centerPulse 2s ease-in-out infinite;
+}
+
+.cyber-divider-center::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border: 2px solid #93cd2d;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(147, 205, 45, 0.8);
+}
+
+/* Decorative side accents */
+.cyber-divider-accent {
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  background: linear-gradient(90deg, #93cd2d, transparent);
+  animation: accentGlitch 2s steps(1) infinite;
+}
+
+.cyber-divider-accent.left {
+  left: 20%;
+  transform: skewX(-20deg);
+}
+
+.cyber-divider-accent.right {
+  right: 20%;
+  background: linear-gradient(90deg, transparent, #32bbd2);
+  transform: skewX(20deg);
+  animation-delay: 0.5s;
+}
+
+/* Glitch keyframes */
+@keyframes dividerGlitch {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  10% {
+    transform: translateX(-2px);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateX(2px);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(1px) scaleY(1.5);
+    opacity: 1;
+  }
+  51% {
+    transform: translateX(-1px) scaleY(1);
+    opacity: 0.7;
+  }
+  52% {
+    transform: translateX(0) scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dividerGlitchAlt {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  5% {
+    transform: translateY(-3px);
+    opacity: 0.8;
+  }
+  10% {
+    transform: translateY(3px);
+    opacity: 0.6;
+  }
+  45% {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(2px);
+    opacity: 0.5;
+  }
+  55% {
+    opacity: 0;
+  }
+}
+
+@keyframes centerPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(147, 205, 45, 0.4),
+      0 0 20px rgba(50, 187, 210, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(147, 205, 45, 0.7),
+      0 0 40px rgba(50, 187, 210, 0.4);
+  }
+}
+
+@keyframes accentGlitch {
+  0%,
+  85%,
+  100% {
+    opacity: 0.7;
+    transform: skewX(-20deg) translateX(0);
+  }
+  5% {
+    opacity: 1;
+    transform: skewX(-20deg) translateX(-5px);
+  }
+  10% {
+    opacity: 0.5;
+    transform: skewX(-25deg) translateX(3px);
+  }
+  90% {
+    opacity: 1;
+    transform: skewX(-15deg) translateX(-2px);
+  }
+}
+
+/* Corner data decoration elements */
+.cyber-divider-data {
+  position: absolute;
+  font-family: "Roboto Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(147, 205, 45, 0.4);
+  text-transform: uppercase;
+  animation: dataFlicker 3s steps(1) infinite;
+}
+
+.cyber-divider-data.left {
+  left: 5%;
+  top: 10px;
+}
+
+.cyber-divider-data.right {
+  right: 5%;
+  bottom: 10px;
+  color: rgba(50, 187, 210, 0.4);
+  animation-delay: 1.5s;
+}
+
+@keyframes dataFlicker {
+  0%,
+  90%,
+  100% {
+    opacity: 0.4;
+  }
+  5%,
+  15% {
+    opacity: 0.8;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+   PRIZE PODIUM STYLES
+   ============================================ */
+
+.prize-podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  max-width: 100%;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+@media (min-width: 480px) {
+  .prize-podium-container {
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .prize-podium-container {
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+  }
+}
+
+/* Podium base with glowing cylinder effect */
+.podium-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 90px;
+  max-width: 120px;
+}
+
+@media (min-width: 480px) {
+  .podium-item {
+    min-width: 140px;
+    max-width: 180px;
+  }
+}
+
+@media (min-width: 768px) {
+  .podium-item {
+    min-width: 200px;
+    max-width: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-item {
+    max-width: 340px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .podium-item {
+    max-width: 400px;
+  }
+}
+
+.podium-trophy {
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+@media (min-width: 480px) {
+  .podium-trophy {
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 7px currentColor);
+  }
+}
+
+@media (min-width: 768px) {
+  .podium-trophy {
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+}
+
+.podium-content {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+@media (min-width: 480px) {
+  .podium-content {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .podium-content {
+    padding: 1.25rem 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-content {
+    padding: 1.75rem 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .podium-content {
+    padding: 2rem 1.25rem;
+  }
+}
+
+.podium-title {
+  font-family: "raceguard", sans-serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  word-break: break-word;
+}
+
+.podium-prize {
+  font-family: "PaladinsGradient", sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 1;
+  word-break: keep-all;
+}
+
+.podium-extra {
+  font-size: 0.35rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.1rem;
+  line-height: 1;
+}
+
+@media (min-width: 480px) {
+  .podium-title {
+    font-size: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .podium-prize {
+    font-size: 1.1rem;
+  }
+  .podium-extra {
+    font-size: 0.45rem;
+    margin-top: 0.15rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .podium-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.4rem;
+  }
+  .podium-prize {
+    font-size: 1.6rem;
+  }
+  .podium-extra {
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-title {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 9.5rem;
+  }
+  .podium-prize {
+    font-size: 2.2rem;
+  }
+  .podium-extra {
+    font-size: 0.7rem;
+    margin-top: 0.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .podium-title {
+    font-size: 1.2rem;
+  }
+  .podium-prize {
+    font-size: 2.8rem;
+  }
+  .podium-extra {
+    font-size: 0.85rem;
+  }
+}
+
+/* Glowing cylindrical base */
+.podium-base {
+  width: 100%;
+  position: relative;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .podium-base {
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-base {
+    border-radius: 24px 24px 0 0;
+  }
+}
+
+/* Gradient glow effect on the base */
+.podium-base::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px 12px 0 0;
+  padding: 2px;
+  background: linear-gradient(180deg, var(--podium-color) 0%, transparent 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Inner glow */
+.podium-base::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 68%;
+  background: radial-gradient(
+    ellipse at top,
+    var(--podium-color-glow),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Bottom glow effect */
+.podium-glow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 30px;
+  background: radial-gradient(
+    ellipse at center,
+    var(--podium-color-glow),
+    transparent 70%
+  );
+  filter: blur(6px);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+  .podium-glow {
+    bottom: -15px;
+    width: 140%;
+    height: 45px;
+    filter: blur(8px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-glow {
+    bottom: -20px;
+    width: 150%;
+    height: 55px;
+    filter: blur(10px);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+/* First place - lime/yellow */
+.podium-1st {
+  --podium-color: #a3e635;
+  --podium-color-glow: rgba(163, 230, 53, 0.25);
+}
+
+.podium-1st .podium-base {
+  background: linear-gradient(
+    180deg,
+    rgba(163, 230, 53, 0.12) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  box-shadow:
+    0 0 15px rgba(163, 230, 53, 0.2),
+    inset 0 1px 0 rgba(163, 230, 53, 0.3);
+}
+
+@media (min-width: 768px) {
+  .podium-1st .podium-base {
+    box-shadow:
+      0 0 25px rgba(163, 230, 53, 0.25),
+      0 0 50px rgba(163, 230, 53, 0.1),
+      inset 0 1px 0 rgba(163, 230, 53, 0.4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-1st .podium-base {
+    box-shadow:
+      0 0 35px rgba(163, 230, 53, 0.3),
+      0 0 70px rgba(163, 230, 53, 0.15),
+      inset 0 1px 0 rgba(163, 230, 53, 0.5);
+  }
+}
+
+/* Second place - green */
+.podium-2nd {
+  --podium-color: #22c55e;
+  --podium-color-glow: rgba(34, 197, 94, 0.22);
+}
+
+.podium-2nd .podium-base {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  box-shadow:
+    0 0 12px rgba(34, 197, 94, 0.18),
+    inset 0 1px 0 rgba(34, 197, 94, 0.25);
+}
+
+@media (min-width: 768px) {
+  .podium-2nd .podium-base {
+    box-shadow:
+      0 0 20px rgba(34, 197, 94, 0.22),
+      0 0 40px rgba(34, 197, 94, 0.08),
+      inset 0 1px 0 rgba(34, 197, 94, 0.35);
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-2nd .podium-base {
+    box-shadow:
+      0 0 30px rgba(34, 197, 94, 0.28),
+      0 0 60px rgba(34, 197, 94, 0.12),
+      inset 0 1px 0 rgba(34, 197, 94, 0.4);
+  }
+}
+
+/* Third place - yellow/gold */
+.podium-3rd {
+  --podium-color: #eab308;
+  --podium-color-glow: rgba(234, 179, 8, 0.2);
+}
+
+.podium-3rd .podium-base {
+  background: linear-gradient(
+    180deg,
+    rgba(234, 179, 8, 0.08) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  box-shadow:
+    0 0 10px rgba(234, 179, 8, 0.15),
+    inset 0 1px 0 rgba(234, 179, 8, 0.22);
+}
+
+@media (min-width: 768px) {
+  .podium-3rd .podium-base {
+    box-shadow:
+      0 0 18px rgba(234, 179, 8, 0.2),
+      0 0 35px rgba(234, 179, 8, 0.07),
+      inset 0 1px 0 rgba(234, 179, 8, 0.3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .podium-3rd .podium-base {
+    box-shadow:
+      0 0 25px rgba(234, 179, 8, 0.25),
+      0 0 50px rgba(234, 179, 8, 0.1),
+      inset 0 1px 0 rgba(234, 179, 8, 0.35);
+  }
+}
+
+/* Responsive adjustments for dividers */
+@media (max-width: 768px) {
+  .cyber-divider {
+    height: 40px;
+  }
+
+  .cyber-divider-center {
+    width: 80px;
+    height: 8px;
+  }
+
+  .cyber-divider-accent {
+    width: 30px;
+    height: 3px;
+  }
+
+  .cyber-divider-accent.left {
+    left: 10%;
+  }
+
+  .cyber-divider-accent.right {
+    right: 10%;
+  }
+
+  .cyber-divider-data {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .cyber-divider {
+    height: 30px;
+  }
+
+  .cyber-divider-center {
+    width: 60px;
+    height: 6px;
+  }
+
+  .cyber-divider-accent {
+    display: none;
+  }
+
+  .prize-podium-container {
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+  }
+}

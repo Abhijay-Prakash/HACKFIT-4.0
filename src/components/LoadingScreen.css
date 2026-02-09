@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+/* Define theme colors for easier adjustments */
+:root {
+  --theme-bg: #000000;         /* Deep Midnight Navy */
+  --theme-neon-lime: #39FF14;  /* Vibrant Neon Green */
+  --theme-neon-yellow: #FFFF00; /* Electric Yellow */
+  --theme-neon-cyan: #00d8ff;   /* Vibrant Cyan */
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--theme-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+  font-family: 'Orbitron', monospace;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  display: none;
+}
+
+@keyframes noiseMove {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, -5px); }
+  50% { transform: translate(-10px, 5px); }
+  75% { transform: translate(5px, -10px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Scan lines effect */
+.scan-lines {
+  display: none;
+}
+
+@keyframes scanLineFlicker {
+  0%, 98% { opacity: 0.8; }
+  99%, 100% { opacity: 0.5; }
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  z-index: 2;
+  position: relative;
+}
+
+/* Logo container with glitch effects */
+.logo-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Neon lime main glow */
+  filter: 
+    drop-shadow(0 0 10px rgba(57, 255, 20, 0.5))
+    drop-shadow(0 0 20px rgba(57, 255, 20, 0.3))
+    drop-shadow(0 0 40px rgba(57, 255, 20, 0.1));
+  transition: all 0.3s ease;
+}
+
+.glitch-layer-1,
+.glitch-layer-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch-layer-1 img {
+  /* Electric Yellow Glitch Layer */
+  filter: 
+    hue-rotate(90deg) 
+    drop-shadow(2px 0 0 rgba(255, 255, 0, 0.8)); 
+  mix-blend-mode: screen;
+}
+
+.glitch-layer-2 img {
+  /* Cyan Blue Glitch Layer */
+  filter: 
+    hue-rotate(270deg) 
+    drop-shadow(-2px 0 0 rgba(0, 216, 255, 0.8));
+  mix-blend-mode: screen;
+}
+
+.logo-container.glitch-active .glitch-layer-1 {
+  animation: glitch1 0.2s ease-in-out;
+}
+
+.logo-container.glitch-active .glitch-layer-2 {
+  animation: glitch2 0.2s ease-in-out;
+}
+
+@keyframes glitch1 {
+  0% { opacity: 0; transform: translate(0, 0); }
+  20% { opacity: 0.8; transform: translate(-3px, 2px); }
+  40% { opacity: 0.6; transform: translate(2px, -1px); }
+  60% { opacity: 0.9; transform: translate(-1px, 3px); }
+  80% { opacity: 0.7; transform: translate(4px, -2px); }
+  100% { opacity: 0; transform: translate(0, 0); }
+}
+
+@keyframes glitch2 {
+  0% { opacity: 0; transform: translate(0, 0); }
+  30% { opacity: 0.7; transform: translate(2px, -3px); }
+  50% { opacity: 0.8; transform: translate(-4px, 1px); }
+  70% { opacity: 0.6; transform: translate(1px, -2px); }
+  90% { opacity: 0.9; transform: translate(-2px, 4px); }
+  100% { opacity: 0; transform: translate(0, 0); }
+}
+
+.logo-container.glitch-active .loading-logo {
+  animation: logoShake 0.2s ease-in-out;
+}
+
+@keyframes logoShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+/* Text styling */
+.loading-text {
+  text-align: center;
+}
+
+.loading-title {
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 1;
+}
+
+/* UPDATED: Main title styling using the new palette glitch */
+.glitch-text {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--theme-neon-lime);
+  position: relative;
+  letter-spacing: 0.1em;
+  
+  /* Using the new stepped animation. 
+     We removed the static text-shadow so the animation's "clean" steps work correctly.
+  */
+  animation: palette-glitch 3s steps(1) infinite;
+}
+
+/* Previous pseudo-element glitch styling removed here */
+
+.loading-subtitle {
+  font-size: 1rem;
+  color: rgba(57, 255, 20, 0.7);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Progress bar */
+.progress-container {
+  width: 300px;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(57, 255, 20, 0.1);
+  border: 1px solid rgba(57, 255, 20, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--theme-neon-lime) 0%, 
+    #a3e635 50%, 
+    var(--theme-neon-lime) 100%
+  );
+  box-shadow: 
+    0 0 10px var(--theme-neon-lime),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progress-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 0, 0.3);
+  opacity: 0;
+  animation: progressGlitch 3s infinite;
+}
+
+@keyframes progressGlitch {
+  0%, 95%, 100% { opacity: 0; }
+  96%, 99% { opacity: 0.5; }
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: rgba(57, 255, 20, 0.9);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Loading dots */
+.loading-dots {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--theme-neon-lime);
+}
+
+.loading-dots span {
+  animation: dotPulse 1.5s infinite;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: 0s; }
+.loading-dots span:nth-child(2) { animation-delay: 0.3s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes dotPulse {
+  0%, 60%, 100% { opacity: 0.3; }
+  30% { opacity: 1; }
+}
+
+/* Corner brackets */
+.corner-brackets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bracket {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(57, 255, 20, 0.5);
+}
+
+.bracket.top-left {
+  top: 2rem;
+  left: 2rem;
+  border-right: none;
+  border-bottom: none;
+}
+
+.bracket.top-right {
+  top: 2rem;
+  right: 2rem;
+  border-left: none;
+  border-bottom: none;
+}
+
+.bracket.bottom-left {
+  bottom: 2rem;
+  left: 2rem;
+  border-right: none;
+  border-top: none;
+}
+
+.bracket.bottom-right {
+  bottom: 2rem;
+  right: 2rem;
+  border-left: none;
+  border-top: none;
+}
+
+.bracket {
+  animation: bracketFlicker 4s infinite;
+}
+
+@keyframes bracketFlicker {
+  0%, 95%, 100% { opacity: 0.6; }
+  96%, 99% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-container {
+    width: 150px;
+    height: 150px;
+  }
+  
+  /* Adjusted font size for mobile, keeping it smaller than the 9rem example */
+  .glitch-text {
+    font-size: 2rem;
+  }
+  
+  .loading-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .progress-container {
+    width: 250px;
+  }
+  
+  .bracket {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* NEW: The multi-color palette glitch keyframes */
+@keyframes palette-glitch {
+  0% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+
+  /* STEP 1: Lime Green (Left) vs Deep Blue (Right) */
+  5% {
+    text-shadow:
+      -6px -2px #93cd2d,
+      6px 2px #1b759f;
+    transform: translate(2px, 1px);
+  }
+
+  /* STEP 2: PAUSE (Clean) */
+  10% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+
+  /* STEP 3: Acid Green (Up) vs Cyan (Down) */
+  15% {
+    text-shadow:
+      0px -6px #d4e21c,
+      0px 6px #32bbd2;
+    transform: translate(-2px, 0);
+  }
+
+  /* STEP 4: Golden Yellow (Top-Right) vs Sage (Bottom-Left) */
+  20% {
+    text-shadow:
+      6px -4px #e1ce10,
+      -6px 4px #8cb798;
+    transform: translate(0, -2px);
+  }
+
+  /* STEP 5: LONG PAUSE */
+  25%,
+  45% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+
+  /* STEP 6: COMPLEX SPLIT (Three colors at once) */
+  50% {
+    text-shadow:
+      -8px 0 #93cd2d,
+      /* Lime far left */ 8px 0 #32bbd2,
+      /* Cyan far right */ 0 10px #e1ce10; /* Yellow dropped down */
+    transform: translate(1px, 1px);
+  }
+
+  /* STEP 7: Quick Flash */
+  55% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+
+  /* STEP 8: INVERTED SCRAMBLE */
+  60% {
+    text-shadow:
+      5px -5px #1b759f,
+      /* Blue Top-Right */ -5px 5px #d4e21c; /* Acid Bottom-Left */
+    transform: translate(-1px, -1px);
+  }
+
+  /* STEP 9: RESET */
+  70%,
+  100% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+}

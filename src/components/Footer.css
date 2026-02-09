@@ -1,11 +1,10 @@
-.hackfit-footer{
-  margin-top: 6rem;
-  border-top: 1px solid rgba(147,205,45,.25);
-  background:
-    linear-gradient(180deg,#000 0%,#030303 100%);
+.hackfit-footer {
+  margin-top: 0;
+  border-top: 1px solid rgba(147, 205, 45, 0.25);
+  background: #000000;
 }
 
-.footer-inner{
+.footer-inner {
   max-width: 1400px;
   margin: 0 auto;
   padding: 3rem 6vw 2rem;
@@ -14,57 +13,57 @@
   gap: 2rem;
 }
 
-.footer-brand h3{
+.footer-brand h3 {
   color: var(--chart-1);
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
-.footer-brand p{
+.footer-brand p {
   color: var(--muted-foreground);
   max-width: 420px;
 }
 
-.footer-links h4{
-  font-size: .8rem;
-  letter-spacing: .18em;
-  margin-bottom: .8rem;
+.footer-links h4 {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.8rem;
   color: var(--chart-3);
 }
 
-.footer-links a{
+.footer-links a {
   display: block;
-  margin-bottom: .4rem;
-  font-size: .85rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
   color: #fff;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
 }
 
-.footer-links a:hover{
+.footer-links a:hover {
   color: var(--chart-1);
 }
 
-.footer-bottom{
+.footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 6vw 1.4rem;
   border-top: 1px solid #1f1f1f;
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: var(--muted-foreground);
 }
 
-.footer-signal{
+.footer-signal {
   color: var(--chart-3);
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
 }
 
-@media(max-width:900px){
-  .footer-inner{
+@media (max-width: 900px) {
+  .footer-inner {
     grid-template-columns: 1fr;
   }
 
-  .footer-bottom{
+  .footer-bottom {
     flex-direction: column;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GradientText from "./components/GradientText";
 import UnicornScene from "unicornstudio-react";
+import patternBg from "./assets/patterb.webp";
 import {
   Navbar,
   NavBody,
@@ -90,6 +91,15 @@ export const Header: React.FC = () => {
           sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"
           width="100%"
           height="100%"
+          onLoad={() => console.log("UnicornScene loaded successfully")}
+          onError={(error) => console.error("UnicornScene error:", error)}
+        />
+        {/* Fallback background */}
+        <div 
+          className="absolute inset-0 -z-10 opacity-30"
+          style={{
+            background: `url(${patternBg}) center/cover, linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)`
+          }}
         />
       </div>
 
@@ -117,7 +127,7 @@ export const Header: React.FC = () => {
             >
               FIT
             </GradientText>
-            <span className="font-[paladins] flex m-0 text-lime-400 mt-5 palette-text lg:text-[110px] sm:text-[35px]">
+            <span className="font-[PaladinsGradient] flex m-0 text-lime-400 mt-5 palette-text lg:text-[110px] sm:text-[35px]">
               4.0
             </span>
           </div>
@@ -133,7 +143,7 @@ export const Header: React.FC = () => {
               <span className="font-[progress] text-[#d4e21c] text-lg tracking-widest uppercase">
                 Prize Pool
               </span>
-              <span className="font-[paladins] text-5xl md:text-6xl text-white prize-glow leading-none">
+              <span className="font-[PaladinsGradient] text-5xl md:text-6xl text-white prize-glow leading-none">
                 ₹50K
               </span>
             </div>
@@ -173,6 +183,9 @@ export const Header: React.FC = () => {
 
         {/* Info Grid */}
       </div>
+
+      {/* Black overlay to hide UnicornStudio watermark */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 h-16 md:h-20 bg-black" />
     </header>
   );
 };
