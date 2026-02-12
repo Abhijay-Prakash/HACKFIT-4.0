@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+.registration-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #000;
+  min-height: 100vh;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hackfit-logo {
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 5px;
+  background: linear-gradient(90deg, #a3e635, #ffffff, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 15px rgba(163, 230, 53, 0.5));
+}
+
+/* The Wizard Container */
+.wizard-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Navbar Wrapper */
+.wizard-navbar {
+  display: flex;
+  width: 100%;
+  border: 1px solid #1f3a3a;
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent;
+}
+.wizard-navbar > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.wizard-step {
+  flex: 1;
+  padding: 18px 0;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4a5568; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+/* ACTIVE STEP LOGIC */
+.wizard-step-active {
+  background: linear-gradient(90deg, #a3e635 0%, #70e2d1 100%);
+  color: #000;
+  z-index: 2;
+  clip-path: polygon(0% 0%, 92% 0%, 100% 50%, 92% 100%, 0% 100%);
+  margin-right: -20px; 
+  padding-right: 20px;
+}
+
+.wizard-navbar > div:last-child .wizard-step-active {
+  clip-path: none;      
+  margin-right: 0;      
+  padding-right: 0;     
+  border-right: none;  
+}
+
+/* Divider Lines */
+.wizard-arrow {
+  width: 1px;
+  height: 100%;
+  background-color: #1f3a3a;
+  z-index: 1; 
+}
+
+/* Content Box */
+.registration-content-box {
+  margin-top: 40px;
+  padding: 40px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  background: #22d3ee;
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}

@@ -17,11 +17,11 @@ export const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", link: "#" },
+    { name: "Home", link: "/" },
     { name: "About", link: "#about" },
     { name: "Schedule", link: "#schedule" },
     { name: "Prizes", link: "#prizes" },
-    { name: "Register", link: "#register" },
+    { name: "Register", link: "/register" },
   ];
 
   return (
@@ -74,7 +74,7 @@ export const Header: React.FC = () => {
               </a>
             ))}
             <NavbarButton
-              href="#register"
+              href="/register"
               variant="dark"
               className="w-full justify-center"
             >
