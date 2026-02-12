@@ -69,14 +69,14 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
     // Preload images
     const preloadImages = () => {
       return Promise.all(
-        images.map(src => {
+        images.map((src) => {
           return new Promise((resolve) => {
             const img = new Image();
             img.onload = resolve;
             img.onerror = resolve; // Don't block on image errors
             img.src = src;
           });
-        })
+        }),
       );
     };
 
