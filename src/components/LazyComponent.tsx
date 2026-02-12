@@ -1,5 +1,6 @@
-import React, { ReactNode, Suspense, lazy } from 'react';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import React, { Suspense } from "react";
+import type { ReactNode } from "react";
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 interface LazyComponentProps {
   children: ReactNode;
@@ -16,7 +17,7 @@ export const LazyComponent: React.FC<LazyComponentProps> = ({
     </div>
   ),
   threshold = 0.1,
-  rootMargin = '100px',
+  rootMargin = "100px",
 }) => {
   const { ref, isIntersecting } = useIntersectionObserver({
     threshold,
@@ -27,9 +28,7 @@ export const LazyComponent: React.FC<LazyComponentProps> = ({
   return (
     <div ref={ref}>
       {isIntersecting ? (
-        <Suspense fallback={placeholder}>
-          {children}
-        </Suspense>
+        <Suspense fallback={placeholder}>{children}</Suspense>
       ) : (
         placeholder
       )}

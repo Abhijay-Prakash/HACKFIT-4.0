@@ -133,7 +133,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           className="relative px-5 py-3 text-white transition-colors duration-300 ease-out hover:text-black"
           key={`link-${idx}`}
           href={item.link}
-          style={{ willChange: 'color' }}
+          style={{ willChange: "color" }}
         >
           {hovered === idx && (
             <motion.div
@@ -149,7 +149,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                 damping: 35,
                 mass: 0.8,
               }}
-              style={{ willChange: 'transform' }}
+              style={{ willChange: "transform" }}
             />
           )}
           <span className="relative z-20">{item.name}</span>

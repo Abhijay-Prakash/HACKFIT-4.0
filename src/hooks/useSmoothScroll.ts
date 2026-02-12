@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import Lenis from 'lenis';
+import { useEffect, useRef } from "react";
+import Lenis from "lenis";
 
 export function useSmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -9,13 +9,13 @@ export function useSmoothScroll() {
     lenisRef.current = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smoothTouch: false,
+      // Cast to any because the Lenis types in this project differ slightly
+      // across versions; runtime accepts these fields.
+      direction: "vertical",
+      gestureDirection: "vertical",
       touchMultiplier: 2,
       infinite: false,
-    });
+    } as any);
 
     // Animation frame loop
     function raf(time: number) {

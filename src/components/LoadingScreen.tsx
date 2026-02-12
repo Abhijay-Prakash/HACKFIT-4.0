@@ -29,9 +29,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
   ];
 
   useEffect(() => {
-    const startTime = Date.now();
-    const MIN_LOADING_TIME = 2000; // Minimum 2 seconds for UX
-
     // Preload fonts
     const preloadFonts = async () => {
       const fonts = [
@@ -72,14 +69,14 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
     // Preload images
     const preloadImages = () => {
       return Promise.all(
-        images.map((src) => {
-          return new Promise((resolve, reject) => {
+        images.map(src => {
+          return new Promise((resolve) => {
             const img = new Image();
             img.onload = resolve;
             img.onerror = resolve; // Don't block on image errors
             img.src = src;
           });
-        }),
+        })
       );
     };
 

@@ -26,13 +26,19 @@
 }
 
 .register-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #93cd2d 0%, #d4e21c 25%, #32bbd2 75%, #1b759f 100%);
+  background: linear-gradient(
+    135deg,
+    #93cd2d 0%,
+    #d4e21c 25%,
+    #32bbd2 75%,
+    #1b759f 100%
+  );
   padding: 2px;
   border-radius: 0;
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
@@ -40,7 +46,7 @@
 }
 
 .register-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 2px;
   left: 2px;
