@@ -90,16 +90,18 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "40%" : "100%",
+        width: visible ? "auto" : "100%",
         y: visible ? 20 : 0,
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
+        stiffness: 150,
+        damping: 30,
+        mass: 0.8,
       }}
       style={{
-        minWidth: "800px",
+        minWidth: visible ? "600px" : "100%",
+        maxWidth: "1200px",
       }}
       className={cn(
         "relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
@@ -128,9 +130,10 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-5 py-3 text-white transition-colors duration-200 hover:text-black"
+          className="relative px-5 py-3 text-white transition-colors duration-300 ease-out hover:text-black"
           key={`link-${idx}`}
           href={item.link}
+          style={{ willChange: 'color' }}
         >
           {hovered === idx && (
             <motion.div
@@ -139,6 +142,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                 "absolute inset-0 h-full w-full rounded-full",
                 idx < middleIndex ? "bg-[#9bc945]" : "bg-[#1f89c7]",
               )}
+              initial={false}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 35,
+                mass: 0.8,
+              }}
+              style={{ willChange: 'transform' }}
             />
           )}
           <span className="relative z-20">{item.name}</span>
