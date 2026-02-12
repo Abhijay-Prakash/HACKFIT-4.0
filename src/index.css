@@ -12,7 +12,7 @@
   background-image: url('./assets/patterb.webp');
 }
 
-/* Paladins font family variants (loaded from public/fonts/paladins-font) */
+/* Paladins font family variants (loaded from public/fonts/paladins-font)
 @font-face {
   font-family: "Paladins-BL0PG";
   src: url("/fonts/paladins-font/Paladins-BL0PG.otf") format("opentype");
@@ -92,7 +92,7 @@
   font-weight: 400;
   font-style: italic;
   font-display: swap;
-}
+} */
 
 /* alias used previously in project */
 @font-face {

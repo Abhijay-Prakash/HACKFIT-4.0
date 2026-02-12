@@ -146,7 +146,7 @@ export const Header: React.FC = () => {
             >
               FIT
             </GradientText>
-            <span className="font-[PaladinsGradient] flex m-0 text-lime-400 mt-5 palette-text lg:text-[110px] sm:text-[35px]">
+            <span className="font-[paladins] flex m-0 text-lime-400 mt-5 palette-text lg:text-[110px] sm:text-[35px]">
               4.0
             </span>
           </div>
@@ -162,7 +162,7 @@ export const Header: React.FC = () => {
               <span className="font-[progress] text-[#d4e21c] text-lg tracking-widest uppercase">
                 Prize Pool
               </span>
-              <span className="font-[PaladinsGradient] text-5xl md:text-6xl text-white prize-glow leading-none">
+              <span className="font-[paladins] text-5xl md:text-6xl text-white prize-glow leading-none">
                 ₹50K
               </span>
             </div>
