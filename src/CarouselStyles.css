@@ -42,31 +42,33 @@
 
 .pulse-glow-anim {
   animation: pulse-glow 4s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
 @keyframes pulse-glow {
   0% {
     opacity: 0.5;
-    transform: scale(0.9);
+    transform: scale3d(0.9, 0.9, 1);
   }
   100% {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale3d(1.1, 1.1, 1);
   }
 }
 
 /* Slow spin animation for loading elements */
 @keyframes spin-slow {
   from {
-    transform: rotate(0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
   }
 }
 
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
+  will-change: transform;
 }
 
 /* --- CORRUPTED FILE THEME --- */

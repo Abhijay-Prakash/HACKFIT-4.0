@@ -15,13 +15,13 @@ import {
 import "./Header.css";
 export const Header: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [unicornLoaded, setUnicornLoaded] = useState(false);
 
   const navItems = [
     { name: "Home", link: "#" },
     { name: "About", link: "#about" },
     { name: "Schedule", link: "#schedule" },
     { name: "Prizes", link: "#prizes" },
-    { name: "Register", link: "#register" },
   ];
 
   return (
@@ -40,13 +40,27 @@ export const Header: React.FC = () => {
             className="!absolute inset-0 flex-1 flex-row items-center justify-center font-[progress]"
             onItemClick={() => setMobileOpen(false)}
           />
-          {/* <NavbarButton
-            href="#register"
-            className="relative z-20 ml-auto"
-            variant="dark"
-          >
-            Register
-          </NavbarButton> */}
+          <div className="relative z-20 ml-auto mr-6">
+            <a
+              href="#register"
+              className="register-button relative flex items-center gap-2 px-6 py-2.5 text-white font-[progress] font-semibold text-sm transition-all duration-300 group"
+            >
+              <span className="relative z-10">Register Now</span>
+              <svg
+                className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7 17L17 7M17 7H7M17 7V17"
+                />
+              </svg>
+            </a>
+          </div>
         </NavBody>
 
         <MobileNav>
@@ -85,20 +99,25 @@ export const Header: React.FC = () => {
       </Navbar>
 
       {/* Unicorn Studio WebGL Background */}
-      <div className="absolute inset-0 z-0 h-full w-full">
+      <div
+        className={`absolute inset-0 z-0 h-full w-full unicorn-fade-in ${unicornLoaded ? "unicorn-loaded" : ""}`}
+      >
         <UnicornScene
           projectId="qcSz9g3TZ1R59X5U8IKC"
           sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"
           width="100%"
           height="100%"
-          onLoad={() => console.log("UnicornScene loaded successfully")}
+          onLoad={() => {
+            console.log("UnicornScene loaded successfully");
+            setTimeout(() => setUnicornLoaded(true), 100);
+          }}
           onError={(error) => console.error("UnicornScene error:", error)}
         />
         {/* Fallback background */}
-        <div 
+        <div
           className="absolute inset-0 -z-10 opacity-30"
           style={{
-            background: `url(${patternBg}) center/cover, linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)`
+            background: `url(${patternBg}) center/cover, linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)`,
           }}
         />
       </div>
