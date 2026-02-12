@@ -7,6 +7,9 @@ import LoadingScreen from "./components/LoadingScreen";
 import Footer from "./components/Footer";
 import ContactSection from "./components/ContactSection";
 import CyberDivider from "./components/CyberDivider";
+import { AnimatedSection } from "./components/AnimatedSection";
+import { LazyComponent } from "./components/LazyComponent";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import "./SectionStyles.css";
 
 export default function App() {
@@ -15,6 +18,9 @@ export default function App() {
     const hasVisited = sessionStorage.getItem("hackfit-visited");
     return !hasVisited;
   });
+
+  // Initialize smooth scrolling
+  useSmoothScroll();
 
   useEffect(() => {
     // Mark as visited for this session
@@ -32,39 +38,69 @@ export default function App() {
       </div>
 
       {/* Prize Section with dither texture */}
-      <section className="section-dither flex justify-center px-4 sm:px-6 py-12 sm:py-16 relative">
+      <AnimatedSection
+        animationType="fadeUp"
+        className="section-dither flex justify-center px-4 sm:px-6 py-12 sm:py-16 relative"
+        threshold={0.2}
+      >
         <div className="relative z-10 w-full">
-          <PrizePodium />
+          <LazyComponent threshold={0.1}>
+            <PrizePodium />
+          </LazyComponent>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Divider after Prize Section */}
-      <CyberDivider />
+      <AnimatedSection animationType="fadeIn" delay={200}>
+        <CyberDivider />
+      </AnimatedSection>
 
       {/* Topics Section with dither texture */}
       <div className="section-dither">
-        <HackathonTopicsCarousel />
+        <AnimatedSection animationType="slideInLeft" threshold={0.2}>
+          <LazyComponent threshold={0.1}>
+            <HackathonTopicsCarousel />
+          </LazyComponent>
+        </AnimatedSection>
       </div>
 
       {/* Divider before HackathonCards */}
-      <CyberDivider />
+      <AnimatedSection animationType="fadeIn" delay={300}>
+        <CyberDivider />
+      </AnimatedSection>
 
       {/* HackathonCards Section with dither texture */}
-      <section className="section-dither relative flex justify-center px-4 sm:px-6 py-12 sm:py-16">
+      <AnimatedSection
+        animationType="fadeUp"
+        className="section-dither relative flex justify-center px-4 sm:px-6 py-12 sm:py-16"
+        threshold={0.2}
+      >
         <div className="relative z-10 w-full max-w-7xl">
-          <HackathonCards />
+          <LazyComponent threshold={0.1}>
+            <HackathonCards />
+          </LazyComponent>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Divider before Contact Section */}
-      <CyberDivider />
+      <AnimatedSection animationType="fadeIn" delay={400}>
+        <CyberDivider />
+      </AnimatedSection>
 
       {/* Contact Section - plain black to blend with footer */}
       <div className="bg-black">
-        <ContactSection />
+        <AnimatedSection animationType="slideInRight" threshold={0.3}>
+          <LazyComponent>
+            <ContactSection />
+          </LazyComponent>
+        </AnimatedSection>
       </div>
 
-      <Footer />
+      <AnimatedSection animationType="fadeUp" threshold={0.3}>
+        <LazyComponent>
+          <Footer />
+        </LazyComponent>
+      </AnimatedSection>
     </div>
   );
 }

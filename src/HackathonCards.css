@@ -136,13 +136,14 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
 }
 
 .track-item:hover {
   background: rgba(132, 204, 22, 0.15);
   border-color: rgba(132, 204, 22, 0.5);
-  transform: translateX(4px);
+  transform: translate3d(4px, 0, 0);
 }
 
 .track-hash {
@@ -158,12 +159,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
 }
 
 .prize-item:hover {
   border-color: rgba(132, 204, 22, 0.5);
-  transform: translateX(4px);
+  transform: translate3d(4px, 0, 0);
 }
 
 .prize-label {
@@ -212,6 +214,7 @@ body {
   position: relative;
   z-index: 1;
   transition: gap 0.3s ease;
+  will-change: gap;
 }
 
 .learn-more:hover {
