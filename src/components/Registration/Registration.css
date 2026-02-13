@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+.registration-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #000;
+  min-height: 100vh;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hackfit-logo {
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 5px;
+  background: linear-gradient(90deg, #a3e635, #ffffff, #22d3ee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 15px rgba(163, 230, 53, 0.5));
+}
+
+/* The Wizard Container */
+.wizard-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Navbar Wrapper */
+.wizard-navbar {
+  display: flex;
+  width: 100%;
+  border: 1px solid #1f3a3a;
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent;
+}
+.wizard-navbar > div {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  position: relative;
+}
+
+.wizard-navbar > div:has(.wizard-step-active) {
+  z-index: 3;
+}
+
+.wizard-navbar > div:has(+ div > .wizard-step-active) > .wizard-arrow {
+  background-color: transparent;
+}
+
+.wizard-step {
+  flex: 1;
+  padding: 18px 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4a5568; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* ACTIVE STEP LOGIC */
+.wizard-step-active {
+  background: linear-gradient(90deg, #a3e635 0%, #70e2d1 100%);
+  color: #000;
+  z-index: 3;
+  clip-path: polygon(0% 0%, 92% 0%, 100% 50%, 92% 100%, 0% 100%);
+  margin-right: -20px; 
+  padding-right: 28px;
+  position: relative;
+}
+
+.wizard-navbar > div:last-child .wizard-step-active {
+  clip-path: none;      
+  margin-right: 0;      
+  padding-right: 8px;     
+  border-right: none;  
+}
+
+/* Divider Lines */
+.wizard-arrow {
+  width: 1px;
+  height: 100%;
+  background-color: #1f3a3a;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+/* Hide the divider when its sibling step is active */
+.wizard-step-active ~ .wizard-arrow {
+  background-color: transparent;
+}
+
+/* Content Box */
+.registration-content-box {
+  padding: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  background: #22d3ee;
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Layout: chevron | card | chevron */
+.team-size-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+/* --- Chevron Navigation Arrows --- */
+.chevron-arrow {
+  background: transparent;
+  border: none;
+  color: #22d3ee;
+  width: 64px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.5));
+}
+
+.chevron-arrow:hover:not(:disabled) {
+  filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.8))
+          drop-shadow(0 0 24px rgba(132, 204, 22, 0.4));
+  transform: scale(1.15);
+}
+
+.chevron-disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.ts-card-wrapper {
+  position: relative;
+  padding-top: 36px;
+  width: 100%;
+  max-width: 560px;
+}
+
+/* Glow bar behind top-right corner */
+.ts-card-glow {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  height: 69px;
+  top: 36px;
+  background: linear-gradient(135deg, #84cc16 0%, #a3e635 30%, #22d3ee 100%);
+  border-radius: 0px 5px 0px 0px;
+  z-index: 0;
+  margin-top: 14px;
+  padding: 0;
+}
+
+.ts-card {
+  background: #0a0a0a;
+  border: none;
+  border-radius: 20px;
+  padding: 60px 36px 40px;
+  position: relative;
+  overflow: visible;
+  backdrop-filter: blur(10px);
+  clip-path: polygon(3% 3%, 50% 3%, 57% 15%, 97% 15%, 97% 97%, 3% 97%);
+  z-index: 2;
+  margin-top: 0;
+  top: -10px;
+  text-align: center;
+}
+
+/* Glowing border pseudo-element */
+.ts-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #84cc16 0%, #a3e635 30%, #22d3ee 70%, #84cc16 100%);
+  clip-path: polygon(3% 3%, 50% 3%, 57% 15%, 97% 15%, 97% 97%, 3% 97%);
+  z-index: -1;
+  border-radius: 22px;
+  opacity: 0.8;
+  filter: blur(1px);
+}
+
+/* Inner background to create border effect */
+.ts-card::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: #0a0a0a;
+  clip-path: polygon(3% 3%, 50% 3%, 57% 15%, 97% 15%, 97% 97%, 3% 97%);
+  z-index: -1;
+  border-radius: 18px;
+}
+
+/* --- Card Title --- */
+.ts-card-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Underline gradient bar */
+.ts-card-underline {
+  width: 200px;
+  height: 3px;
+  background: linear-gradient(90deg, #84cc16 0%, #22d3ee 100%);
+  margin: 0 auto 28px;
+  border-radius: 2px;
+}
+
+/* --- Group Icon Row --- */
+.ts-group-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+  transform: translateZ(0);
+  will-change: contents;
+}
+
+.ts-person-icon {
+  filter: drop-shadow(0 0 6px rgba(132, 204, 22, 0.5));
+  transition: all 0.2s ease;
+  transform: translateZ(0);
+}
+
+/* --- Pricing --- */
+.ts-pricing {
+  position: relative;
+  z-index: 1;
+}
+
+.ts-price-total {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.ts-price-extra {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #94a3b8;
+  letter-spacing: 1.5px;
+}
+
+/* --- Next Button --- */
+.wizard-next-btn {
+  background: linear-gradient(90deg, #84cc16 0%, #22d3ee 100%);
+  color: #000;
+  border: none;
+  padding: 14px 48px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 32px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 16px rgba(132, 204, 22, 0.3);
+}
+
+.wizard-next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(132, 204, 22, 0.5);
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .registration-page {
+    padding: 40px 12px;
+  }
+
+  .hackfit-logo {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+
+  /* Wizard navbar mobile fix */
+  .wizard-navbar {
+    border-radius: 8px;
+  }
+
+  .wizard-step {
+    font-size: 0.55rem;
+    padding: 14px 4px;
+    gap: 4px;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+
+  .wizard-step-active {
+    clip-path: polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%);
+    margin-right: -12px;
+    padding-right: 14px;
+  }
+
+  .wizard-navbar > div:last-child .wizard-step-active {
+    clip-path: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .step-number {
+    font-size: 0.65rem;
+  }
+
+  .step-label {
+    font-size: 0.5rem;
+  }
+
+  /* Team size section */
+  .team-size-section {
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .chevron-arrow {
+    width: 40px;
+    height: 56px;
+  }
+
+  .chevron-arrow svg {
+    width: 24px;
+    height: 36px;
+  }
+
+  .ts-card-wrapper {
+    max-width: 320px;
+  }
+
+  .ts-card {
+    padding: 48px 20px 28px;
+  }
+
+  .ts-card-title {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .ts-card-underline {
+    width: 140px;
+    margin-bottom: 20px;
+  }
+
+  .ts-group-icon {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .ts-person-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .ts-price-total {
+    font-size: 0.75rem;
+  }
+
+  .ts-price-extra {
+    font-size: 0.58rem;
+  }
+
+  .wizard-next-btn {
+    padding: 12px 36px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .wizard-step {
+    font-size: 0.48rem;
+    padding: 12px 2px;
+    gap: 3px;
+  }
+
+  .wizard-step-active {
+    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+    margin-right: -8px;
+    padding-right: 10px;
+  }
+
+  .ts-card-wrapper {
+    max-width: 260px;
+  }
+
+  .ts-card-title {
+    font-size: 1rem;
+  }
+
+  .chevron-arrow {
+    width: 32px;
+    height: 48px;
+  }
+
+  .chevron-arrow svg {
+    width: 20px;
+    height: 30px;
+  }
+}
