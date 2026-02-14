@@ -12,7 +12,8 @@
 /* Unicorn Studio fade-in animation */
 .unicorn-fade-in {
   opacity: 0;
-  transition: opacity 1.5s ease-in;
+  transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
 }
 
 .unicorn-fade-in.unicorn-loaded {
@@ -153,6 +154,144 @@
   animation: palette-glitch 3s steps(1) infinite;
 }
 
+/* ============================================
+   RESPONSIVE HACKFIT HERO TITLE
+   ============================================ */
+
+/* Mobile phones (< 480px) */
+@media (max-width: 479px) {
+  .hackfit-hero-title {
+    font-size: 48px;
+    gap: 4px;
+  }
+  
+  .hackfit-title-wrapper {
+    gap: 4px !important;
+    flex-wrap: nowrap;
+  }
+  
+  .hackfit-gradient-text {
+    font-size: 48px !important;
+    line-height: 1 !important;
+  }
+  
+  .palette-text {
+    margin-top: 12px;
+    font-size: 32px !important;
+  }
+}
+
+/* Small phones and phablets (480px - 639px) */
+@media (min-width: 480px) and (max-width: 639px) {
+  .hackfit-hero-title {
+    font-size: 60px;
+    gap: 6px;
+  }
+  
+  .hackfit-title-wrapper {
+    gap: 6px !important;
+  }
+  
+  .hackfit-gradient-text {
+    font-size: 60px !important;
+    line-height: 1 !important;
+  }
+  
+  .palette-text {
+    margin-top: 16px;
+    font-size: 40px !important;
+  }
+}
+
+/* Tablets portrait (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .hackfit-hero-title {
+    font-size: 80px;
+    gap: 8px;
+  }
+  
+  .hackfit-title-wrapper {
+    gap: 8px !important;
+  }
+  
+  .hackfit-gradient-text {
+    font-size: 80px !important;
+    line-height: 1 !important;
+  }
+  
+  .palette-text {
+    margin-top: 20px;
+    font-size: 54px !important;
+  }
+}
+
+/* Tablets landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hackfit-hero-title {
+    font-size: 100px;
+    gap: 10px;
+  }
+  
+  .hackfit-title-wrapper {
+    gap: 10px !important;
+  }
+  
+  .hackfit-gradient-text {
+    font-size: 100px !important;
+    line-height: 1 !important;
+  }
+  
+  .palette-text {
+    margin-top: 24px;
+    font-size: 68px !important;
+  }
+}
+
+/* Desktop (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hackfit-hero-title {
+    font-size: 140px;
+    gap: 12px;
+  }
+  
+  .hackfit-title-wrapper {
+    gap: 12px !important;
+  }
+  
+  .hackfit-gradient-text {
+    font-size: 140px !important;
+    line-height: 1 !important;
+  }
+  
+  .palette-text {
+    margin-top: 30px;
+    font-size: 90px !important;
+  }
+}
+
+/* Large desktop (>= 1280px) */
+@media (min-width: 1280px) {
+  .hackfit-hero-title {
+    font-size: 180px;
+    gap: 16px;
+  }
+  
+  .hackfit-title-wrapper {
+    gap: 16px !important;
+  }
+  
+  .hackfit-gradient-text {
+    font-size: 180px !important;
+    line-height: 1 !important;
+  }
+  
+  .palette-text {
+    margin-top: 35px;
+    font-size: 110px !important;
+  }
+}
+
+/* Legacy media query for compatibility */
 @media (max-width: 868px) {
   .palette-text {
     margin-top: 24px;

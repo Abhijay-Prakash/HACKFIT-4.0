@@ -2,6 +2,20 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================
+   PREVENT HORIZONTAL SCROLL ON MOBILE
+   ============================================ */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .magicpattern {
   width: 100%;
   height: 100%;

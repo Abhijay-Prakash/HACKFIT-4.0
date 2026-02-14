@@ -143,10 +143,10 @@ const PrizePodium: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="w-full py-8 sm:py-16 md:py-24 lg:py-32 px-2 sm:px-4 md:px-6 lg:px-8 flex flex-col items-center justify-center min-h-[70vh] sm:min-h-[80vh] md:min-h-[90vh]"
+      className="w-full py-8 sm:py-16 md:py-24 lg:py-32 px-1 sm:px-4 md:px-6 lg:px-8 flex flex-col items-center justify-center min-h-[70vh] sm:min-h-[80vh] md:min-h-[90vh]"
     >
       {/* Section Title */}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-12 md:mb-16 lg:mb-20 text-center font-[progress] tracking-tight">
+      <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-12 md:mb-16 lg:mb-20 text-center font-[progress] tracking-tight">
         Prize Pool
       </h2>
 

@@ -23,6 +23,20 @@
   perspective-origin: center center;
 }
 
+/* Mobile responsiveness for topic carousel */
+@media (max-width: 479px) {
+  .neon-container-wrapper {
+    padding-top: 16px;
+  }
+  
+  .neon-container-wrapper::before {
+    top: 12px;
+    left: 4px;
+    width: calc(100% - 8px);
+    height: 20px;
+  }
+}
+
 .neon-container-wrapper::before {
   content: "";
   position: absolute;

@@ -61,8 +61,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
       try {
         const loadedFonts = await Promise.all(fonts.map((font) => font.load()));
         loadedFonts.forEach((font) => document.fonts.add(font));
-      } catch (error) {
-        console.warn("Font preloading failed:", error);
+      } catch {
+        // Font preloading failed - continue with system fonts
       }
     };
 
@@ -85,9 +85,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
       .then(() => {
         setResourcesLoaded(true);
       })
-      .catch((error) => {
-        console.warn("Resource preloading error:", error);
-        setResourcesLoaded(true); // Continue anyway
+      .catch(() => {
+        // Resource preloading error - continue anyway
+        setResourcesLoaded(true);
       });
 
     // Simulate loading progress with status updates

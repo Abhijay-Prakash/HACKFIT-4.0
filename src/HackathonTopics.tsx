@@ -72,7 +72,7 @@ const CombinedTopicCard: React.FC<{
         rotateY: { duration: 0.6 },
         scale: { duration: 0.6 },
       }}
-      className="absolute inset-0 overflow-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-8 lg:p-12 circuit-bg-pattern bg-gradient-to-br from-bgBlack via-bgBlack to-bgBlack/90"
+      className="absolute inset-0 overflow-hidden w-full h-full flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-10 p-4 sm:p-6 md:p-8 lg:p-12 circuit-bg-pattern bg-gradient-to-br from-bgBlack via-bgBlack to-bgBlack/90"
       style={{ perspective: 1200 }}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
@@ -203,18 +203,18 @@ const HackathonTopicsCarousel: React.FC = () => {
   const currentTopic = topicsData[activeIndex];
 
   return (
-    <section className="relative min-h-screen py-16 sm:py-20 md:py-24 px-4 text-white z-10 overflow-hidden">
-      <div className="max-w-6xl mx-auto flex flex-col gap-6 sm:gap-8 md:gap-10">
+    <section className="relative min-h-screen py-16 sm:py-20 md:py-24 px-2 sm:px-4 text-white z-10 overflow-hidden">
+      <div className="max-w-6xl mx-auto flex flex-col gap-6 sm:gap-8 md:gap-10 px-2 sm:px-0">
         <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-sage/70 font-roboto mb-2">
               Hackathon Tracks
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-geist font-semibold tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-geist font-semibold tracking-tight">
               Choose your{" "}
               <span className="text-lime font-[impact]">Topic </span>.
             </h1>
-            <p className="mt-3 text-sm md:text-base text-sage/80 max-w-2xl font-roboto">
+            <p className="mt-3 text-xs sm:text-sm md:text-base text-sage/80 max-w-2xl font-roboto">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Accusantium officiis quaerat, ex molestias, ducimus modi facere
               exercitationem incidunt iste illum autem ipsa corporis beatae
@@ -222,9 +222,9 @@ const HackathonTopicsCarousel: React.FC = () => {
             </p>
           </div>
 
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-bgBlack/80 border border-sage/40 backdrop-blur-md self-start">
+          <div className="inline-flex items-center gap-3 px-3 sm:px-4 py-2 rounded-full bg-bgBlack/80 border border-sage/40 backdrop-blur-md self-start">
             <span className="w-2 h-2 rounded-full bg-lime shadow-[0_0_10px_rgba(147,205,45,0.8)] animate-pulse" />
-            <span className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-sage/80 font-roboto">
+            <span className="text-[10px] sm:text-[11px] md:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase text-sage/80 font-roboto">
               Swipe, scroll or tap through the realms
             </span>
           </div>
@@ -238,7 +238,7 @@ const HackathonTopicsCarousel: React.FC = () => {
                 "polygon(2% 2%, 35% 2%, 40% 8%, 98% 8%, 98% 98%, 2% 98%)",
             }}
           >
-            <div className="relative w-full h-full min-h-[420px] md:min-h-[460px] lg:min-h-[480px]">
+            <div className="relative w-full h-full min-h-[449px] md:min-h-[460px] lg:min-h-[480px]">
               {/* overlapping enter/exit for seamless transitions */}
               <AnimatePresence initial={false} custom={direction}>
                 <CombinedTopicCard
