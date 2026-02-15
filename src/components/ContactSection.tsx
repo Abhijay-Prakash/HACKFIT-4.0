@@ -1,10 +1,42 @@
+import { useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import "./Contact.css";
+import "../HackathonCards.css";
+import logo2 from "../assets/logo2.png";
+
+// Custom logo marker icon
+const createLogoMarkerIcon = () => {
+  return L.icon({
+    iconUrl: logo2,
+    iconSize: [60, 60],
+    iconAnchor: [30, 60],
+    popupAnchor: [0, -60],
+    className: "custom-logo-marker",
+  });
+};
 
 export default function ContactSection() {
+  useEffect(() => {
+    // Fix for default marker icon
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: "",
+      iconUrl: "",
+      shadowUrl: "",
+    });
+  }, []);
+
+  const fisatPosition: [number, number] = [10.230845071755535, 76.40833693];
+  const handleMarkerClick = () => {
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${fisatPosition[0]},${fisatPosition[1]}`;
+    window.open(googleMapsUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section className="contact-section" id="contact">
       <div className="contact-container">
-
         <div className="contact-header">
           <p className="contact-kicker">REACH OUT</p>
           <h2 className="contact-title hack-text">Contact</h2>
@@ -13,34 +45,97 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="contact-grid people-grid">
+        <div className="contact-main-grid">
+          {/* Contact Cards - 2x2 Grid */}
+          <div className="contact-cards-container">
+            <div className="card-wrapper">
+              <div className="file-tab"></div>
+              <div className="card-glow" />
+              <div className="card">
+                <h3 className="card-title">Hisham Haskar</h3>
+                <div className="card-underline" />
+                <p className="person-role">Chairperson, ACM</p>
+                <p className="person-phone">+91 1234567890</p>
+              </div>
+            </div>
 
-          <div className="contact-card person-card">
-            <h3 className="person-name">Hisham Haskar</h3>
-            <p className="person-role">Chairperson, ACM</p>
-            <p className="person-phone">+91 1234567890</p>
+            <div className="card-wrapper">
+              <div className="file-tab"></div>
+              <div className="card-glow" />
+              <div className="card">
+                <h3 className="card-title">Abhijay Prakash</h3>
+                <div className="card-underline" />
+                <p className="person-role">Chairperson, FHC</p>
+                <p className="person-phone">+91 7356252747</p>
+              </div>
+            </div>
+
+            <div className="card-wrapper">
+              <div className="file-tab"></div>
+              <div className="card-glow" />
+              <div className="card">
+                <h3 className="card-title">Jeevan Biju Korah</h3>
+                <div className="card-underline" />
+                <p className="person-role">Project Lead, FHC</p>
+                <p className="person-phone">+91 9946655199</p>
+              </div>
+            </div>
+
+            <div className="card-wrapper">
+              <div className="file-tab"></div>
+              <div className="card-glow" />
+              <div className="card">
+                <h3 className="card-title">abcd</h3>
+                <div className="card-underline" />
+                <p className="person-role">qwertyuiop</p>
+                <p className="person-phone">+91 1234567890</p>
+              </div>
+            </div>
           </div>
 
-          <div className="contact-card person-card">
-            <h3 className="person-name">Abhijay Prakash</h3>
-            <p className="person-role">Chairperson, FHC</p>
-            <p className="person-phone">+91 7356252747</p>
-          </div>
+          {/* Map Section */}
+          <div className="map-section">
+            <div className="map-container">
+              <MapContainer
+                center={fisatPosition}
+                zoom={25}
+                scrollWheelZoom={false}
+                className="leaflet-map"
+                zoomControl={true}
+                attributionControl={false}
+              >
+                <TileLayer
+                  attribution=''
+                  url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                />
+                <Marker
+                  position={fisatPosition}
+                  icon={createLogoMarkerIcon()}
+                  eventHandlers={{
+                    click: handleMarkerClick,
+                  }}
+                >
+                  <Popup>
+                    <div className="custom-popup">
+                      <strong>HackFit 2026</strong>
+                      <br />
+                      FISAT, Angamaly
+                    </div>
+                  </Popup>
+                </Marker>
+              </MapContainer>
+            </div>
 
-          <div className="contact-card person-card">
-            <h3 className="person-name">Jeevan Biju Korah</h3>
-            <p className="person-role">Project Lead, FHC</p>
-            <p className="person-phone">+91 9946655199</p>
+            <div className="location-info">
+              <h3 className="location-title">LOCATE US</h3>
+              <p className="location-address">
+                Federal Institute of Science And Technology (FISAT)
+                <br />
+                Hormis Nagar, Mookkannoor, Angamaly, Kerala 683577
+              </p>
+            </div>
           </div>
-
-          <div className="contact-card person-card">
-            <h3 className="person-name">abcd</h3>
-            <p className="person-role">qwertyuiop</p>
-            <p className="person-phone">+91 1234567890</p>
-          </div>
-
         </div>
-
       </div>
     </section>
   );

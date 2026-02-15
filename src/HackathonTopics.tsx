@@ -248,9 +248,15 @@ const HackathonTopicsCarousel: React.FC = () => {
                   onDragEnd={(_, info) => {
                     const threshold = 100;
                     const velocityThreshold = 500;
-                    if (info.offset.x < -threshold || info.velocity.x < -velocityThreshold) {
+                    if (
+                      info.offset.x < -threshold ||
+                      info.velocity.x < -velocityThreshold
+                    ) {
                       nextSlide();
-                    } else if (info.offset.x > threshold || info.velocity.x > velocityThreshold) {
+                    } else if (
+                      info.offset.x > threshold ||
+                      info.velocity.x > velocityThreshold
+                    ) {
                       prevSlide();
                     }
                   }}
@@ -263,38 +269,37 @@ const HackathonTopicsCarousel: React.FC = () => {
 
           <div className="mt-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              {topicsData.map((topic, index) => (
-                <button
-                  key={topic.id}
-                  onClick={() => {
-                    const dir = index > activeIndex ? 1 : -1;
-                    setPage([index, dir]);
-                    setActiveIndex(index);
-                  }}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === activeIndex
-                      ? "w-8 bg-lime"
-                      : "w-3 bg-sage/40 hover:bg-sage/80"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+              {/* Left gradient nav replaces the small blue/indicator buttons. Click triggers previous slide. */}
+              {/* <button
+                onClick={prevSlide}
+                className="left-gradient-nav"
+                aria-label="Previous topic"
+              >
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 6L9 12L15 18" stroke="#042" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button> */}
             </div>
 
             <div className="flex items-center gap-3">
               <button
                 onClick={prevSlide}
-                className="w-9 h-9 rounded-full border border-sage/50 flex items-center justify-center text-sage/80 hover:text-lime hover:border-lime transition-colors"
+                className="gradient-nav"
                 aria-label="Previous topic"
               >
-                <span className="text-sm">←</span>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 6L9 12L15 18" stroke="#001214" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
+
               <button
                 onClick={nextSlide}
-                className="w-9 h-9 rounded-full border border-sage/50 flex items-center justify-center text-sage/80 hover:text-lime hover:border-lime transition-colors"
+                className="gradient-nav"
                 aria-label="Next topic"
               >
-                <span className="text-sm">→</span>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M9 6L15 12L9 18" stroke="#001214" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
             </div>
           </div>

@@ -9,6 +9,11 @@ module.exports = {
         hacked: ["hacked", "ui-sans-serif", "system-ui"],
         geist: ["Geist", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
+        money: ["Money", "ui-sans-serif", "system-ui"],
+        nokiakokia: ["NokiaKokia", "ui-sans-serif", "system-ui"],
+        origintech: ["OriginTech", "ui-sans-serif", "system-ui"],
+        cyberalert: ["CyberAlert", "ui-sans-serif", "system-ui"],
+        racespace: ["RaceSpace", "ui-sans-serif", "system-ui"],
       },
       colors: {
         bgBlack: "#0a0a0a",
@@ -18,6 +23,20 @@ module.exports = {
         deepBlue: "#1b759f",
         sage: "#8cb798",
         cyan: "#32bbd2",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },

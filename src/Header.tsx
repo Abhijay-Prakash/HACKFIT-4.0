@@ -2,7 +2,6 @@ import React, { lazy, Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 
 import GradientText from "./components/GradientText";
-import patternBg from "./assets/patterb.webp";
 import {
   Navbar,
   NavBody,
@@ -92,7 +91,12 @@ export const Header: React.FC = () => {
                 {item.name}
               </a>
             ))}
-            <NavbarButton as={Link} to="/register" variant="dark" className="w-full justify-center">
+            <NavbarButton
+              as={Link}
+              to="/register"
+              variant="dark"
+              className="w-full justify-center"
+            >
               Register
             </NavbarButton>
           </MobileNavMenu>
@@ -103,7 +107,8 @@ export const Header: React.FC = () => {
       <div
         className="absolute inset-0 z-[-1]"
         style={{
-          background: `url(${patternBg}) center/cover, linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%)`,
+          background:
+            "linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%)",
         }}
       />
 
@@ -154,7 +159,7 @@ export const Header: React.FC = () => {
             >
               FIT
             </GradientText>
-            <span className="font-[paladins] flex m-0 text-lime-400 palette-text hackfit-version-text">
+            <span className="font-[CyberAlert] flex m-0 text-lime-400 palette-text hackfit-version-text">
               4.0
             </span>
           </div>
@@ -170,8 +175,8 @@ export const Header: React.FC = () => {
               <span className="font-[progress] text-[#d4e21c] text-lg tracking-widest uppercase">
                 Prize Pool
               </span>
-              <span className="font-[paladins] text-5xl md:text-6xl text-white prize-glow leading-none">
-                ₹50K
+              <span className="font-[CyberAlert] font-bold italic text-4xl lg:text-8xl md:text-6xl text-white prize-glow leading-none">
+                ₹ 50K
               </span>
             </div>
           </div>
@@ -185,22 +190,22 @@ export const Header: React.FC = () => {
                 MARK the DateS
               </span>
               <div className="flex items-baseline gap-2">
-                <span className="font-[paladins] text-4xl md:text-5xl text-white leading-none">
+                <span className="font-[origintech] font-bold italic text-4xl lg:text-8xl md:text-5xl text-white leading-none">
                   6
                 </span>
-                <span className="font-[raceguard] text-2xl text-[#8cb798]">
+                <span className="font-[origintech] font-bold italic text-2xl text-[#8cb798]">
                   •
                 </span>
-                <span className="font-[paladins] text-4xl md:text-5xl text-white leading-none">
+                <span className="font-[origintech] font-bold italic lg:text-8xl text-4xl md:text-5xl text-white leading-none">
                   7
                 </span>
-                <span className="font-[raceguard] text-2xl text-[#8cb798]">
+                <span className="font-[origintech] font-bold italic text-2xl text-[#8cb798]">
                   •
                 </span>
-                <span className="font-[paladins] text-4xl md:text-5xl text-white leading-none">
+                <span className="font-[origintech] font-bold italic lg:text-8xl text-4xl md:text-5xl text-white leading-none">
                   8
                 </span>
-                <span className="font-[progress] text-xl text-[#8cb798] ml-2 self-end mb-1">
+                <span className="font-[origintech] font-bold italic text-xl text-[#8cb798] ml-2 self-end mb-1">
                   MARCH
                 </span>
               </div>
@@ -236,7 +241,6 @@ export const Header: React.FC = () => {
 
       {/* Black overlay to hide UnicornStudio watermark */}
       <div className="absolute bottom-0 left-0 right-0 z-20 h-16 md:h-20 bg-black" />
-       
     </header>
   );
 };

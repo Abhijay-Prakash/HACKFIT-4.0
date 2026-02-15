@@ -3,6 +3,7 @@ import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
 import logo3 from "../assets/logo3.png";
 import "./LoadingScreen.css";
+import Squares from "./Squares";
 
 interface LoadingScreenProps {
   onLoadComplete: () => void;
@@ -35,27 +36,27 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
         new FontFace(
           "Orbitron",
           "url(https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6xpmIyXjU1pg.woff2)",
-          {
-            weight: "400",
-            style: "normal",
-          },
+          { weight: "400", style: "normal" },
         ),
         new FontFace(
           "Orbitron",
           "url(https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyKy-xpmIyXjU1pg.woff2)",
-          {
-            weight: "700",
-            style: "normal",
-          },
+          { weight: "700", style: "normal" },
         ),
         new FontFace(
           "Orbitron",
           "url(https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGS-xpmIyXjU1pg.woff2)",
-          {
-            weight: "900",
-            style: "normal",
-          },
+          { weight: "900", style: "normal" },
         ),
+        // Local project fonts
+        new FontFace("paladins", "url(/fonts/paladins-font/PaladinsGradient-MAZ8B.otf)"),
+        new FontFace("progress", "url(/fonts/progress-font/ProgressPersonalUse-EaJdz.ttf)"),
+        new FontFace("Money", "url(/fonts/money-font/Money-w16D8.ttf)"),
+        new FontFace("NokiaKokia", "url(/fonts/Nokiakokia/NokiaKokia.ttf)"),
+        new FontFace("OriginTech", "url(/fonts/origin-tech-font/OriginTech-rv0V8.ttf)"),
+        new FontFace("hacked", "url(/fonts/hacked-font/Hacked-KerX.ttf)"),
+        new FontFace("CyberAlert", "url(/fonts/cyber-alert.regular.otf)"),
+        new FontFace("RaceSpace", "url(/fonts/race-space.regular-1.ttf)"),
       ];
 
       try {
@@ -141,6 +142,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
 
   return (
     <div className="loading-screen">
+      {/* Background squares canvas (behind content) */}
+      <div className="loading-bg-canvas" aria-hidden>
+        <Squares
+          speed={0.47}
+          squareSize={100}
+          direction="diagonal"
+          borderColor="#035401"
+          hoverFillColor="#269b96"
+        />
+      </div>
+
       <div className="noise-overlay" />
       <div className="scan-lines" />
 

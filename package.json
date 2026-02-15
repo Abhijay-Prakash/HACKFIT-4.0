@@ -12,11 +12,15 @@
   "dependencies": {
     "@tabler/icons-react": "^3.36.1",
     "@tailwindcss/vite": "^4.1.18",
+    "@types/leaflet": "^1.9.21",
     "clsx": "^2.1.1",
     "framer-motion": "^12.31.3",
+    "leaflet": "^1.9.4",
     "lenis": "^1.3.17",
+    "lucide-react": "^0.564.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.13.0",
     "tailwind-merge": "^3.4.0",
     "unicornstudio-react": "^2.0.1-1"
