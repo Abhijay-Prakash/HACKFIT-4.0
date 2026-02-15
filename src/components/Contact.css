@@ -1,8 +1,12 @@
+/* ===============================
+   CONTACT SECTION
+================================= */
+
 .contact-section {
   padding: 4rem 4vw 6rem;
+  background: #000;
   position: relative;
   z-index: 10;
-  background: #000000;
 }
 
 @media (min-width: 768px) {
@@ -16,16 +20,14 @@
   margin: 0 auto;
 }
 
-/* Keep existing fonts exactly as they are */
-.contact-section,
-.contact-container,
-.contact-header,
-.card,
-.card-title,
-.person-role,
-.person-phone {
+/* Force font consistency */
+.contact-section * {
   font-family: "money", system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+/* ===============================
+   HEADER
+================================= */
 
 .contact-header {
   max-width: 720px;
@@ -33,16 +35,16 @@
 }
 
 .contact-kicker {
-  letter-spacing: 0.2em;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
   color: var(--chart-3);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .contact-title {
-  font-size: 2.4rem;
-  margin-bottom: 0.6rem;
+  font-size: 2.5rem;
   color: var(--chart-1);
+  margin-bottom: 0.6rem;
 }
 
 .contact-desc {
@@ -50,7 +52,10 @@
   line-height: 1.6;
 }
 
-/* ---------- Main Grid Layout (Cards + Map) ---------- */
+/* ===============================
+   GRID LAYOUT
+================================= */
+
 .contact-main-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -58,156 +63,127 @@
   align-items: start;
 }
 
-/* ---------- Contact Cards Container (2x2 Grid) ---------- */
 .contact-cards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1.8rem;
 }
 
-/* ---------- Card Wrapper with File Tab ---------- */
+/* ===============================
+   CYBER CONTACT CARD (ISOLATED)
+================================= */
+
 .card-wrapper {
   position: relative;
-  padding-top: 0;
-  height: auto;
 }
 
-/* File Tab on Top Right Corner */
-/* .file-tab {
-  position: absolute;
-  top: -15px;
-  right: 30px;
-  width: 100px;
-  height: 35px;
-  background: linear-gradient(135deg, #84cc16 0%, #a3e635 50%, #22d3ee 100%);
-  clip-path: polygon(15% 0%, 85% 0%, 95% 100%, 5% 100%);
-  z-index: 5;
-  box-shadow: 
-    0 2px 8px rgba(132, 204, 22, 0.4),
-    0 0 20px rgba(132, 204, 22, 0.2);
-} */
-
-/* Remove Card Glow */
+/* Remove any leftover decorative elements */
+.file-tab,
 .card-glow {
-  display: none;
+  display: none !important;
 }
 
-/* Simplified Card Styling */
-.card {
-  background: rgba(10, 10, 10, 0.95);
-  border: 2px solid;
-  border-image: linear-gradient(135deg, #84cc16, #22d3ee) 1;
-  border-radius: 0;
-  padding: 24px 28px;
-  position: relative;
-  overflow: visible;
-  backdrop-filter: blur(10px);
-  z-index: 2;
-  margin-top: 20px;
-  height: auto;
-  min-height: 140px;
+/* Hard override card style */
+.contact-section .card {
+  background: #0c1117;
+  border: 1px solid rgba(132, 204, 22, 0.4);
+  border-radius: 8px;
+  padding: 26px 28px;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  box-shadow: 
-    0 0 30px rgba(132, 204, 22, 0.15),
-    inset 0 0 40px rgba(132, 204, 22, 0.03);
-  transition: all 0.3s ease;
+  gap: 10px;
+
+  transition: all 0.25s ease;
+  position: relative;
 }
 
-.card:hover {
-  border-image: linear-gradient(135deg, #a3e635, #22d3ee) 1;
-  box-shadow: 
-    0 0 40px rgba(132, 204, 22, 0.3),
-    inset 0 0 50px rgba(132, 204, 22, 0.05);
-  transform: translateY(-2px);
+/* Accent strip */
+.contact-section .card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 3px;
+  height: 60%;
+  background: linear-gradient(to bottom, #84cc16, #22d3ee);
 }
 
-/* Remove pseudo-elements */
-.card::before,
-.card::after {
-  display: none;
+/* Hover */
+.contact-section .card:hover {
+  border-color: #84cc16;
+  box-shadow:
+    0 0 20px rgba(132, 204, 22, 0.25),
+    inset 0 0 25px rgba(132, 204, 22, 0.05);
+  transform: translateY(-4px);
 }
+
+/* ===============================
+   TYPOGRAPHY
+================================= */
 
 .card-title {
-  letter-spacing: 0.02em;
-  color: var(--chart-1);
-  margin-bottom: 0.35rem;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  position: relative;
-  left: -10px;
-  top: 4px;
-  z-index: 1;
+  letter-spacing: 0.05em;
+  color: #eafcff;
+  margin: 0;
 }
 
 .card-underline {
-  width: 40px;
+  width: 48px;
   height: 2px;
-  background: linear-gradient(90deg, #84cc16, #22d3ee);
-  margin-bottom: 0.5rem;
+  background: #84cc16;
+  margin: 6px 0 12px 0;
 }
 
 .person-role {
-  color: var(--muted-foreground);
-  font-size: 0.85rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
 }
 
 .person-phone {
-  color: var(--chart-3);
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
+  font-size: 0.95rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #22d3ee;
+  margin-top: 6px;
 }
 
-/* ---------- Map Section ---------- */
+/* ===============================
+   MAP SECTION
+================================= */
+
 .map-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  position: relative;
 }
 
 .map-container {
   width: 100%;
   height: 300px;
-  position: relative;
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid rgba(132, 204, 22, 0.4);
-  box-shadow: 
+  border: 1px solid rgba(132, 204, 22, 0.4);
+  box-shadow:
     0 0 20px rgba(132, 204, 22, 0.2),
-    0 0 40px rgba(34, 211, 238, 0.1);
+    0 0 40px rgba(34, 211, 238, 0.08);
 }
 
 .leaflet-map {
   width: 100%;
   height: 100%;
   background: #0a0a0a;
-  z-index: 1;
 }
 
-/* Custom Logo Marker Styles */
-.custom-logo-marker {
-  filter: drop-shadow(0 0 10px rgba(132, 204, 22, 0.8));
-  animation: pulse-marker 2s ease-in-out infinite;
-}
-
-@keyframes pulse-marker {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px rgba(132, 204, 22, 0.8));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px rgba(132, 204, 22, 1));
-  }
-}
-
-/* Custom Popup Styles */
+/* Popup */
 .custom-popup {
-  font-family: "money", system-ui, sans-serif;
+  background: #000;
   color: #84cc16;
-  background: #0a0a0a;
   padding: 8px;
   border-radius: 6px;
 }
@@ -215,20 +191,18 @@
 /* Location Info */
 .location-info {
   padding: 2rem;
+  border-radius: 12px;
   background: radial-gradient(
     120% 120% at 100% 0%,
     rgba(34, 211, 238, 0.08),
     rgba(0, 0, 0, 0.9)
   );
-  border-radius: 12px;
-  border: 1px solid rgba(132, 204, 22, 0.35);
-  box-shadow: 0 0 20px rgba(132, 204, 22, 0.08);
+  border: 1px solid rgba(132, 204, 22, 0.3);
 }
 
 .location-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 0.15em;
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
   color: var(--chart-1);
   margin-bottom: 1rem;
 }
@@ -239,15 +213,13 @@
   font-size: 0.95rem;
 }
 
-/* ---------- Responsive ---------- */
+/* ===============================
+   RESPONSIVE
+================================= */
+
 @media (max-width: 1024px) {
   .contact-main-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .contact-cards-container {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -256,24 +228,12 @@
     grid-template-columns: 1fr;
   }
 
-  .contact-title {
-    font-size: 2rem;
-  }
-
   .map-container {
     height: 250px;
   }
-
-  .card-wrapper {
-    height: auto;
-  }
-
-  .card {
-    min-height: 120px;
-  }
 }
 
-/* Leaflet Control Styling */
+/* Leaflet Zoom Controls */
 .leaflet-control-zoom a {
   background-color: #0a0a0a !important;
   color: #84cc16 !important;
@@ -282,10 +242,4 @@
 
 .leaflet-control-zoom a:hover {
   background-color: #1a1a1a !important;
-  border-color: rgba(132, 204, 22, 0.8) !important;
-}
-
-
-.leaflet-popup-content-wrapper{
-  background-color: #000000;
 }

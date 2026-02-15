@@ -13,7 +13,7 @@ const statusLines = [
 
 const WhatIsHackfit: React.FC = () => {
   return (
-    <section className="hackfit-intro py-14 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 relative overflow-hidden">
+    <section className="hackfit-intro py-14 sm:py-16 md:py-20 px-3 sm:px-6 md:px-10 relative overflow-hidden max-w-[100vw]">
       <div className="code-rain-overlay" aria-hidden />
       <div className="relative z-10 max-w-6xl mx-auto grid gap-10 md:grid-cols-[1.05fr_0.95fr] items-center bg-black/45">
         <AnimatedSection animationType="fadeUp" threshold={0.15}>
@@ -24,10 +24,10 @@ const WhatIsHackfit: React.FC = () => {
                 What is Hackfit?
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-[progress] leading-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold font-[progress] leading-tight">
               Build bold. Sleep later.
             </h2>
-            <p className=" font-[progress] text-slate-200/90 tracking-widest text-base md:text-lg max-w-2xl">
+            <p className="font-[progress] text-slate-200/90 tracking-widest text-sm sm:text-base md:text-lg max-w-2xl">
               Hackfit is a neon-fueled sprint where teams ship real solutions in
               hours—not weeks. Expect fast tracks, live mentors, and a runway to
               launch ideas under pressure.

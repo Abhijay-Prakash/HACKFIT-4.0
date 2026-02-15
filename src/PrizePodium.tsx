@@ -143,7 +143,7 @@ const PrizePodium: React.FC = () => {
   return (
     <section
       ref={ref}
-      className="w-full py-8 sm:py-16 md:py-24 lg:py-32 px-1 sm:px-4 md:px-6 lg:px-8 flex flex-col items-center justify-center min-h-[70vh] sm:min-h-[80vh] md:min-h-[90vh]"
+      className="w-full py-8 sm:py-16 md:py-24 lg:py-32 px-0 sm:px-4 md:px-6 lg:px-8 flex flex-col items-center justify-center min-h-[70vh] sm:min-h-[80vh] md:min-h-[90vh] overflow-hidden max-w-[100vw]"
     >
       {/* Section Title */}
       <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-12 md:mb-16 lg:mb-20 text-center font-[progress] tracking-tight">
@@ -153,13 +153,13 @@ const PrizePodium: React.FC = () => {
       {/* Podium Container */}
       <div className="prize-podium-container">
         {/* 2nd Place (Left) */}
-        <div className="order-2 md:order-1 ">
+        <div className="order-2 md:order-1 min-w-0">
           <PodiumItem
             place="2nd"
             title="2nd Place"
             prizeAmount={50000}
             extras=""
-            height="h-[140px] sm:h-[220px] md:h-[320px] lg:h-[400px] xl:h-[480px]"
+            height="h-[120px] sm:h-[220px] md:h-[320px] lg:h-[400px] xl:h-[480px]"
             colorClass="text-green-500"
             active={isIntersecting}
             delayMs={200}
@@ -167,13 +167,13 @@ const PrizePodium: React.FC = () => {
         </div>
 
         {/* 1st Place (Center - Tallest) */}
-        <div className="order-1 md:order-2">
+        <div className="order-1 md:order-2 min-w-0">
           <PodiumItem
             place="1st"
             title="1st Place - Grand Prize"
             prizeAmount={100000}
             extras=""
-            height="h-[180px] sm:h-[280px] md:h-[400px] lg:h-[520px] xl:h-[640px]"
+            height="h-[160px] sm:h-[280px] md:h-[400px] lg:h-[520px] xl:h-[640px]"
             colorClass="text-lime-400"
             active={isIntersecting}
             delayMs={0}
@@ -181,12 +181,12 @@ const PrizePodium: React.FC = () => {
         </div>
 
         {/* 3rd Place (Right - Shortest) */}
-        <div className="order-3 md:order-3">
+        <div className="order-3 md:order-3 min-w-0">
           <PodiumItem
             place="3rd"
             title="3rd Place"
             prizeAmount={25000}
-            height="h-[120px] sm:h-[180px] md:h-[280px] lg:h-[360px] xl:h-[440px]"
+            height="h-[100px] sm:h-[180px] md:h-[280px] lg:h-[360px] xl:h-[440px]"
             colorClass="text-yellow-400"
             active={isIntersecting}
             delayMs={400}
