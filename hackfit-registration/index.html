@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackFit 4.0 Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern sans-serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="hackfit-accordion-wrapper">
+        <!-- Header -->
+        <header class="hackfit-header">
+            <!-- <h1 class="hackfit-title">HACKFIT 4.0</h1> -->
+            <p class="hackfit-subtitle">TEAM REGISTRATION</p>
+        </header>
+
+        <form id="hackfit-form" onsubmit="event.preventDefault();">
+
+            <!-- SECTION 1: TEAM & LEAD DETAILS -->
+            <div class="hackfit-accordion-item active" id="hackfit-acc-item-1">
+                <div class="hackfit-accordion-header">
+                    <span class="hackfit-acc-indicator"></span>
+                    <h3>Team & Lead Details</h3>
+                    <span class="hackfit-acc-status" id="hackfit-acc-status-1"></span>
+                </div>
+                <div class="hackfit-accordion-content">
+                    <div class="hackfit-padded-content">
+
+                        <!-- Team Size Selector (Moved inside) -->
+                        <div class="hackfit-section-block">
+                            <label class="hackfit-label-highlight">Select Team Size</label>
+                            <div class="hackfit-size-selector-inline">
+                                <button type="button" class="hackfit-mini-btn" id="hackfit-decrease-size">-</button>
+                                <span class="hackfit-size-value"><span id="hackfit-team-size-number">3</span>
+                                    Members</span>
+                                <button type="button" class="hackfit-mini-btn" id="hackfit-increase-size">+</button>
+                                <span class="hackfit-price-tag">Total: ₹<span id="hackfit-total-price">999</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Team Lead Form -->
+                        <div class="hackfit-form-grid">
+                            <div class="hackfit-input-group full-width">
+                                <label for="hackfit-name">Team Lead Name <span class="hackfit-required">*</span></label>
+                                <input type="text" id="hackfit-name" class="hackfit-input" placeholder="Full Name">
+                            </div>
+
+                            <div class="hackfit-input-group full-width">
+                                <label for="hackfit-institution">Institution <span
+                                        class="hackfit-required">*</span></label>
+                                <input type="text" id="hackfit-institution" class="hackfit-input"
+                                    placeholder="College Name">
+                            </div>
+
+                            <div class="hackfit-input-group full-width">
+                                <label for="hackfit-semester">Semester <span class="hackfit-required">*</span></label>
+                                <select id="hackfit-semester" class="hackfit-input">
+                                    <option value="" disabled selected>Select Semester</option>
+                                    <option value="S2">S2</option>
+                                    <option value="S4">S4</option>
+                                    <option value="S6">S6</option>
+                                    <option value="S8">S8</option>
+                                </select>
+                            </div>
+
+                            <div class="hackfit-input-group full-width">
+                                <label for="hackfit-department">Department <span
+                                        class="hackfit-required">*</span></label>
+                                <input type="text" id="hackfit-department" class="hackfit-input"
+                                    placeholder="e.g. Computer Science">
+                            </div>
+
+                            <div class="hackfit-input-group full-width">
+                                <label for="hackfit-batch">Batch <span class="hackfit-note">* Select 'A' if no
+                                        batch</span></label>
+                                <select id="hackfit-batch" class="hackfit-input">
+                                    <option value="" disabled selected>Select Batch</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                            </div>
+
+                            <div class="hackfit-input-group full-width">
+                                <label for="hackfit-email">Email <span class="hackfit-required">*</span></label>
+                                <input type="email" id="hackfit-email" class="hackfit-input"
+                                    placeholder="email@example.com">
+                            </div>
+
+                            <div class="hackfit-input-group full-width">
+                                <label for="hackfit-contact">Contact Number <span
+                                        class="hackfit-required">*</span></label>
+                                <input type="tel" id="hackfit-contact" class="hackfit-input"
+                                    placeholder="10 digit number">
+                            </div>
+                        </div>
+
+                        <div class="hackfit-action-center">
+                            <button type="button" class="hackfit-btn-gradient" id="hackfit-btn-step-1">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: MEMBER DETAILS -->
+            <div class="hackfit-accordion-item" id="hackfit-acc-item-2">
+                <div class="hackfit-accordion-header">
+                    <span class="hackfit-acc-indicator"></span>
+                    <h3>Member Details</h3>
+                    <span class="hackfit-acc-status" id="hackfit-acc-status-2"></span>
+                </div>
+                <div class="hackfit-accordion-content">
+                    <div class="hackfit-padded-content">
+                        <!-- Dynamic Content for Additional Members -->
+                        <div id="hackfit-member-forms-container">
+                            <!-- JS will inject forms here -->
+                            <p class="hackfit-placeholder-text">Please complete Team Lead details first.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: PAYMENT & QR -->
+            <div class="hackfit-accordion-item" id="hackfit-acc-item-3">
+                <div class="hackfit-accordion-header">
+                    <span class="hackfit-acc-indicator"></span>
+                    <h3>Payment & QR Code</h3>
+                    <span class="hackfit-acc-status" id="hackfit-acc-status-3"></span>
+                </div>
+                <div class="hackfit-accordion-content">
+                    <div class="hackfit-padded-content">
+
+                        <div class="hackfit-qr-section-flex">
+                            <div class="hackfit-qr-box">
+                                <div class="hackfit-qr-placeholder">QR CODE</div>
+                                <p>Scan to Pay <span class="hackfit-highlight-text" id="hackfit-final-price">₹999</span>
+                                </p>
+                            </div>
+                            <div class="hackfit-payment-form">
+                                <div class="hackfit-input-group full-width">
+                                    <label for="hackfit-team-contact">Team Contact Number <span
+                                            class="hackfit-required">*</span></label>
+                                    <input type="tel" id="hackfit-team-contact" class="hackfit-input"
+                                        placeholder="Primary contact">
+                                </div>
+
+                                <div class="hackfit-input-group full-width">
+                                    <label for="hackfit-payment-proof">Upload Payment Screenshot <span
+                                            class="hackfit-required">*</span></label>
+                                    <div class="hackfit-file-wrapper">
+                                        <input type="file" id="hackfit-payment-proof" class="hackfit-input-file"
+                                            accept="image/*">
+                                        <div class="hackfit-file-custom">Choose File</div>
+                                        <span id="hackfit-file-name" class="hackfit-file-name-sm">No file chosen</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hackfit-action-center">
+                            <button type="submit" class="hackfit-btn-gradient" id="hackfit-btn-submit">Complete
+                                Registration</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUCCESS OVERLAY (Hidden by default) -->
+            <div id="hackfit-success-overlay" class="hackfit-overlay hidden">
+                <div class="hackfit-success-modal">
+                    <div class="hackfit-success-icon">✓</div>
+                    <h2>Registration Successful!</h2>
+                    <p>Welcome to HackFit 4.0</p>
+                    <button type="button" class="hackfit-btn-gradient" onclick="location.reload()">Okay</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
