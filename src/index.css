@@ -118,13 +118,13 @@ body {
 }
 
 /* Additional fonts requested */
-@font-face {
+/* @font-face {
   font-family: "raceguard";
   src: url("/fonts/race-guard-font/RaceGuard-7BPoE.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 @font-face {
   font-family: "progress";
