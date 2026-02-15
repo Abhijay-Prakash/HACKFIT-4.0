@@ -50,6 +50,9 @@ export default function HomePage() {
             </LazyComponent>
           </AnimatedSection>
         </div>
+           <AnimatedSection animationType="fadeIn" delay={400}>
+          <CyberDivider />
+        </AnimatedSection>
 
         {/* Timeline */}
         <AnimatedSection
@@ -65,7 +68,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         {/* HackathonCards Section */}
-        <AnimatedSection
+        {/* <AnimatedSection
           animationType="fadeUp"
           className="section-dither relative flex justify-center px-4 sm:px-6 py-12 sm:py-16"
           threshold={0.2}
@@ -75,11 +78,11 @@ export default function HomePage() {
               <HackathonCards />
             </LazyComponent>
           </div>
-        </AnimatedSection>
+        </AnimatedSection> */}
 
-        <AnimatedSection animationType="fadeIn" delay={400}>
+        {/* <AnimatedSection animationType="fadeIn" delay={400}>
           <CyberDivider />
-        </AnimatedSection>
+        </AnimatedSection> */}
 
         {/* Contact Section */}
         <div>

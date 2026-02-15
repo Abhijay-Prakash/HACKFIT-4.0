@@ -91,15 +91,14 @@ body {
 }
 
 .card-title {
-  font-size: 1rem;
+  font-size: 28px;
   font-weight: 600;
   color: #f1f5f9;
   margin-bottom: 8px;
-  margin-right: 28px;
   position: relative;
   z-index: 1;
   top: -10px;
-  left: -8px;
+  left: 21px;
 }
 
 .card-underline {
