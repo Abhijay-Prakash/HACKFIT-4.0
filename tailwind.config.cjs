@@ -9,6 +9,11 @@ module.exports = {
         hacked: ["hacked", "ui-sans-serif", "system-ui"],
         geist: ["Geist", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
+        money: ["Money", "ui-sans-serif", "system-ui"],
+        nokiakokia: ["NokiaKokia", "ui-sans-serif", "system-ui"],
+        origintech: ["OriginTech", "ui-sans-serif", "system-ui"],
+        cyberalert: ["CyberAlert", "ui-sans-serif", "system-ui"],
+        racespace: ["RaceSpace", "ui-sans-serif", "system-ui"],
       },
       colors: {
         bgBlack: "#0a0a0a",

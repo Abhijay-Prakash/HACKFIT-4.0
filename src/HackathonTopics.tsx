@@ -248,9 +248,15 @@ const HackathonTopicsCarousel: React.FC = () => {
                   onDragEnd={(_, info) => {
                     const threshold = 100;
                     const velocityThreshold = 500;
-                    if (info.offset.x < -threshold || info.velocity.x < -velocityThreshold) {
+                    if (
+                      info.offset.x < -threshold ||
+                      info.velocity.x < -velocityThreshold
+                    ) {
                       nextSlide();
-                    } else if (info.offset.x > threshold || info.velocity.x > velocityThreshold) {
+                    } else if (
+                      info.offset.x > threshold ||
+                      info.velocity.x > velocityThreshold
+                    ) {
                       prevSlide();
                     }
                   }}

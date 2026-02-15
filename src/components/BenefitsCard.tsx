@@ -14,7 +14,7 @@ const BenefitsCard: React.FC<BenefitsCardProps> = ({
     <aside className="benefits-card">
       <div className="benefits-card-inner">
         <div className="benefits-header" aria-hidden>
-          <div className="benefits-title">Benefits</div>
+          <div className="benefits-title">Terminal</div>
           <div className="benefits-tab" />
         </div>
 

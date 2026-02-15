@@ -5,16 +5,17 @@ import BenefitsCard from "./BenefitsCard";
 
 const statusLines = [
   "Booting Hackfit core modules... [OK]",
-  "Syncing mentors + infra... [OK]",
-  "Priming challenges + datasets... [READY]",
+  "Syncing mentors... [OK]",
+  "Priming challenges + datasets...[DONE%]",
   "Standing by for innovators...",
+  "||||||||||||||||||||||||||||||||||||||||||| 100%",
 ];
 
 const WhatIsHackfit: React.FC = () => {
   return (
     <section className="hackfit-intro py-14 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 relative overflow-hidden">
       <div className="code-rain-overlay" aria-hidden />
-      <div className="relative z-10 max-w-6xl mx-auto grid gap-10 md:grid-cols-[1.05fr_0.95fr] items-center">
+      <div className="relative z-10 max-w-6xl mx-auto grid gap-10 md:grid-cols-[1.05fr_0.95fr] items-center bg-black/45">
         <AnimatedSection animationType="fadeUp" threshold={0.15}>
           <div className="space-y-4 md:space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-lime-400/50 bg-black/60 backdrop-blur">
@@ -26,7 +27,7 @@ const WhatIsHackfit: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-[progress] leading-tight">
               Build bold. Sleep later.
             </h2>
-            <p className="text-slate-200/90 text-base md:text-lg max-w-2xl">
+            <p className=" font-[progress] text-slate-200/90 tracking-widest text-base md:text-lg max-w-2xl">
               Hackfit is a neon-fueled sprint where teams ship real solutions in
               hours—not weeks. Expect fast tracks, live mentors, and a runway to
               launch ideas under pressure.
@@ -49,12 +50,9 @@ const WhatIsHackfit: React.FC = () => {
         </AnimatedSection>
 
         <AnimatedSection animationType="slideInRight" threshold={0.2}>
-          {/* Replaced system status with a Benefits HUD card */}
+          {/* Replaced system status with a Benefits HUD card using statusLines */}
           <div>
-            {/* Lazy loaded/inline is fine here — simple import */}
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore-next */}
-            <BenefitsCard />
+            <BenefitsCard items={statusLines} />
           </div>
         </AnimatedSection>
       </div>
