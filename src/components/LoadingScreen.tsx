@@ -3,6 +3,7 @@ import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
 import logo3 from "../assets/logo3.png";
 import "./LoadingScreen.css";
+import Squares from "./Squares";
 
 interface LoadingScreenProps {
   onLoadComplete: () => void;
@@ -141,6 +142,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
 
   return (
     <div className="loading-screen">
+      {/* Background squares canvas (behind content) */}
+      <div className="loading-bg-canvas" aria-hidden>
+        <Squares
+          speed={0.47}
+          squareSize={100}
+          direction="diagonal"
+          borderColor="#035401"
+          hoverFillColor="#269b96"
+        />
+      </div>
+
       <div className="noise-overlay" />
       <div className="scan-lines" />
 

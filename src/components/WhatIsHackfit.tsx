@@ -1,6 +1,7 @@
 import React from "react";
 import { AnimatedSection } from "./AnimatedSection";
 import "../SectionStyles.css";
+import BenefitsCard from "./BenefitsCard";
 
 const statusLines = [
   "Booting Hackfit core modules... [OK]",
@@ -11,7 +12,7 @@ const statusLines = [
 
 const WhatIsHackfit: React.FC = () => {
   return (
-    <section className="hackfit-intro section-dither py-14 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 relative overflow-hidden">
+    <section className="hackfit-intro py-14 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 relative overflow-hidden">
       <div className="code-rain-overlay" aria-hidden />
       <div className="relative z-10 max-w-6xl mx-auto grid gap-10 md:grid-cols-[1.05fr_0.95fr] items-center">
         <AnimatedSection animationType="fadeUp" threshold={0.15}>
@@ -48,19 +49,12 @@ const WhatIsHackfit: React.FC = () => {
         </AnimatedSection>
 
         <AnimatedSection animationType="slideInRight" threshold={0.2}>
-          <div className="hackfit-status-card">
-            <div className="hackfit-status-title">// SYSTEM STATUS</div>
-            <ul className="hackfit-status-list">
-              {statusLines.map((line) => (
-                <li key={line}>
-                  <span className="hackfit-status-icon">&gt;</span>
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-5 text-sm text-cyan-100/90 font-[progress]">
-              Are you ready to breach the build wall?
-            </div>
+          {/* Replaced system status with a Benefits HUD card */}
+          <div>
+            {/* Lazy loaded/inline is fine here — simple import */}
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore-next */}
+            <BenefitsCard />
           </div>
         </AnimatedSection>
       </div>

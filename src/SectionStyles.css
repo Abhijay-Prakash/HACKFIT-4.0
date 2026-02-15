@@ -7,9 +7,25 @@
 
 .section-dither {
   position: relative;
-  background: #000000;
   overflow: hidden;
   max-width: 100vw;
+  /* Default semi-opaque overlay (20% reduced from previous 0.55 -> 0.44) */
+  background: rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(3px);
+}
+
+/* Semi-opaque overlay used when we want a subtle dark backdrop
+   (lets Vanta.js show through while improving content contrast) */
+.section-overlay-dark {
+  background: rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(3px);
+}
+
+/* Slightly stronger overlay for Prize Pool to improve contrast */
+.section-overlay-darker {
+  /* Darker overlay reduced by 20% (0.68 * 0.8 = 0.544) */
+  background: rgba(0, 0, 0, 0.54);
+  backdrop-filter: blur(3px);
 }
 
 /* ============================================
@@ -75,7 +91,11 @@
   width: 100%;
   position: relative;
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba(20, 25, 30, 0.9) 0%, rgba(10, 12, 15, 0.95) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 25, 30, 0.9) 0%,
+    rgba(10, 12, 15, 0.95) 100%
+  );
   border: 2px solid;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   overflow: hidden;
@@ -86,17 +106,23 @@
 
 .podium-1st .podium-base {
   border-color: rgba(147, 205, 45, 0.5);
-  box-shadow: 0 20px 60px rgba(147, 205, 45, 0.3), 0 0 40px rgba(147, 205, 45, 0.2);
+  box-shadow:
+    0 20px 60px rgba(147, 205, 45, 0.3),
+    0 0 40px rgba(147, 205, 45, 0.2);
 }
 
 .podium-2nd .podium-base {
   border-color: rgba(34, 197, 94, 0.5);
-  box-shadow: 0 20px 60px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.2);
+  box-shadow:
+    0 20px 60px rgba(34, 197, 94, 0.3),
+    0 0 40px rgba(34, 197, 94, 0.2);
 }
 
 .podium-3rd .podium-base {
   border-color: rgba(234, 179, 8, 0.5);
-  box-shadow: 0 20px 60px rgba(234, 179, 8, 0.3), 0 0 40px rgba(234, 179, 8, 0.2);
+  box-shadow:
+    0 20px 60px rgba(234, 179, 8, 0.3),
+    0 0 40px rgba(234, 179, 8, 0.2);
 }
 
 .podium-content {
@@ -186,7 +212,11 @@
   left: 0;
   right: 0;
   height: 60%;
-  background: radial-gradient(ellipse at bottom, currentColor 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse at bottom,
+    currentColor 0%,
+    transparent 70%
+  );
   opacity: 0.15;
   pointer-events: none;
 }
@@ -202,7 +232,7 @@
   .podium-trophy {
     padding: 0.25rem;
   }
-  
+
   .podium-trophy svg {
     width: 1rem !important;
     height: 1rem !important;
@@ -233,13 +263,6 @@
 .bg2-texture {
   position: relative;
   isolation: isolate;
-  background-color: #000000;
-  background-image: url("./assets/bg3.png"), url("./assets/bg3.5.png");
-  background-size: 25%, 20%;
-  background-repeat: no-repeat, no-repeat;
-  background-position:
-    top left,
-    bottom right;
 }
 
 /* ==========================
@@ -247,7 +270,6 @@
    ========================== */
 .hackfit-intro {
   position: relative;
-  background: #000000;
   overflow: hidden;
 }
 
@@ -338,6 +360,128 @@
   color: #32bbd2;
 }
 
+/* ==========================
+   Benefits Card (HUD / Terminal style)
+   ========================== */
+.benefits-card {
+  position: relative;
+  padding: 10px;
+  z-index: 10;
+}
+
+.benefits-card-inner {
+  position: relative;
+  background: #0a0a0a;
+  border-radius: 12px;
+  padding: 14px;
+  overflow: visible;
+  /* create neon gradient border via behind element */
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(147, 205, 45, 0.08);
+}
+
+.benefits-card::before {
+  /* gradient border glow */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  z-index: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(147, 205, 45, 0.95),
+    rgba(50, 187, 210, 0.95)
+  );
+  filter: blur(6px);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.benefits-card-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header with notched/tab look */
+.benefits-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  margin: -6px -6px 8px -6px;
+  padding: 10px 12px;
+  clip-path: polygon(0% 0%, 65% 0%, 75% 15%, 100% 15%, 100% 100%, 0% 100%);
+  background: #000000;
+  border-radius: 8px;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(147, 205, 45, 0.06);
+}
+
+.benefits-title {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.benefits-tab {
+  margin-left: auto;
+  width: 36%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  background: linear-gradient(90deg, #32bbd2 0%, #93cd2d 100%);
+  opacity: 0.95;
+}
+
+.benefits-divider {
+  height: 4px;
+  width: 60%;
+  background: linear-gradient(
+    90deg,
+    #93cd2d,
+    rgba(147, 205, 45, 0.35),
+    rgba(50, 187, 210, 0)
+  );
+  margin: 8px 0 12px 0;
+  border-radius: 8px;
+}
+
+.benefits-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(10, 20, 10, 0.65);
+  border-radius: 10px;
+  border: 1px solid rgba(147, 205, 45, 0.12);
+  font-family: "Roboto Mono", monospace;
+  color: #dbeee7;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.6),
+    0 0 8px rgba(50, 187, 210, 0.03) inset;
+}
+
+.benefit-hash {
+  color: #93cd2d;
+  font-weight: 700;
+  font-family: "Roboto Mono", monospace;
+}
+
+.benefit-text {
+  font-family: "Roboto Mono", monospace;
+}
+
 .hackfit-pill-row {
   display: flex;
   flex-wrap: wrap;
@@ -382,8 +526,15 @@
    ========================== */
 .timeline-section {
   position: relative;
-  background: #000000;
+  /* lighter overlay so the timeline feels more open */
+  background: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(2px);
   overflow: hidden;
+}
+
+/* Reduce prominence of the timeline heading */
+.timeline-section h2 {
+  opacity: 0.72;
 }
 
 .timeline-line {
@@ -1335,6 +1486,5 @@
   .prize-podium-container {
     gap: 0.5rem;
     padding: 1rem 0.5rem;
-
   }
 }

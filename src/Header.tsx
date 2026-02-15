@@ -2,7 +2,6 @@ import React, { lazy, Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 
 import GradientText from "./components/GradientText";
-import patternBg from "./assets/patterb.webp";
 import {
   Navbar,
   NavBody,
@@ -92,7 +91,12 @@ export const Header: React.FC = () => {
                 {item.name}
               </a>
             ))}
-            <NavbarButton as={Link} to="/register" variant="dark" className="w-full justify-center">
+            <NavbarButton
+              as={Link}
+              to="/register"
+              variant="dark"
+              className="w-full justify-center"
+            >
               Register
             </NavbarButton>
           </MobileNavMenu>
@@ -103,7 +107,8 @@ export const Header: React.FC = () => {
       <div
         className="absolute inset-0 z-[-1]"
         style={{
-          background: `url(${patternBg}) center/cover, linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%)`,
+          background:
+            "linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%)",
         }}
       />
 
@@ -236,7 +241,6 @@ export const Header: React.FC = () => {
 
       {/* Black overlay to hide UnicornStudio watermark */}
       <div className="absolute bottom-0 left-0 right-0 z-20 h-16 md:h-20 bg-black" />
-       
     </header>
   );
 };
