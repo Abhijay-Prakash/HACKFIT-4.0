@@ -9,6 +9,7 @@ import { LazyComponent } from "../components/LazyComponent";
 import WhatIsHackfit from "../components/WhatIsHackfit";
 import TimelineSection from "../components/TimelineSection";
 import VantaBackground from "../components/VantaBackground";
+import MainNavbar from "../components/MainNavbar";
 import FAQ from "../components/shadcn-studio/blocks/faq-component-01/faq-component-01";
 import "../SectionStyles.css";
 
@@ -43,6 +44,9 @@ const faqItems = [
 export default function HomePage() {
   return (
     <div className="text-white min-h-screen w-full">
+      {/* Navbar - outside z-indexed containers so it stays on top */}
+      <MainNavbar />
+
       {/* Vanta.js NET Background */}
       <VantaBackground />
 

@@ -3,7 +3,6 @@ import "./Registration.css";
 interface TeamSizeSelectorProps {
   teamSize: number;
   setTeamSize: (size: number) => void;
-  onNext?: () => void;
 }
 
 export default function TeamSizeSelector({ teamSize, setTeamSize }: TeamSizeSelectorProps) {
