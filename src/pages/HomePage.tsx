@@ -82,7 +82,7 @@ export default function HomePage() {
             </LazyComponent>
           </AnimatedSection>
         </div>
-           <AnimatedSection animationType="fadeIn" delay={400}>
+        <AnimatedSection animationType="fadeIn" delay={400}>
           <CyberDivider />
         </AnimatedSection>
 

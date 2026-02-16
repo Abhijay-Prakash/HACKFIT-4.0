@@ -74,6 +74,10 @@ export const Header: React.FC = () => {
           </div>
         </h1>
 
+        <p className="hackfit-subtitle text-[white] font-[money] text-[12px] sm:text-[25px] md:text-xl tracking-[0.3em] font-bold mb-12 uppercase">
+          36 HOUR NATIONAL LEVEL HACKATHON
+        </p>
+
         {/* Prize Pool & Dates – Hero Highlights */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 mb-12 mt-4">
           {/* 🏆 Prize Pool */}

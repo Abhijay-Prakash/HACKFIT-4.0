@@ -34,11 +34,20 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
     const preloadFonts = async () => {
       const fonts = [
         // Local project fonts
-        new FontFace("paladins", "url(/fonts/paladins-font/PaladinsGradient-MAZ8B.otf)"),
-        new FontFace("progress", "url(/fonts/progress-font/ProgressPersonalUse-EaJdz.ttf)"),
+        new FontFace(
+          "paladins",
+          "url(/fonts/paladins-font/PaladinsGradient-MAZ8B.otf)",
+        ),
+        new FontFace(
+          "progress",
+          "url(/fonts/progress-font/ProgressPersonalUse-EaJdz.ttf)",
+        ),
         new FontFace("Money", "url(/fonts/money-font/Money-w16D8.ttf)"),
         new FontFace("NokiaKokia", "url(/fonts/Nokiakokia/NokiaKokia.ttf)"),
-        new FontFace("OriginTech", "url(/fonts/origin-tech-font/OriginTech-rv0V8.ttf)"),
+        new FontFace(
+          "OriginTech",
+          "url(/fonts/origin-tech-font/OriginTech-rv0V8.ttf)",
+        ),
         new FontFace("hacked", "url(/fonts/hacked-font/Hacked-KerX.ttf)"),
         new FontFace("CyberAlert", "url(/fonts/cyber-alert.regular.otf)"),
         new FontFace("RaceSpace", "url(/fonts/race-space.regular-1.ttf)"),
@@ -169,7 +178,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
         <div className="loading-text">
           <div className="loading-title">
             <span className="glitch-text" data-text="HACKFIT 4.0 ">
-              HACKFIT 4.0 
+              HACKFIT 4.0
             </span>
           </div>
           <div className="loading-subtitle">{loadingStatus}</div>
