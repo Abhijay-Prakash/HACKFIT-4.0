@@ -52,7 +52,6 @@ export default function RegistrationWizard() {
     { number: 3, label: "PAYMENT & QR" },
   ];
 
-  const nextStep = () => setStep((prev) => (prev < 3 ? prev + 1 : prev));
   const prevStep = () => {
     setStep((prev) => (prev > 1 ? prev - 1 : prev));
     if (step === 2) {
