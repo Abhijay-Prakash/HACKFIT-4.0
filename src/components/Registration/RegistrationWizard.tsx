@@ -1,40 +1,161 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TeamSizeSelector from "./TeamSizeSelector";
 import "./Registration.css";
 import { processRegistrationSubmission } from "../../form_handler/registrationHandler";
 import type { MemberData } from "../../form_handler/registrationHandler";
 
 const PRICES: Record<number, number> = { 3: 999, 4: 1299, 5: 1599 };
+const STORAGE_KEY = "hackfit_registration_draft";
 
 export default function RegistrationWizard() {
-  const [step, setStep] = useState(1);
-  const [teamSize, setTeamSize] = useState(3);
+  // Initialize state from localStorage if available
+  const [step, setStep] = useState<number>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return (parsed.step as number) || 1;
+      } catch (e) {
+        return 1;
+      }
+    }
+    return 1;
+  });
+
+  const [teamSize, setTeamSize] = useState<number>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return (parsed.teamSize as number) || 3;
+      } catch (e) {
+        return 3;
+      }
+    }
+    return 3;
+  });
 
   // Form state for member data entry
-  const [formData, setFormData] = useState<MemberData>({
-    name: "",
-    gender: "",
-    institution: "",
-    semester: "",
-    division: "",
-    department: "",
-    email: "",
-    contact: "",
-    foodPreference: "",
-    residentialStatus: "",
-    teamName: "",
+  const [formData, setFormData] = useState<MemberData>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return (
+          parsed.formData || {
+            name: "",
+            gender: "",
+            institution: "",
+            semester: "",
+            division: "",
+            department: "",
+            email: "",
+            contact: "",
+            foodPreference: "",
+            residentialStatus: "",
+            teamName: "",
+          }
+        );
+      } catch (e) {
+        /* fallback */
+      }
+    }
+    return {
+      name: "",
+      gender: "",
+      institution: "",
+      semester: "",
+      division: "",
+      department: "",
+      email: "",
+      contact: "",
+      foodPreference: "",
+      residentialStatus: "",
+      teamName: "",
+    };
   });
-  const [members, setMembers] = useState<MemberData[]>([]);
-  const [leadData, setLeadData] = useState<MemberData | null>(null);
-  const [memberEntryIndex, setMemberEntryIndex] = useState(0);
+
+  const [members, setMembers] = useState<MemberData[]>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return parsed.members || [];
+      } catch (e) {
+        return [];
+      }
+    }
+    return [];
+  });
+
+  const [leadData, setLeadData] = useState<MemberData | null>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return parsed.leadData || null;
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  });
+
+  const [memberEntryIndex, setMemberEntryIndex] = useState<number>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return (parsed.memberEntryIndex as number) || 0;
+      } catch (e) {
+        return 0;
+      }
+    }
+    return 0;
+  });
+
   const [errors, setErrors] = useState<
     Partial<Record<keyof MemberData, string>>
   >({});
 
   // Payment state
-  const [teamContact, setTeamContact] = useState("");
+  const [teamContact, setTeamContact] = useState<string>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return (parsed.teamContact as string) || "";
+      } catch (e) {
+        return "";
+      }
+    }
+    return "";
+  });
+
   const [paymentFile, setPaymentFile] = useState<File | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // Persistence effect
+  useEffect(() => {
+    const registrationDraft = {
+      step,
+      teamSize,
+      formData,
+      members,
+      leadData,
+      memberEntryIndex,
+      teamContact,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(registrationDraft));
+  }, [
+    step,
+    teamSize,
+    formData,
+    members,
+    leadData,
+    memberEntryIndex,
+    teamContact,
+  ]);
 
   const steps = [
     { number: 1, label: "TEAM SIZE" },
@@ -43,7 +164,7 @@ export default function RegistrationWizard() {
   ];
 
   const prevStep = () => {
-    setStep((prev) => (prev > 1 ? prev - 1 : prev));
+    setStep((prev: number) => (prev > 1 ? prev - 1 : prev));
     if (step === 2) {
       setMembers([]);
       setLeadData(null);
@@ -69,7 +190,11 @@ export default function RegistrationWizard() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev: MemberData) => ({ ...prev, [name]: value }));
-    if (value.trim()) setErrors((prev) => ({ ...prev, [name]: "" }));
+    if (value.trim())
+      setErrors((prev: Partial<Record<keyof MemberData, string>>) => ({
+        ...prev,
+        [name]: "",
+      }));
   };
 
   const validateEmail = (email: string): boolean => {
@@ -190,7 +315,7 @@ export default function RegistrationWizard() {
       }
 
       if (memberEntryIndex < teamSize - 1) {
-        setMemberEntryIndex((prev) => prev + 1);
+        setMemberEntryIndex((prev: number) => prev + 1);
         setFormData({
           name: "",
           gender: "",
@@ -238,6 +363,8 @@ export default function RegistrationWizard() {
       );
 
       setIsSuccess(true);
+      // Clear persistence on success
+      localStorage.removeItem(STORAGE_KEY);
       // Optional: scroll to top or show success modal
     } catch (err: any) {
       alert(err.message || "An error occurred during submission");

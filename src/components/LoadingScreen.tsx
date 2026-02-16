@@ -33,21 +33,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
     // Preload fonts
     const preloadFonts = async () => {
       const fonts = [
-        new FontFace(
-          "Orbitron",
-          "url(https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6xpmIyXjU1pg.woff2)",
-          { weight: "400", style: "normal" },
-        ),
-        new FontFace(
-          "Orbitron",
-          "url(https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyKy-xpmIyXjU1pg.woff2)",
-          { weight: "700", style: "normal" },
-        ),
-        new FontFace(
-          "Orbitron",
-          "url(https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGS-xpmIyXjU1pg.woff2)",
-          { weight: "900", style: "normal" },
-        ),
         // Local project fonts
         new FontFace("paladins", "url(/fonts/paladins-font/PaladinsGradient-MAZ8B.otf)"),
         new FontFace("progress", "url(/fonts/progress-font/ProgressPersonalUse-EaJdz.ttf)"),
@@ -183,8 +168,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
 
         <div className="loading-text">
           <div className="loading-title">
-            <span className="glitch-text" data-text="HACKFIT 2026">
-              HACKFIT 2026
+            <span className="glitch-text" data-text="HACKFIT 4.0 ">
+              HACKFIT 4.0 
             </span>
           </div>
           <div className="loading-subtitle">{loadingStatus}</div>
