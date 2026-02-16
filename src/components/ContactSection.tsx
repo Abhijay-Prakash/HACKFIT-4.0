@@ -18,7 +18,13 @@ const createLogoMarkerIcon = () => {
 };
 
 // Retarget button component
-function RetargetButton({ position, zoom }: { position: [number, number]; zoom: number }) {
+function RetargetButton({
+  position,
+  zoom,
+}: {
+  position: [number, number];
+  zoom: number;
+}) {
   const map = useMap();
 
   const handleRetarget = () => {
@@ -31,15 +37,22 @@ function RetargetButton({ position, zoom }: { position: [number, number]; zoom: 
   useEffect(() => {
     const RetargetControl = L.Control.extend({
       onAdd: function () {
-        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-        const button = L.DomUtil.create('a', 'leaflet-control-retarget', container);
-        button.innerHTML = '⌖';
-        button.title = 'Reset to original location';
-        button.href = '#';
-        button.role = 'button';
-        button.setAttribute('aria-label', 'Reset map view');
+        const container = L.DomUtil.create(
+          "div",
+          "leaflet-bar leaflet-control leaflet-control-custom",
+        );
+        const button = L.DomUtil.create(
+          "a",
+          "leaflet-control-retarget",
+          container,
+        );
+        button.innerHTML = "⌖";
+        button.title = "Reset to original location";
+        button.href = "#";
+        button.role = "button";
+        button.setAttribute("aria-label", "Reset map view");
 
-        L.DomEvent.on(button, 'click', (e) => {
+        L.DomEvent.on(button, "click", (e) => {
           L.DomEvent.stopPropagation(e);
           L.DomEvent.preventDefault(e);
           handleRetarget();
@@ -49,7 +62,7 @@ function RetargetButton({ position, zoom }: { position: [number, number]; zoom: 
       },
     });
 
-    const control = new RetargetControl({ position: 'topleft' });
+    const control = new RetargetControl({ position: "topleft" });
     control.addTo(map);
 
     return () => {
@@ -148,7 +161,7 @@ export default function ContactSection() {
                 attributionControl={false}
               >
                 <TileLayer
-                  attribution=''
+                  attribution=""
                   url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
                 />
                 <Marker

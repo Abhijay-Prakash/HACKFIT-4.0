@@ -184,7 +184,7 @@ header {
   }
 
   .hackfit-gradient-text {
-    font-size: 48px !important;
+    font-size: 58px !important;
     line-height: 1 !important;
   }
 
@@ -259,7 +259,22 @@ header {
     font-size: 68px !important;
   }
 }
+.hackfit-subtitle {
+  text-shadow: 0 0 10px rgba(50, 187, 210, 0.4);
+  opacity: 0.9;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+@media (max-width: 768px) {
+  .hackfit-subtitle {
+    letter-spacing: 0.15em;
+    max-width: 90%;
+    line-height: 1.4;
+  }
+}
 /* Desktop (1024px - 1279px) */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .hackfit-hero-title {
@@ -309,6 +324,23 @@ header {
   .palette-text {
     margin-top: 20px;
     font-size: 2rem;
+  }
+}
+
+/* Ensure HACKFIT 4.0 '4.0' badge has no extra top margin on mid-sized screens */
+@media (max-width: 868px) {
+  .palette-text {
+    margin-top: 0px;
+  }
+}
+
+/* Very small phones (e.g. 360x760) - reduce HACK/FIT gradient text size for readability */
+@media (max-width: 360px) and (max-height: 760px) {
+  .hackfit-gradient-text {
+    font-size: 58px !important;
+  }
+  .hackfit-hero-title {
+    font-size: 44px;
   }
 }
 

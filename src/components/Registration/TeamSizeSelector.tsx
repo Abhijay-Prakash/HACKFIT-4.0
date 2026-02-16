@@ -5,7 +5,10 @@ interface TeamSizeSelectorProps {
   setTeamSize: (size: number) => void;
 }
 
-export default function TeamSizeSelector({ teamSize, setTeamSize }: TeamSizeSelectorProps) {
+export default function TeamSizeSelector({
+  teamSize,
+  setTeamSize,
+}: TeamSizeSelectorProps) {
   const MIN_SIZE = 3;
   const MAX_SIZE = 5;
   const BASE_PRICE = 999;
@@ -25,7 +28,7 @@ export default function TeamSizeSelector({ teamSize, setTeamSize }: TeamSizeSele
     <div className="team-size-section">
       {/* Left double-chevron arrow */}
       <button
-        className={`chevron-arrow chevron-left ${teamSize <= MIN_SIZE ? 'chevron-disabled' : ''}`}
+        className={`chevron-arrow chevron-left ${teamSize <= MIN_SIZE ? "chevron-disabled" : ""}`}
         onClick={decrease}
         disabled={teamSize <= MIN_SIZE}
         aria-label="Decrease team size"
@@ -37,8 +40,22 @@ export default function TeamSizeSelector({ teamSize, setTeamSize }: TeamSizeSele
               <stop offset="100%" stopColor="#84cc16" />
             </linearGradient>
           </defs>
-          <path d="M22 6L8 28L22 50" stroke="url(#chevronGradL)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-          <path d="M34 6L20 28L34 50" stroke="url(#chevronGradL)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <path
+            d="M22 6L8 28L22 50"
+            stroke="url(#chevronGradL)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          <path
+            d="M34 6L20 28L34 50"
+            stroke="url(#chevronGradL)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
         </svg>
       </button>
 
@@ -52,7 +69,14 @@ export default function TeamSizeSelector({ teamSize, setTeamSize }: TeamSizeSele
           {/* Group Icon */}
           <div className="ts-group-icon" key={`team-${teamSize}`}>
             {Array.from({ length: teamSize }).map((_, i) => (
-              <svg key={i} className="ts-person-icon" width="36" height="36" viewBox="0 0 24 24" fill="url(#iconGrad)">
+              <svg
+                key={i}
+                className="ts-person-icon"
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="url(#iconGrad)"
+              >
                 <defs>
                   <linearGradient id="iconGrad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stopColor="#84cc16" />
@@ -67,14 +91,16 @@ export default function TeamSizeSelector({ teamSize, setTeamSize }: TeamSizeSele
           {/* Pricing */}
           <div className="ts-pricing">
             <p className="ts-price-total">TOTAL PER TEAM: ₹{totalPrice}</p>
-            <p className="ts-price-extra">EACH ADDITIONAL MEMBER: +₹{EXTRA_MEMBER_PRICE}</p>
+            <p className="ts-price-extra">
+              EACH ADDITIONAL MEMBER: +₹{EXTRA_MEMBER_PRICE}
+            </p>
           </div>
         </div>
       </div>
 
       {/* Right double-chevron arrow */}
       <button
-        className={`chevron-arrow chevron-right ${teamSize >= MAX_SIZE ? 'chevron-disabled' : ''}`}
+        className={`chevron-arrow chevron-right ${teamSize >= MAX_SIZE ? "chevron-disabled" : ""}`}
         onClick={increase}
         disabled={teamSize >= MAX_SIZE}
         aria-label="Increase team size"
@@ -86,8 +112,22 @@ export default function TeamSizeSelector({ teamSize, setTeamSize }: TeamSizeSele
               <stop offset="100%" stopColor="#84cc16" />
             </linearGradient>
           </defs>
-          <path d="M6 6L20 28L6 50" stroke="url(#chevronGradR)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-          <path d="M18 6L32 28L18 50" stroke="url(#chevronGradR)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <path
+            d="M6 6L20 28L6 50"
+            stroke="url(#chevronGradR)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          <path
+            d="M18 6L32 28L18 50"
+            stroke="url(#chevronGradR)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
         </svg>
       </button>
     </div>

@@ -1,4 +1,3 @@
-
 /* ============================= */
 /* REGISTRATION NAVBAR */
 /* ============================= */
@@ -25,7 +24,7 @@
 }
 
 .nav-logo {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 1.5rem;
   font-weight: 900;
   text-decoration: none;
@@ -47,7 +46,7 @@
 }
 
 .nav-back-btn {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
   color: #22d3ee;
@@ -84,7 +83,7 @@
   padding: 100px 0 0;
   background-color: #000;
   min-height: 100vh;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
 }
 
 /* Full width for contact and footer sections */
@@ -159,10 +158,10 @@
   flex: 1;
   padding: 18px 8px;
   text-align: center;
-  cursor: pointer;
-  font-size: 0.8rem;
+  cursor: default;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: #4a5568;
+  color: #cbd5e0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,6 +175,7 @@
 .wizard-step-active {
   background: linear-gradient(90deg, #a3e635 0%, #70e2d1 100%);
   color: #000;
+  font-weight: 900;
   z-index: 3;
   clip-path: polygon(0% 0%, 92% 0%, 100% 50%, 92% 100%, 0% 100%);
   margin-right: -20px;
@@ -209,6 +209,7 @@
   padding: 30px;
   width: 100%;
   text-align: center;
+  color: #fff;
 }
 
 button {
@@ -216,7 +217,7 @@ button {
   color: black;
   border: none;
   padding: 12px 30px;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-weight: bold;
   border-radius: 4px;
   cursor: pointer;
@@ -336,7 +337,7 @@ button {
 
 /* --- Card Title --- */
 .ts-card-title {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 2rem;
   font-weight: 900;
   color: #f1f5f9;
@@ -382,7 +383,7 @@ button {
 }
 
 .ts-price-total {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: #ffffff;
@@ -391,7 +392,7 @@ button {
 }
 
 .ts-price-extra {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
   color: #94a3b8;
@@ -404,7 +405,7 @@ button {
   color: #000;
   border: none;
   padding: 14px 48px;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-weight: 800;
   font-size: 1rem;
   letter-spacing: 2px;
@@ -608,7 +609,7 @@ button {
   border: 2px solid #22d3ee;
   color: #22d3ee;
   padding: 10px 24px;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 1.5px;
@@ -626,7 +627,7 @@ button {
 }
 
 .wizard-section-title {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 1.8rem;
   font-weight: 900;
   color: #f1f5f9;
@@ -647,7 +648,8 @@ button {
 .wizard-form-card {
   background: rgba(10, 10, 10, 0.8);
   border: 2px solid transparent;
-  background-image: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
+  background-image:
+    linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)),
     linear-gradient(135deg, #84cc16, #22d3ee);
   background-origin: border-box;
   background-clip: padding-box, border-box;
@@ -660,7 +662,7 @@ button {
 }
 
 .wizard-form-title {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 1.3rem;
   font-weight: 800;
   color: #a3e635;
@@ -673,20 +675,33 @@ button {
 
 .wizard-label {
   display: block;
-  font-family: "progress", sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   color: #cbd5e1;
   margin-top: 12px;
   margin-bottom: 6px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
-.wizard-input,
+.wizard-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #1f3a3a;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
 .wizard-select {
   width: 100%;
   padding: 10px 14px;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 0.9rem;
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
@@ -705,7 +720,7 @@ button {
 
 .wizard-input::placeholder {
   color: #64748b;
-  font-family: "progress", sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 .wizard-select {
@@ -720,11 +735,11 @@ button {
 .wizard-select option {
   background: #0a0a0a;
   color: #fff;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
 }
 
 .wizard-error {
-  font-family: "progress", sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-size: 0.7rem;
   color: #ef4444;
   margin-top: 2px;
@@ -739,7 +754,8 @@ button {
 .wizard-payment-card {
   background: rgba(10, 10, 10, 0.85);
   border: 2px solid transparent;
-  background-image: linear-gradient(rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.95)),
+  background-image:
+    linear-gradient(rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.95)),
     linear-gradient(135deg, #84cc16, #22d3ee);
   background-origin: border-box;
   background-clip: padding-box, border-box;
@@ -747,12 +763,13 @@ button {
   padding: 40px;
   margin: 0 auto;
   text-align: center;
-  box-shadow: 0 0 40px rgba(34, 211, 238, 0.25),
+  box-shadow:
+    0 0 40px rgba(34, 211, 238, 0.25),
     inset 0 0 60px rgba(34, 211, 238, 0.05);
 }
 
 .wizard-payment-title {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 1.5rem;
   font-weight: 900;
   color: #f1f5f9;
@@ -762,7 +779,7 @@ button {
 }
 
 .wizard-payment-amount {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 3rem;
   font-weight: 900;
   background: linear-gradient(90deg, #a3e635, #22d3ee);
@@ -774,11 +791,11 @@ button {
 }
 
 .wizard-payment-instruction {
-  font-family: "progress", sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-size: 0.95rem;
   color: #cbd5e1;
   margin-bottom: 24px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .wizard-qr {
@@ -794,7 +811,7 @@ button {
 .wizard-file-input {
   width: 100%;
   padding: 12px 16px;
-  font-family: "progress", sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-size: 0.9rem;
   color: #cbd5e1;
   background: rgba(0, 0, 0, 0.6);
@@ -815,7 +832,7 @@ button {
   color: #000;
   border: none;
   padding: 8px 20px;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-weight: 700;
   border-radius: 4px;
   cursor: pointer;
@@ -823,7 +840,7 @@ button {
 }
 
 .wizard-success {
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   font-size: 1.1rem;
   font-weight: 800;
   color: #a3e635;
@@ -834,7 +851,8 @@ button {
 }
 
 @keyframes successPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -903,7 +921,7 @@ button {
   border-radius: 50%;
   background: #ff4d4d;
   box-shadow: 0 0 8px rgba(255, 77, 77, 0.9);
-  border: 2px solid rgba(0,0,0,0.5);
+  border: 2px solid rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 640px) {
@@ -920,7 +938,7 @@ button {
   margin: 12px 0 8px 0;
   color: #ffb3b3;
   font-size: 0.82rem;
-  font-family: "progress", sans-serif;
+  font-family: "NokiaKokia", sans-serif;
   text-align: center;
   max-width: 260px;
   line-height: 1.1;

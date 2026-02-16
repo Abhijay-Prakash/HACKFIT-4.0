@@ -164,24 +164,49 @@ export default function RegistrationWizard() {
   ];
 
   const prevStep = () => {
-    setStep((prev: number) => (prev > 1 ? prev - 1 : prev));
     if (step === 2) {
-      setMembers([]);
-      setLeadData(null);
-      setMemberEntryIndex(0);
-      setFormData({
-        name: "",
-        gender: "",
-        institution: "",
-        semester: "",
-        division: "",
-        department: "",
-        email: "",
-        contact: "",
-        foodPreference: "",
-        residentialStatus: "",
-        teamName: "",
-      });
+      if (memberEntryIndex > 0) {
+        // Navigate back to previous member's form
+        const newIndex = memberEntryIndex - 1;
+        setMemberEntryIndex(newIndex);
+        
+        // Load the previous member's data
+        if (newIndex === 0) {
+          // Going back to team lead
+          if (leadData) {
+            setFormData(leadData);
+          }
+        } else {
+          // Going back to a regular member (members array is 0-indexed)
+          const previousMemberData = members[newIndex - 1];
+          if (previousMemberData) {
+            setFormData(previousMemberData);
+          }
+        }
+        setErrors({});
+      } else {
+        // At team lead form, go back to step 1 (team size)
+        setStep(1);
+        setMembers([]);
+        setLeadData(null);
+        setMemberEntryIndex(0);
+        setFormData({
+          name: "",
+          gender: "",
+          institution: "",
+          semester: "",
+          division: "",
+          department: "",
+          email: "",
+          contact: "",
+          foodPreference: "",
+          residentialStatus: "",
+          teamName: "",
+        });
+      }
+    } else if (step === 3) {
+      // Going back from payment to last member entry
+      setStep(2);
     }
   };
 
@@ -311,7 +336,18 @@ export default function RegistrationWizard() {
       if (memberEntryIndex === 0) {
         setLeadData(formData);
       } else {
-        setMembers((prev) => [...prev, formData]);
+        // For members array: memberEntryIndex 1 -> members[0], memberEntryIndex 2 -> members[1], etc.
+        const memberArrayIndex = memberEntryIndex - 1;
+        setMembers((prev) => {
+          const updated = [...prev];
+          // If this position already has data, update it; otherwise add new
+          if (updated[memberArrayIndex]) {
+            updated[memberArrayIndex] = formData;
+          } else {
+            updated.push(formData);
+          }
+          return updated;
+        });
       }
 
       if (memberEntryIndex < teamSize - 1) {
@@ -397,7 +433,6 @@ export default function RegistrationWizard() {
           <div key={stepInfo.number}>
             <div
               className={`wizard-step ${step === stepInfo.number ? "wizard-step-active" : ""}`}
-              onClick={() => setStep(stepInfo.number)}
             >
               <span className="step-number">{stepInfo.number}</span>
               <span className="step-label">{stepInfo.label}</span>
@@ -695,29 +730,12 @@ export default function RegistrationWizard() {
                     textAlign: "center",
                   }}
                 >
-                  {!isRegistrationDataComplete() && (
-                    <div>
-                      <div className="required-text">
-                        Some required details are missing — please complete
-                        earlier steps
-                      </div>
-                    </div>
-                  )}
-
                   <button
                     className="wizard-next-btn"
                     onClick={handlePaymentSubmit}
                   >
                     SUBMIT REGISTRATION
                   </button>
-
-                  {!isRegistrationDataComplete() && (
-                    <span
-                      aria-hidden
-                      className="red-indicator"
-                      title="Some required details are missing; go back to complete them"
-                    ></span>
-                  )}
                 </div>
 
                 {isSuccess && (
