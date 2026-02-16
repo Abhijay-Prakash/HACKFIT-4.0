@@ -5,7 +5,7 @@ const HackathonCards = () => {
   const aboutData = {
     title: "About",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis quos autem optio voluptatibus aspernatur eos odio porro esse ea ipsam, illum vero quaerat, inventore possimus modi cum! Architecto, provident vero!.",
+      "HackFit 2026 is a 36-hour national-level hackathon bringing together innovative minds to solve real-world challenges using cutting-edge technology and creative problem-solving approaches.",
   };
 
   const tracksData = {

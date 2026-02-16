@@ -13,21 +13,21 @@ interface TopicData {
 const topicsData: TopicData[] = [
   {
     id: "topic 1",
-    title: "Lorem Ipsum1",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    badges: ["Lorem", "Ipsum", "Dolor"],
+    title: "GenAI Innovation",
+    subtitle: "Explore generative AI and machine learning solutions for tomorrow.",
+    badges: ["AI/ML", "GPT", "Computer Vision"],
   },
   {
     id: "topic2",
-    title: "Lorem Ipsum2",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    badges: ["Lorem", "Ipsum", "Dolor"],
+    title: "Digital Transformation",
+    subtitle: "Build scalable solutions that modernize traditional industries.",
+    badges: ["Cloud", "API", "Automation"],
   },
   {
     id: "topic 3",
-    title: "Lorem Ipsum3",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    badges: ["Lorem", "Ipsum", "Dolor"],
+    title: "Data Science",
+    subtitle: "Transform raw data into actionable insights and predictions.",
+    badges: ["Analytics", "Python", "Visualization"],
   },
 ];
 const CombinedTopicCard: React.FC<{
@@ -84,12 +84,7 @@ const CombinedTopicCard: React.FC<{
       <div className="absolute inset-0 opacity-10 glitch-overlay-anim" />
 
       <div className="flex-1 flex flex-col gap-4 md:gap-6 z-10">
-        <div className="inline-flex items-center gap-3 px-4 py-1 rounded-full border border-lime/40 bg-bgBlack/70 backdrop-blur w-fit">
-          <span className="w-2 h-2 rounded-full bg-lime shadow-[0_0_8px_rgba(147,205,45,0.9)]" />
-          <span className="text-[11px] md:text-xs tracking-[0.3em] uppercase text-lime font-roboto">
-            Hackfit Signal
-          </span>
-        </div>
+
 
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-geist font-semibold tracking-tight text-lime palette-glitch-text">
           {topic.title}
@@ -214,11 +209,8 @@ const HackathonTopicsCarousel: React.FC = () => {
               Choose your{" "}
               <span className="text-lime font-[impact]">Topic </span>.
             </h1>
-            <p className="mt-3 text-xs sm:text-sm md:text-base text-sage/80 max-w-2xl font-roboto">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Accusantium officiis quaerat, ex molestias, ducimus modi facere
-              exercitationem incidunt iste illum autem ipsa corporis beatae
-              placeat non. Rerum odio mollitia cum?
+            <p className="mt-3 text-xs sm:text-sm md:text-base text-sage/80 max-w-full sm:max-w-xl md:max-w-2xl font-roboto leading-relaxed sm:leading-relaxed">
+              Discover cutting-edge hackathon tracks designed to challenge your innovation skills and push technological boundaries.
             </p>
           </div>
 

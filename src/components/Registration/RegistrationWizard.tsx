@@ -249,16 +249,6 @@ export default function RegistrationWizard() {
     return true;
   };
 
-  const isRegistrationDataComplete = () => {
-    // ensure lead + members collected
-    const requiredMembers = teamSize - 1;
-    const haveAllMembers =
-      leadData !== null && members.length === requiredMembers;
-    // payment fields
-    const paymentReady = teamContact.trim() !== "" && paymentFile !== null;
-    return haveAllMembers && paymentReady;
-  };
-
   const validateForm = () => {
     const newErrors: Partial<Record<keyof MemberData, string>> = {};
     let isValid = true;

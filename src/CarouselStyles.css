@@ -35,6 +35,10 @@
     width: calc(100% - 8px);
     height: 20px;
   }
+
+  .palette-glitch-text {
+    margin-top: 20px;
+  }
 }
 
 .neon-container-wrapper::before {
