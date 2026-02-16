@@ -1,20 +1,8 @@
 import { useState } from "react";
 import TeamSizeSelector from "./TeamSizeSelector";
 import "./Registration.css";
-
-interface MemberData {
-  name: string;
-  gender: string;
-  institution: string;
-  semester: string;
-  division: string;
-  department: string;
-  email: string;
-  contact: string;
-  foodPreference: string;
-  residentialStatus: string;
-  teamName?: string;
-}
+import { processRegistrationSubmission } from "../../form_handler/registrationHandler";
+import type { MemberData } from "../../form_handler/registrationHandler";
 
 const PRICES: Record<number, number> = { 3: 999, 4: 1299, 5: 1599 };
 
@@ -24,25 +12,27 @@ export default function RegistrationWizard() {
 
   // Form state for member data entry
   const [formData, setFormData] = useState<MemberData>({
-    name: '',
-    gender: '',
-    institution: '',
-    semester: '',
-    division: '',
-    department: '',
-    email: '',
-    contact: '',
-    foodPreference: '',
-    residentialStatus: '',
-    teamName: ''
+    name: "",
+    gender: "",
+    institution: "",
+    semester: "",
+    division: "",
+    department: "",
+    email: "",
+    contact: "",
+    foodPreference: "",
+    residentialStatus: "",
+    teamName: "",
   });
   const [members, setMembers] = useState<MemberData[]>([]);
   const [leadData, setLeadData] = useState<MemberData | null>(null);
   const [memberEntryIndex, setMemberEntryIndex] = useState(0);
-  const [errors, setErrors] = useState<Partial<Record<keyof MemberData, string>>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof MemberData, string>>
+  >({});
 
   // Payment state
-  const [teamContact, setTeamContact] = useState('');
+  const [teamContact, setTeamContact] = useState("");
   const [paymentFile, setPaymentFile] = useState<File | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -58,18 +48,28 @@ export default function RegistrationWizard() {
       setMembers([]);
       setLeadData(null);
       setMemberEntryIndex(0);
-      setFormData({ 
-        name: '', gender: '', institution: '', semester: '', division: '', 
-        department: '', email: '', contact: '', foodPreference: '', 
-        residentialStatus: '', teamName: '' 
+      setFormData({
+        name: "",
+        gender: "",
+        institution: "",
+        semester: "",
+        division: "",
+        department: "",
+        email: "",
+        contact: "",
+        foodPreference: "",
+        residentialStatus: "",
+        teamName: "",
       });
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (value.trim()) setErrors((prev) => ({ ...prev, [name]: '' }));
+    setFormData((prev: MemberData) => ({ ...prev, [name]: value }));
+    if (value.trim()) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateEmail = (email: string): boolean => {
@@ -79,7 +79,7 @@ export default function RegistrationWizard() {
 
   const validatePhone = (phone: string): boolean => {
     const phoneRegex = /^[0-9]{10}$/;
-    return phoneRegex.test(phone.replace(/\s/g, ''));
+    return phoneRegex.test(phone.replace(/\s/g, ""));
   };
 
   // Non-destructive checks used for showing UI indicators (don't set errors)
@@ -91,7 +91,8 @@ export default function RegistrationWizard() {
     if (!formData.division) return false;
     if (!formData.department.trim()) return false;
     if (!formData.email.trim() || !validateEmail(formData.email)) return false;
-    if (!formData.contact.trim() || !validatePhone(formData.contact)) return false;
+    if (!formData.contact.trim() || !validatePhone(formData.contact))
+      return false;
     if (!formData.foodPreference) return false;
     if (!formData.residentialStatus) return false;
     if (memberEntryIndex === 0 && !formData.teamName?.trim()) return false;
@@ -101,9 +102,10 @@ export default function RegistrationWizard() {
   const isRegistrationDataComplete = () => {
     // ensure lead + members collected
     const requiredMembers = teamSize - 1;
-    const haveAllMembers = leadData !== null && members.length === requiredMembers;
+    const haveAllMembers =
+      leadData !== null && members.length === requiredMembers;
     // payment fields
-    const paymentReady = teamContact.trim() !== '' && paymentFile !== null;
+    const paymentReady = teamContact.trim() !== "" && paymentFile !== null;
     return haveAllMembers && paymentReady;
   };
 
@@ -111,32 +113,68 @@ export default function RegistrationWizard() {
     const newErrors: Partial<Record<keyof MemberData, string>> = {};
     let isValid = true;
 
-    if (!formData.name.trim()) { newErrors.name = "Full name is required"; isValid = false; }
-    else if (formData.name.trim().length < 2) { newErrors.name = "Name must be at least 2 characters"; isValid = false; }
-    
-    if (!formData.gender) { newErrors.gender = "Gender is required"; isValid = false; }
-    
-    if (!formData.institution.trim()) { newErrors.institution = "Institution is required"; isValid = false; }
-    
-    if (!formData.semester) { newErrors.semester = "Semester is required"; isValid = false; }
-    
-    if (!formData.division) { newErrors.division = "Division is required"; isValid = false; }
-    
-    if (!formData.department.trim()) { newErrors.department = "Branch/Department is required"; isValid = false; }
-    
-    if (!formData.email.trim()) { newErrors.email = "Email address is required"; isValid = false; }
-    else if (!validateEmail(formData.email)) { newErrors.email = "Please enter a valid email address"; isValid = false; }
-    
-    if (!formData.contact.trim()) { newErrors.contact = "Phone number is required"; isValid = false; }
-    else if (!validatePhone(formData.contact)) { newErrors.contact = "Please enter a valid 10-digit phone number"; isValid = false; }
-    
-    if (!formData.foodPreference) { newErrors.foodPreference = "Food preference is required"; isValid = false; }
-    
-    if (!formData.residentialStatus) { newErrors.residentialStatus = "Residential status is required"; isValid = false; }
-    
-    if (memberEntryIndex === 0 && !formData.teamName?.trim()) { 
-      newErrors.teamName = "Team name is required"; 
-      isValid = false; 
+    if (!formData.name.trim()) {
+      newErrors.name = "Full name is required";
+      isValid = false;
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+      isValid = false;
+    }
+
+    if (!formData.gender) {
+      newErrors.gender = "Gender is required";
+      isValid = false;
+    }
+
+    if (!formData.institution.trim()) {
+      newErrors.institution = "Institution is required";
+      isValid = false;
+    }
+
+    if (!formData.semester) {
+      newErrors.semester = "Semester is required";
+      isValid = false;
+    }
+
+    if (!formData.division) {
+      newErrors.division = "Division is required";
+      isValid = false;
+    }
+
+    if (!formData.department.trim()) {
+      newErrors.department = "Branch/Department is required";
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email address is required";
+      isValid = false;
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+      isValid = false;
+    }
+
+    if (!formData.contact.trim()) {
+      newErrors.contact = "Phone number is required";
+      isValid = false;
+    } else if (!validatePhone(formData.contact)) {
+      newErrors.contact = "Please enter a valid 10-digit phone number";
+      isValid = false;
+    }
+
+    if (!formData.foodPreference) {
+      newErrors.foodPreference = "Food preference is required";
+      isValid = false;
+    }
+
+    if (!formData.residentialStatus) {
+      newErrors.residentialStatus = "Residential status is required";
+      isValid = false;
+    }
+
+    if (memberEntryIndex === 0 && !formData.teamName?.trim()) {
+      newErrors.teamName = "Team name is required";
+      isValid = false;
     }
 
     setErrors(newErrors);
@@ -148,15 +186,23 @@ export default function RegistrationWizard() {
       if (memberEntryIndex === 0) {
         setLeadData(formData);
       } else {
-        setMembers(prev => [...prev, formData]);
+        setMembers((prev) => [...prev, formData]);
       }
 
       if (memberEntryIndex < teamSize - 1) {
-        setMemberEntryIndex(prev => prev + 1);
-        setFormData({ 
-          name: '', gender: '', institution: '', semester: '', division: '', 
-          department: '', email: '', contact: '', foodPreference: '', 
-          residentialStatus: '', teamName: '' 
+        setMemberEntryIndex((prev) => prev + 1);
+        setFormData({
+          name: "",
+          gender: "",
+          institution: "",
+          semester: "",
+          division: "",
+          department: "",
+          email: "",
+          contact: "",
+          foodPreference: "",
+          residentialStatus: "",
+          teamName: "",
         });
         setErrors({});
       } else {
@@ -165,7 +211,7 @@ export default function RegistrationWizard() {
     }
   };
 
-  const handlePaymentSubmit = () => {
+  const handlePaymentSubmit = async () => {
     if (!teamContact.trim()) {
       alert("Enter contact number");
       return;
@@ -174,16 +220,45 @@ export default function RegistrationWizard() {
       alert("Upload payment screenshot");
       return;
     }
-    setIsSuccess(true);
+
+    if (!leadData) {
+      alert("Lead data is missing. Please go back and fill Member 1 details.");
+      return;
+    }
+
+    try {
+      // Call the backend handler to process, sanitize and construct JSON
+      await processRegistrationSubmission(
+        teamSize,
+        leadData,
+        members,
+        teamContact,
+        paymentFile,
+        PRICES[teamSize],
+      );
+
+      setIsSuccess(true);
+      // Optional: scroll to top or show success modal
+    } catch (err: any) {
+      alert(err.message || "An error occurred during submission");
+    }
   };
 
   const handleStep1Next = () => {
     setStep(2);
     setMemberEntryIndex(0);
-    setFormData({ 
-      name: '', gender: '', institution: '', semester: '', division: '', 
-      department: '', email: '', contact: '', foodPreference: '', 
-      residentialStatus: '', teamName: '' 
+    setFormData({
+      name: "",
+      gender: "",
+      institution: "",
+      semester: "",
+      division: "",
+      department: "",
+      email: "",
+      contact: "",
+      foodPreference: "",
+      residentialStatus: "",
+      teamName: "",
     });
   };
 
@@ -211,16 +286,13 @@ export default function RegistrationWizard() {
         <div className="registration-content-box">
           {step === 1 && (
             <div>
-              <TeamSizeSelector
-                teamSize={teamSize}
-                setTeamSize={setTeamSize}
-              />
+              <TeamSizeSelector teamSize={teamSize} setTeamSize={setTeamSize} />
               <button className="wizard-next-btn" onClick={handleStep1Next}>
                 NEXT →
               </button>
             </div>
           )}
-          
+
           {step === 2 && (
             <div className="wizard-step-content">
               <button className="wizard-prev-btn" onClick={prevStep}>
@@ -231,7 +303,9 @@ export default function RegistrationWizard() {
 
               <div className="wizard-form-card">
                 <h3 className="wizard-form-title">
-                  {memberEntryIndex === 0 ? "TEAM LEAD" : `MEMBER ${memberEntryIndex + 1}`}
+                  {memberEntryIndex === 0
+                    ? "TEAM LEAD"
+                    : `MEMBER ${memberEntryIndex + 1}`}
                 </h3>
 
                 {memberEntryIndex === 0 && (
@@ -244,7 +318,9 @@ export default function RegistrationWizard() {
                       onChange={handleInputChange}
                       placeholder="Enter your team name"
                     />
-                    {errors.teamName && <div className="wizard-error">{errors.teamName}</div>}
+                    {errors.teamName && (
+                      <div className="wizard-error">{errors.teamName}</div>
+                    )}
                   </>
                 )}
 
@@ -256,7 +332,9 @@ export default function RegistrationWizard() {
                   onChange={handleInputChange}
                   placeholder="Enter full name"
                 />
-                {errors.name && <div className="wizard-error">{errors.name}</div>}
+                {errors.name && (
+                  <div className="wizard-error">{errors.name}</div>
+                )}
 
                 <label className="wizard-label">Gender *</label>
                 <select
@@ -271,7 +349,9 @@ export default function RegistrationWizard() {
                   <option value="Other">Other</option>
                   <option value="Prefer not to say">Prefer not to say</option>
                 </select>
-                {errors.gender && <div className="wizard-error">{errors.gender}</div>}
+                {errors.gender && (
+                  <div className="wizard-error">{errors.gender}</div>
+                )}
 
                 <label className="wizard-label">Phone Number *</label>
                 <input
@@ -282,7 +362,9 @@ export default function RegistrationWizard() {
                   placeholder="Enter 10-digit phone number"
                   maxLength={10}
                 />
-                {errors.contact && <div className="wizard-error">{errors.contact}</div>}
+                {errors.contact && (
+                  <div className="wizard-error">{errors.contact}</div>
+                )}
 
                 <label className="wizard-label">Email Address *</label>
                 <input
@@ -293,7 +375,9 @@ export default function RegistrationWizard() {
                   onChange={handleInputChange}
                   placeholder="Enter email address"
                 />
-                {errors.email && <div className="wizard-error">{errors.email}</div>}
+                {errors.email && (
+                  <div className="wizard-error">{errors.email}</div>
+                )}
 
                 <label className="wizard-label">Semester *</label>
                 <select
@@ -308,7 +392,9 @@ export default function RegistrationWizard() {
                   <option>S6</option>
                   <option>S8</option>
                 </select>
-                {errors.semester && <div className="wizard-error">{errors.semester}</div>}
+                {errors.semester && (
+                  <div className="wizard-error">{errors.semester}</div>
+                )}
 
                 <label className="wizard-label">Branch *</label>
                 <select
@@ -319,14 +405,22 @@ export default function RegistrationWizard() {
                 >
                   <option value="">Select Branch</option>
                   <option value="Computer Science">Computer Science</option>
-                  <option value="Information Technology">Information Technology</option>
-                  <option value="Electronics & Communication">Electronics & Communication</option>
-                  <option value="Electrical & Electronics">Electrical & Electronics</option>
+                  <option value="Information Technology">
+                    Information Technology
+                  </option>
+                  <option value="Electronics & Communication">
+                    Electronics & Communication
+                  </option>
+                  <option value="Electrical & Electronics">
+                    Electrical & Electronics
+                  </option>
                   <option value="Mechanical">Mechanical</option>
                   <option value="Civil">Civil</option>
                   <option value="Other">Other</option>
                 </select>
-                {errors.department && <div className="wizard-error">{errors.department}</div>}
+                {errors.department && (
+                  <div className="wizard-error">{errors.department}</div>
+                )}
 
                 <label className="wizard-label">Institution *</label>
                 <input
@@ -336,7 +430,9 @@ export default function RegistrationWizard() {
                   onChange={handleInputChange}
                   placeholder="Enter institution name"
                 />
-                {errors.institution && <div className="wizard-error">{errors.institution}</div>}
+                {errors.institution && (
+                  <div className="wizard-error">{errors.institution}</div>
+                )}
 
                 <label className="wizard-label">Division *</label>
                 <select
@@ -351,7 +447,9 @@ export default function RegistrationWizard() {
                   <option>C</option>
                   <option>D</option>
                 </select>
-                {errors.division && <div className="wizard-error">{errors.division}</div>}
+                {errors.division && (
+                  <div className="wizard-error">{errors.division}</div>
+                )}
 
                 <label className="wizard-label">Food Preferences *</label>
                 <select
@@ -364,9 +462,13 @@ export default function RegistrationWizard() {
                   <option value="Vegetarian">Vegetarian</option>
                   <option value="Non-Vegetarian">Non-Vegetarian</option>
                 </select>
-                {errors.foodPreference && <div className="wizard-error">{errors.foodPreference}</div>}
+                {errors.foodPreference && (
+                  <div className="wizard-error">{errors.foodPreference}</div>
+                )}
 
-                <label className="wizard-label">Are you a Dayscholar or Hosteler? *</label>
+                <label className="wizard-label">
+                  Are you a Dayscholar or Hosteler? *
+                </label>
                 <select
                   className="wizard-select"
                   name="residentialStatus"
@@ -377,13 +479,23 @@ export default function RegistrationWizard() {
                   <option value="Dayscholar">Dayscholar</option>
                   <option value="Hosteler">Hosteler</option>
                 </select>
-                {errors.residentialStatus && <div className="wizard-error">{errors.residentialStatus}</div>}
+                {errors.residentialStatus && (
+                  <div className="wizard-error">{errors.residentialStatus}</div>
+                )}
               </div>
 
-              <div style={{ position: 'relative', display: 'inline-block', textAlign: 'center' }}>
+              <div
+                style={{
+                  position: "relative",
+                  display: "inline-block",
+                  textAlign: "center",
+                }}
+              >
                 {!isStep2Filled() && (
                   <div>
-                    <div className="required-text">Please fill all required fields above</div>
+                    <div className="required-text">
+                      Please fill all required fields above
+                    </div>
                   </div>
                 )}
 
@@ -391,17 +503,21 @@ export default function RegistrationWizard() {
                   {memberEntryIndex === 0
                     ? "+ MEMBER 2 DETAILS"
                     : memberEntryIndex === teamSize - 1
-                    ? "FINISH → PAYMENT"
-                    : `+ MEMBER ${memberEntryIndex + 2} DETAILS`}
+                      ? "FINISH → PAYMENT"
+                      : `+ MEMBER ${memberEntryIndex + 2} DETAILS`}
                 </button>
 
                 {!isStep2Filled() && (
-                  <span aria-hidden className="red-indicator" title="Required fields missing"></span>
+                  <span
+                    aria-hidden
+                    className="red-indicator"
+                    title="Required fields missing"
+                  ></span>
                 )}
               </div>
             </div>
           )}
-          
+
           {step === 3 && (
             <div className="wizard-step-content">
               <button className="wizard-prev-btn" onClick={prevStep}>
@@ -413,7 +529,9 @@ export default function RegistrationWizard() {
               <div className="wizard-payment-card">
                 <h3 className="wizard-payment-title">REGISTRATION FEE</h3>
                 <p className="wizard-payment-amount">₹ {PRICES[teamSize]}</p>
-                <p className="wizard-payment-instruction">Scan QR code and complete payment</p>
+                <p className="wizard-payment-instruction">
+                  Scan QR code and complete payment
+                </p>
 
                 <img
                   src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=HackFitPayment"
@@ -429,37 +547,54 @@ export default function RegistrationWizard() {
                   onChange={(e) => setTeamContact(e.target.value)}
                 />
 
-                <label className="wizard-label">Upload Payment Screenshot *</label>
+                <label className="wizard-label">
+                  Upload Payment Screenshot *
+                </label>
                 <input
                   className="wizard-file-input"
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    if (e.target.files?.length) setPaymentFile(e.target.files[0]);
+                    if (e.target.files?.length)
+                      setPaymentFile(e.target.files[0]);
                   }}
                 />
 
                 {/** show helper text above submit if earlier data missing or payment fields not provided */}
-                <div style={{ position: 'relative', display: 'inline-block', textAlign: 'center' }}>
+                <div
+                  style={{
+                    position: "relative",
+                    display: "inline-block",
+                    textAlign: "center",
+                  }}
+                >
                   {!isRegistrationDataComplete() && (
                     <div>
-                      <div className="required-text">Some required details are missing — please complete earlier steps</div>
+                      <div className="required-text">
+                        Some required details are missing — please complete
+                        earlier steps
+                      </div>
                     </div>
                   )}
 
-                  <button className="wizard-next-btn" onClick={handlePaymentSubmit}>
+                  <button
+                    className="wizard-next-btn"
+                    onClick={handlePaymentSubmit}
+                  >
                     SUBMIT REGISTRATION
                   </button>
 
                   {!isRegistrationDataComplete() && (
-                    <span aria-hidden className="red-indicator" title="Some required details are missing; go back to complete them"></span>
+                    <span
+                      aria-hidden
+                      className="red-indicator"
+                      title="Some required details are missing; go back to complete them"
+                    ></span>
                   )}
                 </div>
 
                 {isSuccess && (
-                  <p className="wizard-success">
-                    ✅ REGISTRATION SUCCESSFUL
-                  </p>
+                  <p className="wizard-success">✅ REGISTRATION SUCCESSFUL</p>
                 )}
               </div>
             </div>

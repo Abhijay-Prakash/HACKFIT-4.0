@@ -918,7 +918,7 @@ button {
 
 /* Helper text shown when required fields are missing */
 .required-text {
-  margin: 0 0 8px 0;
+  margin: 12px 0 8px 0;
   color: #ffb3b3;
   font-size: 0.82rem;
   font-family: "Orbitron", sans-serif;
