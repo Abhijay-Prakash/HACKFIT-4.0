@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Contact.css";
@@ -16,6 +16,49 @@ const createLogoMarkerIcon = () => {
     className: "custom-logo-marker",
   });
 };
+
+// Retarget button component
+function RetargetButton({ position, zoom }: { position: [number, number]; zoom: number }) {
+  const map = useMap();
+
+  const handleRetarget = () => {
+    map.setView(position, zoom, {
+      animate: true,
+      duration: 0.5,
+    });
+  };
+
+  useEffect(() => {
+    const RetargetControl = L.Control.extend({
+      onAdd: function () {
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+        const button = L.DomUtil.create('a', 'leaflet-control-retarget', container);
+        button.innerHTML = '⌖';
+        button.title = 'Reset to original location';
+        button.href = '#';
+        button.role = 'button';
+        button.setAttribute('aria-label', 'Reset map view');
+
+        L.DomEvent.on(button, 'click', (e) => {
+          L.DomEvent.stopPropagation(e);
+          L.DomEvent.preventDefault(e);
+          handleRetarget();
+        });
+
+        return container;
+      },
+    });
+
+    const control = new RetargetControl({ position: 'topleft' });
+    control.addTo(map);
+
+    return () => {
+      control.remove();
+    };
+  }, [map, position, zoom]);
+
+  return null;
+}
 
 export default function ContactSection() {
   useEffect(() => {
@@ -123,6 +166,7 @@ export default function ContactSection() {
                     </div>
                   </Popup>
                 </Marker>
+                <RetargetButton position={fisatPosition} zoom={25} />
               </MapContainer>
             </div>
 
