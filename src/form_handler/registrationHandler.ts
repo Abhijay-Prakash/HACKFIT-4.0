@@ -13,6 +13,35 @@ export interface MemberData {
 }
 
 
+const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
+export const uploadImageToCloudinary = async (
+  file: File
+): Promise<string> => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error?.message || "Cloudinary upload failed");
+  }
+
+  return data.secure_url; 
+};
+
 
 const cleanString = (str: string) => {
   if (!str) return "";
@@ -30,8 +59,11 @@ const sanitizeMember = (member: MemberData): MemberData => ({
   contact: member.contact.trim(),
   foodPreference: member.foodPreference,
   residentialStatus: member.residentialStatus,
-  teamName: member.teamName ? cleanString(member.teamName) : undefined,
+  teamName: member.teamName
+    ? cleanString(member.teamName)
+    : undefined,
 });
+
 
 export const validateImageFile = (
   file: File
@@ -55,7 +87,6 @@ export const validateImageFile = (
     };
   }
 
-  
   if (file.size > 5 * 1024 * 1024) {
     return {
       isValid: false,
@@ -67,7 +98,6 @@ export const validateImageFile = (
 };
 
 
-
 export const processRegistrationSubmission = async (
   teamSize: number,
   lead: MemberData,
@@ -76,36 +106,35 @@ export const processRegistrationSubmission = async (
   paymentFile: File,
   amount: number
 ) => {
-  
+
   const fileCheck = validateImageFile(paymentFile);
   if (!fileCheck.isValid) {
     throw new Error(fileCheck.error);
   }
 
-  
+
   const sanitizedLead = sanitizeMember(lead);
   const sanitizedMembers = members.map(sanitizeMember);
 
-  
-  const formData = new FormData();
+  const screenshotUrl = await uploadImageToCloudinary(paymentFile);
 
-  formData.append("teamSize", String(teamSize));
-  formData.append("teamContact", paymentContact.trim());
-  formData.append("amount", String(amount));
-
-  formData.append("leadData", JSON.stringify(sanitizedLead));
-  formData.append("members", JSON.stringify(sanitizedMembers));
-
-  formData.append("paymentScreenshot", paymentFile);
-
-  
-  const response = await fetch(
-    "http://localhost:5000/api/registrations",
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
+  const response = await fetch(`${API_BASE_URL}/api/registrations`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      teamSize,
+      lead: sanitizedLead,
+      members: sanitizedMembers,
+      payment: {
+        contact: paymentContact.trim(),
+        screenshotUrl: screenshotUrl,
+      },
+      totalAmount: amount,
+      submittedAt: new Date().toISOString(),
+    }),
+  });
 
   const data = await response.json();
 
