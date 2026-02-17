@@ -352,3 +352,27 @@ a {
   justify-content: center;
   letter-spacing: 2px;
 }
+
+.date-gradient {
+  background: linear-gradient(90deg, #116a93 0%, #346b74 50%, #9fdce6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex !important;
+}
+
+.prize-gradient {
+  background: linear-gradient(
+    90deg, 
+    #e1ce10 0%,   
+    #d4e21c 35%, 
+    #a8cd2d 70%, 
+    #82cd2d 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+
+  filter: drop-shadow(0 0 15px rgba(225, 206, 16, 0.3));
+}
