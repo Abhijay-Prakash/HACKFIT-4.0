@@ -82,7 +82,7 @@ export default function AdminRegistrations() {
 
   if (!apiKey) {
     return (
-      <div style={{ padding: "6rem 2rem", textAlign: "center", color: "#666" }}>
+      <div style={{ padding: "6rem 2rem", textAlign: "center", color: "#d1d5db" }}>
         Please log in as admin first.
       </div>
     );
@@ -90,9 +90,32 @@ export default function AdminRegistrations() {
 
   return (
     <div style={{ padding: "2rem", maxWidth: "1400px", margin: "0 auto" }}>
-      <h1 style={{ marginBottom: "1.5rem", color: "#111827" }}>
-        Admin Panel – Registrations
-      </h1>
+      {/* Top section with explicit contrast */}
+      <div
+        style={{
+          background: "rgba(0, 0, 0, 0.6)", // semi-transparent dark overlay
+          padding: "1.5rem",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+          backdropFilter: "blur(8px)", // nice glass effect (optional, remove if not wanted)
+        }}
+      >
+        <h1 style={{ margin: 0, color: "#f3f4f6", fontSize: "2rem" }}>
+          Admin Panel – Registrations
+        </h1>
+
+        <div
+          style={{
+            marginTop: "1rem",
+            fontSize: "1.2rem",
+            fontWeight: 500,
+            color: "#e5e7eb",
+          }}
+        >
+          <strong>Total teams registered:</strong>{" "}
+          {data ? data.totalTeams : "Loading..."}
+        </div>
+      </div>
 
       <div
         style={{
@@ -104,25 +127,21 @@ export default function AdminRegistrations() {
           marginBottom: "1.5rem",
         }}
       >
-        <div style={{ fontSize: "1.1rem", fontWeight: 500, color: "#111827" }}>
-          <strong>Total teams registered:</strong>{" "}
-          {data ? data.totalTeams : "Loading..."}
-        </div>
-
         <input
           type="text"
           placeholder="Search by team name..."
           value={search}
           onChange={handleSearch}
           style={{
-            padding: "10px 16px",
+            padding: "12px 16px",
             width: "320px",
             maxWidth: "100%",
-            border: "1px solid #d1d5db",
+            border: "1px solid #4b5563",
             borderRadius: "8px",
             fontSize: "1rem",
-            backgroundColor: "#ffffff",
-            color: "#111827",
+            backgroundColor: "#1f2937",
+            color: "#f3f4f6",
+            outline: "none",
           }}
         />
       </div>
@@ -130,8 +149,8 @@ export default function AdminRegistrations() {
       {error && (
         <div
           style={{
-            background: "#fee2e2",
-            color: "#b91c1c",
+            background: "#7f1d1d",
+            color: "#fecaca",
             padding: "12px 16px",
             borderRadius: "8px",
             marginBottom: "1.5rem",
@@ -146,7 +165,7 @@ export default function AdminRegistrations() {
           style={{
             textAlign: "center",
             padding: "8rem 0",
-            color: "#4b5563",
+            color: "#9ca3af",
             fontSize: "1.1rem",
           }}
         >
@@ -154,21 +173,21 @@ export default function AdminRegistrations() {
         </div>
       ) : (
         <>
-          <div style={{ overflowX: "auto", borderRadius: "12px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)" }}>
+          <div style={{ overflowX: "auto", borderRadius: "12px" }}>
             <table
               style={{
                 width: "100%",
                 borderCollapse: "separate",
                 borderSpacing: "0 8px",
                 minWidth: "900px",
-                backgroundColor: "#ffffff",
+                backgroundColor: "#111827",
               }}
             >
               <thead>
                 <tr
                   style={{
-                    background: "#f3f4f6",
-                    color: "#374151",
+                    background: "#1f2937",
+                    color: "#d1d5db",
                     fontWeight: 600,
                   }}
                 >
@@ -204,9 +223,9 @@ export default function AdminRegistrations() {
                       style={{
                         textAlign: "center",
                         padding: "5rem 1rem",
-                        color: "#6b7280",
+                        color: "#9ca3af",
                         fontStyle: "italic",
-                        background: "#ffffff",
+                        background: "#1f2937",
                         borderRadius: "12px",
                       }}
                     >
@@ -218,16 +237,16 @@ export default function AdminRegistrations() {
                     <tr
                       key={reg._id}
                       style={{
-                        background: "#ffffff",
-                        boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-                        transition: "all 0.2s",
+                        background: "#1f2937",
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                        transition: "background 0.2s",
                       }}
                     >
                       <td
                         style={{
                           padding: "16px 20px",
                           borderRadius: "12px 0 0 12px",
-                          color: "#111827",
+                          color: "#f3f4f6",
                           whiteSpace: "nowrap",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
@@ -239,7 +258,7 @@ export default function AdminRegistrations() {
                       <td
                         style={{
                           padding: "16px 20px",
-                          color: "#111827",
+                          color: "#f3f4f6",
                           whiteSpace: "nowrap",
                           overflow: "hidden",
                           textOverflow: "ellipsis",
@@ -252,7 +271,7 @@ export default function AdminRegistrations() {
                         style={{
                           padding: "16px 20px",
                           textAlign: "center",
-                          color: "#111827",
+                          color: "#f3f4f6",
                         }}
                       >
                         {reg.teamSize ?? "—"}
@@ -261,7 +280,7 @@ export default function AdminRegistrations() {
                         style={{
                           padding: "16px 20px",
                           textAlign: "center",
-                          color: "#111827",
+                          color: "#f3f4f6",
                         }}
                       >
                         {reg.totalAmount ? `₹${reg.totalAmount}` : "—"}
@@ -269,7 +288,7 @@ export default function AdminRegistrations() {
                       <td
                         style={{
                           padding: "16px 20px",
-                          color: "#111827",
+                          color: "#f3f4f6",
                         }}
                       >
                         {reg.payment?.contact || "—"}
@@ -287,7 +306,7 @@ export default function AdminRegistrations() {
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
-                              color: "#2563eb",
+                              color: "#60a5fa",
                               fontWeight: 500,
                               textDecoration: "underline",
                             }}
@@ -321,7 +340,7 @@ export default function AdminRegistrations() {
                 disabled={page === 1 || loading}
                 style={{
                   padding: "10px 28px",
-                  backgroundColor: page === 1 ? "#e5e7eb" : "#2563eb",
+                  backgroundColor: page === 1 ? "#374151" : "#3b82f6",
                   color: page === 1 ? "#9ca3af" : "white",
                   border: "none",
                   borderRadius: "8px",
@@ -333,7 +352,7 @@ export default function AdminRegistrations() {
                 Previous
               </button>
 
-              <span style={{ fontWeight: 500, color: "#374151" }}>
+              <span style={{ fontWeight: 500, color: "#d1d5db" }}>
                 Page {page} of {Math.ceil(data.totalTeams / limit) || 1}
               </span>
 
@@ -343,7 +362,7 @@ export default function AdminRegistrations() {
                 style={{
                   padding: "10px 28px",
                   backgroundColor:
-                    data.data.length < limit ? "#e5e7eb" : "#2563eb",
+                    data.data.length < limit ? "#374151" : "#3b82f6",
                   color: data.data.length < limit ? "#9ca3af" : "white",
                   border: "none",
                   borderRadius: "8px",
