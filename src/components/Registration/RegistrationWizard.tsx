@@ -4,7 +4,7 @@ import "./Registration.css";
 import { processRegistrationSubmission } from "../../form_handler/registrationHandler";
 import type { MemberData } from "../../form_handler/registrationHandler";
 
-const PRICES: Record<number, number> = { 3: 999, 4: 1299, 5: 1599 };
+const PRICES: Record<number, number> = { 3: 1099, 4: 1349, 5: 1599 };
 const STORAGE_KEY = "hackfit_registration_draft";
 
 const INITIAL_MEMBER_DATA: MemberData = {

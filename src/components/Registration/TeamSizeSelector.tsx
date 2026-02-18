@@ -11,8 +11,8 @@ export default function TeamSizeSelector({
 }: TeamSizeSelectorProps) {
   const MIN_SIZE = 3;
   const MAX_SIZE = 5;
-  const BASE_PRICE = 999;
-  const EXTRA_MEMBER_PRICE = 300;
+  const BASE_PRICE = 1099;
+  const EXTRA_MEMBER_PRICE = 250;
 
   const totalPrice = BASE_PRICE + (teamSize - MIN_SIZE) * EXTRA_MEMBER_PRICE;
 
