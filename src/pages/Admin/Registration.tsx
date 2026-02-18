@@ -2,11 +2,10 @@
 import { useState, useEffect } from "react";
 import { api } from "../../lib/api";
 
-// More realistic type with optional fields (based on your actual DB data)
 type Registration = {
   _id: string;
   teamSize: number;
-  teamName?: string;              // sometimes exists at root level
+  teamName?: string;
   lead?: {
     name: string;
     gender?: string;
@@ -20,10 +19,7 @@ type Registration = {
     residentialStatus?: string;
     teamName?: string;
   };
-  members: Array<{
-    name: string;
-    // ... other member fields
-  }>;
+  members: Array<Record<string, any>>;
   payment?: {
     contact: string;
     screenshotUrl: string;
@@ -66,7 +62,6 @@ export default function AdminRegistrations() {
         search,
         apiKey,
       });
-
       setData(result);
     } catch (err: any) {
       setError(err.message || "Failed to load registrations");
@@ -82,12 +77,12 @@ export default function AdminRegistrations() {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    setPage(1); // reset to first page on new search
+    setPage(1);
   };
 
   if (!apiKey) {
     return (
-      <div style={{ padding: "4rem", textAlign: "center", color: "#666" }}>
+      <div style={{ padding: "6rem 2rem", textAlign: "center", color: "#666" }}>
         Please log in as admin first.
       </div>
     );
@@ -95,19 +90,21 @@ export default function AdminRegistrations() {
 
   return (
     <div style={{ padding: "2rem", maxWidth: "1400px", margin: "0 auto" }}>
-      <h1>Admin Panel – Registrations</h1>
+      <h1 style={{ marginBottom: "1.5rem", color: "#111827" }}>
+        Admin Panel – Registrations
+      </h1>
 
       <div
         style={{
-          margin: "1.5rem 0",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           flexWrap: "wrap",
           gap: "1rem",
+          marginBottom: "1.5rem",
         }}
       >
-        <div>
+        <div style={{ fontSize: "1.1rem", fontWeight: 500, color: "#111827" }}>
           <strong>Total teams registered:</strong>{" "}
           {data ? data.totalTeams : "Loading..."}
         </div>
@@ -118,11 +115,14 @@ export default function AdminRegistrations() {
           value={search}
           onChange={handleSearch}
           style={{
-            padding: "10px 14px",
+            padding: "10px 16px",
             width: "320px",
+            maxWidth: "100%",
+            border: "1px solid #d1d5db",
+            borderRadius: "8px",
             fontSize: "1rem",
-            border: "1px solid #ccc",
-            borderRadius: "6px",
+            backgroundColor: "#ffffff",
+            color: "#111827",
           }}
         />
       </div>
@@ -130,11 +130,11 @@ export default function AdminRegistrations() {
       {error && (
         <div
           style={{
-            color: "crimson",
-            margin: "1rem 0",
-            padding: "12px",
-            background: "#ffebee",
-            borderRadius: "6px",
+            background: "#fee2e2",
+            color: "#b91c1c",
+            padding: "12px 16px",
+            borderRadius: "8px",
+            marginBottom: "1.5rem",
           }}
         >
           {error}
@@ -142,29 +142,58 @@ export default function AdminRegistrations() {
       )}
 
       {loading ? (
-        <div style={{ textAlign: "center", padding: "6rem 0", color: "#666" }}>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "8rem 0",
+            color: "#4b5563",
+            fontSize: "1.1rem",
+          }}
+        >
           Loading registrations...
         </div>
       ) : (
         <>
-          <div style={{ overflowX: "auto" }}>
+          <div style={{ overflowX: "auto", borderRadius: "12px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)" }}>
             <table
               style={{
                 width: "100%",
-                borderCollapse: "collapse",
-                marginTop: "1rem",
-                background: "white",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                borderCollapse: "separate",
+                borderSpacing: "0 8px",
+                minWidth: "900px",
+                backgroundColor: "#ffffff",
               }}
             >
               <thead>
-                <tr style={{ background: "#f8f9fa", textAlign: "left" }}>
-                  <th style={{ padding: "14px 12px" }}>Team Name</th>
-                  <th style={{ padding: "14px 12px" }}>College</th>
-                  <th style={{ padding: "14px 12px", textAlign: "center" }}>Size</th>
-                  <th style={{ padding: "14px 12px", textAlign: "center" }}>Amount</th>
-                  <th style={{ padding: "14px 12px" }}>Lead Contact</th>
-                  <th style={{ padding: "14px 12px", textAlign: "center" }}>Payment SS</th>
+                <tr
+                  style={{
+                    background: "#f3f4f6",
+                    color: "#374151",
+                    fontWeight: 600,
+                  }}
+                >
+                  <th
+                    style={{
+                      padding: "16px 20px",
+                      textAlign: "left",
+                      borderRadius: "12px 0 0 12px",
+                    }}
+                  >
+                    Team Name
+                  </th>
+                  <th style={{ padding: "16px 20px", textAlign: "left" }}>College</th>
+                  <th style={{ padding: "16px 20px", textAlign: "center" }}>Size</th>
+                  <th style={{ padding: "16px 20px", textAlign: "center" }}>Amount</th>
+                  <th style={{ padding: "16px 20px", textAlign: "left" }}>Lead Contact</th>
+                  <th
+                    style={{
+                      padding: "16px 20px",
+                      textAlign: "center",
+                      borderRadius: "0 12px 12px 0",
+                    }}
+                  >
+                    Payment SS
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -174,8 +203,11 @@ export default function AdminRegistrations() {
                       colSpan={6}
                       style={{
                         textAlign: "center",
-                        padding: "4rem 1rem",
-                        color: "#777",
+                        padding: "5rem 1rem",
+                        color: "#6b7280",
+                        fontStyle: "italic",
+                        background: "#ffffff",
+                        borderRadius: "12px",
                       }}
                     >
                       No registrations found
@@ -186,35 +218,78 @@ export default function AdminRegistrations() {
                     <tr
                       key={reg._id}
                       style={{
-                        borderBottom: "1px solid #eee",
-                        background: "white",
+                        background: "#ffffff",
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+                        transition: "all 0.2s",
                       }}
                     >
-                      <td style={{ padding: "14px 12px" }}>
+                      <td
+                        style={{
+                          padding: "16px 20px",
+                          borderRadius: "12px 0 0 12px",
+                          color: "#111827",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          maxWidth: "220px",
+                        }}
+                      >
                         {reg.lead?.teamName || reg.teamName || "—"}
                       </td>
-                      <td style={{ padding: "14px 12px" }}>
+                      <td
+                        style={{
+                          padding: "16px 20px",
+                          color: "#111827",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          maxWidth: "260px",
+                        }}
+                      >
                         {reg.lead?.institution || "—"}
                       </td>
-                      <td style={{ padding: "14px 12px", textAlign: "center" }}>
+                      <td
+                        style={{
+                          padding: "16px 20px",
+                          textAlign: "center",
+                          color: "#111827",
+                        }}
+                      >
                         {reg.teamSize ?? "—"}
                       </td>
-                      <td style={{ padding: "14px 12px", textAlign: "center" }}>
+                      <td
+                        style={{
+                          padding: "16px 20px",
+                          textAlign: "center",
+                          color: "#111827",
+                        }}
+                      >
                         {reg.totalAmount ? `₹${reg.totalAmount}` : "—"}
                       </td>
-                      <td style={{ padding: "14px 12px" }}>
+                      <td
+                        style={{
+                          padding: "16px 20px",
+                          color: "#111827",
+                        }}
+                      >
                         {reg.payment?.contact || "—"}
                       </td>
-                      <td style={{ padding: "14px 12px", textAlign: "center" }}>
+                      <td
+                        style={{
+                          padding: "16px 20px",
+                          textAlign: "center",
+                          borderRadius: "0 12px 12px 0",
+                        }}
+                      >
                         {reg.payment?.screenshotUrl ? (
                           <a
                             href={reg.payment.screenshotUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
-                              color: "#0066cc",
-                              textDecoration: "none",
+                              color: "#2563eb",
                               fontWeight: 500,
+                              textDecoration: "underline",
                             }}
                           >
                             View
@@ -230,14 +305,14 @@ export default function AdminRegistrations() {
             </table>
           </div>
 
-          {data && (
+          {data && data.totalTeams > 0 && (
             <div
               style={{
-                marginTop: "2rem",
+                marginTop: "2.5rem",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "1.5rem",
+                gap: "2rem",
                 flexWrap: "wrap",
               }}
             >
@@ -245,18 +320,20 @@ export default function AdminRegistrations() {
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1 || loading}
                 style={{
-                  padding: "10px 20px",
-                  background: page === 1 ? "#eee" : "#0066cc",
-                  color: page === 1 ? "#999" : "white",
+                  padding: "10px 28px",
+                  backgroundColor: page === 1 ? "#e5e7eb" : "#2563eb",
+                  color: page === 1 ? "#9ca3af" : "white",
                   border: "none",
-                  borderRadius: "6px",
+                  borderRadius: "8px",
+                  fontWeight: 500,
                   cursor: page === 1 ? "not-allowed" : "pointer",
+                  minWidth: "110px",
                 }}
               >
                 Previous
               </button>
 
-              <span style={{ fontWeight: 500 }}>
+              <span style={{ fontWeight: 500, color: "#374151" }}>
                 Page {page} of {Math.ceil(data.totalTeams / limit) || 1}
               </span>
 
@@ -264,13 +341,15 @@ export default function AdminRegistrations() {
                 onClick={() => setPage((p) => p + 1)}
                 disabled={data.data.length < limit || loading}
                 style={{
-                  padding: "10px 20px",
-                  background:
-                    data.data.length < limit ? "#eee" : "#0066cc",
-                  color: data.data.length < limit ? "#999" : "white",
+                  padding: "10px 28px",
+                  backgroundColor:
+                    data.data.length < limit ? "#e5e7eb" : "#2563eb",
+                  color: data.data.length < limit ? "#9ca3af" : "white",
                   border: "none",
-                  borderRadius: "6px",
+                  borderRadius: "8px",
+                  fontWeight: 500,
                   cursor: data.data.length < limit ? "not-allowed" : "pointer",
+                  minWidth: "110px",
                 }}
               >
                 Next
