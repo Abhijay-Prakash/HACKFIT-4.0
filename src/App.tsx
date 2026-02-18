@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import Register from "./pages/RegisterPage";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminRegistrations from "./pages/Admin/Registration";
+import RegistrationDetail from "./pages/Admin/RegistrationDetail";
 
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
 
@@ -68,6 +69,7 @@ export default function App() {
 
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/registrations" element={<AdminRegistrations />} />
+        <Route path="/admin/registrations/:id" element={<RegistrationDetail />} />
       </Routes>
     </BrowserRouter>
   );

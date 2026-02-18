@@ -1,7 +1,9 @@
 // src/pages/Admin/Registrations.tsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ← added here
 import { api } from "../../lib/api";
 
+// Updated type with optional fields based on your real DB data
 type Registration = {
   _id: string;
   teamSize: number;
@@ -41,6 +43,8 @@ export default function AdminRegistrations() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate(); // ← added here (inside the component)
 
   const limit = 10;
   const apiKey = sessionStorage.getItem("admin-api-key") || "";
@@ -90,14 +94,14 @@ export default function AdminRegistrations() {
 
   return (
     <div style={{ padding: "2rem", maxWidth: "1400px", margin: "0 auto" }}>
-      {/* Top section with explicit contrast */}
+      {/* Top section with contrast */}
       <div
         style={{
-          background: "rgba(0, 0, 0, 0.6)", // semi-transparent dark overlay
+          background: "rgba(0, 0, 0, 0.6)",
           padding: "1.5rem",
           borderRadius: "12px",
           marginBottom: "2rem",
-          backdropFilter: "blur(8px)", // nice glass effect (optional, remove if not wanted)
+          backdropFilter: "blur(8px)",
         }}
       >
         <h1 style={{ margin: 0, color: "#f3f4f6", fontSize: "2rem" }}>
@@ -240,7 +244,11 @@ export default function AdminRegistrations() {
                         background: "#1f2937",
                         boxShadow: "0 1px 3px rgba(0,0,0,0.4)",
                         transition: "background 0.2s",
+                        cursor: "pointer",
                       }}
+                      onClick={() => navigate(`/admin/registrations/${reg._id}`)}
+                      onMouseEnter={(e) => (e.currentTarget.style.background = "#374151")}
+                      onMouseLeave={(e) => (e.currentTarget.style.background = "#1f2937")}
                     >
                       <td
                         style={{
