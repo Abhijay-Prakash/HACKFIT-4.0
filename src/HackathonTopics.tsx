@@ -72,7 +72,7 @@ const CombinedTopicCard: React.FC<{
         rotateY: { duration: 0.6 },
         scale: { duration: 0.6 },
       }}
-      className="absolute inset-0 overflow-hidden w-full h-full flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-10 p-4 sm:p-6 md:p-8 lg:p-12 circuit-bg-pattern bg-gradient-to-br from-bgBlack via-bgBlack to-bgBlack/90"
+      className="absolute inset-0 overflow-hidden w-full h-full flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-10 p-4 sm:p-6 md:p-8 lg:p-12 circuit-bg-pattern bg-linear-to-br from-bgBlack via-bgBlack to-bgBlack/90"
       style={{ perspective: 1200 }}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
@@ -107,7 +107,7 @@ const CombinedTopicCard: React.FC<{
 
       <div className="flex-1 relative flex items-center justify-center z-0">
         <div
-          className="relative w-full max-w-[200px] sm:max-w-xs md:max-w-sm lg:max-w-md aspect-square bg-bgBlack/70 combined-card shadow-[0_0_40px_rgba(147,205,45,0.45)] overflow-hidden"
+          className="relative w-full max-w-50 sm:max-w-xs md:max-w-sm lg:max-w-md aspect-square bg-bgBlack/70 combined-card shadow-[0_0_40px_rgba(147,205,45,0.45)] overflow-hidden"
           style={{
             clipPath: "polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%)",
           }}
@@ -115,7 +115,7 @@ const CombinedTopicCard: React.FC<{
           <div className="absolute inset-0 pulse-glow-anim bg-[radial-gradient(circle_at_10%_20%,rgba(147,205,45,0.25)_0,transparent_60%),radial-gradient(circle_at_80%_80%,rgba(50,187,210,0.25)_0,transparent_60%)] mix-blend-screen" />
           <div className="absolute inset-0 glitch-overlay-anim opacity-20" />
           <div
-            className="absolute inset-[1px] bg-gradient-to-br from-bgBlack via-bgBlack to-bgBlack/80"
+            className="absolute inset-px bg-linear-to-br from-bgBlack via-bgBlack to-bgBlack/80"
             style={{
               clipPath:
                 "polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%)",
@@ -128,9 +128,9 @@ const CombinedTopicCard: React.FC<{
               <div className="absolute inset-0 rounded-full border-2 border-lime/40 animate-spin-slow"></div>
               <div className="absolute inset-2 rounded-full border border-cyan/30 animate-pulse"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-lime to-cyan rounded-full animate-pulse shadow-lg"></div>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-linear-to-r from-lime to-cyan rounded-full animate-pulse shadow-lg"></div>
               </div>
-              <div className="absolute -inset-6 rounded-full bg-gradient-to-tr from-lime/10 via-acid/10 to-cyan/10 blur-3xl" />
+              <div className="absolute -inset-6 rounded-full bg-linear-to-tr from-lime/10 via-acid/10 to-cyan/10 blur-3xl" />
             </div>
 
             <div className="flex flex-wrap gap-1 sm:gap-2 text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.25em] text-sage/60 font-roboto justify-center text-center">
@@ -230,7 +230,7 @@ const HackathonTopicsCarousel: React.FC = () => {
                 "polygon(2% 2%, 35% 2%, 40% 8%, 98% 8%, 98% 98%, 2% 98%)",
             }}
           >
-            <div className="relative w-full h-full min-h-[449px] md:min-h-[460px] lg:min-h-[480px]">
+            <div className="relative w-full h-full min-h-112.25 md:min-h-115 lg:min-h-120">
               {/* overlapping enter/exit for seamless transitions */}
               <AnimatePresence initial={false} custom={direction}>
                 <CombinedTopicCard
