@@ -6,7 +6,7 @@ import "./Contact.css";
 import "../HackathonCards.css";
 import logo2 from "../assets/logo2.png";
 
-// Custom logo marker icon
+
 const createLogoMarkerIcon = () => {
   return L.icon({
     iconUrl: logo2,
@@ -17,7 +17,7 @@ const createLogoMarkerIcon = () => {
   });
 };
 
-// Retarget button component
+
 function RetargetButton({
   position,
   zoom,
@@ -75,7 +75,7 @@ function RetargetButton({
 
 export default function ContactSection() {
   useEffect(() => {
-    // Fix for default marker icon
+    
     delete (L.Icon.Default.prototype as any)._getIconUrl;
     L.Icon.Default.mergeOptions({
       iconRetinaUrl: "",
