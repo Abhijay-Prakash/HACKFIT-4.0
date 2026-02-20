@@ -32,12 +32,12 @@ const faqItems = [
   {
     question: "What support is available on-site?",
     answer:
-      "24/7 mentor pods, hardware checkout, sleep bays, and power buffers are available. We also provide templates for compliance, pitch decks, and deployment scripts.",
+      "24/7 mentor pods, food and refreshments, sleep bays, and power buffers are available. ",
   },
   {
     question: "How are projects judged?",
     answer:
-      "Panels score for impact, technical execution, resilience, and storytelling. Finals are streamed with live feedback from partner labs.",
+      "Panels score for fit to the original idea, impact, technical execution, resilience, and storytelling. Finals evaluation will done by industry professionals.",
   },
 ];
 
