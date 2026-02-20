@@ -12,24 +12,19 @@ interface TopicData {
 
 const topicsData: TopicData[] = [
   {
-    id: "topic 1",
-    title: "GenAI Innovation",
-    subtitle: "Explore generative AI and machine learning solutions for tomorrow.",
-    badges: ["AI/ML", "GPT", "Computer Vision"],
+    id: "topic1",
+    title: "Track 1 – Reveal Coming Soon",
+    subtitle: "Problem statements and details will be announced shortly. Stay tuned!",
+    badges: ["Coming Soon", "TBA", "Stay Tuned"],
   },
   {
     id: "topic2",
-    title: "Digital Transformation",
-    subtitle: "Build scalable solutions that modernize traditional industries.",
-    badges: ["Cloud", "API", "Automation"],
-  },
-  {
-    id: "topic 3",
-    title: "Data Science",
-    subtitle: "Transform raw data into actionable insights and predictions.",
-    badges: ["Analytics", "Python", "Visualization"],
+    title: "Track 2 – Reveal Coming Soon",
+    subtitle: "Problem statements and details will be announced shortly. Stay tuned!",
+    badges: ["Coming Soon", "TBA", "Stay Tuned"],
   },
 ];
+
 const CombinedTopicCard: React.FC<{
   topic: TopicData;
   direction: number;
@@ -84,11 +79,10 @@ const CombinedTopicCard: React.FC<{
       <div className="absolute inset-0 opacity-10 glitch-overlay-anim" />
 
       <div className="flex-1 flex flex-col gap-4 md:gap-6 z-10">
-
-
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-geist font-semibold tracking-tight text-lime palette-glitch-text">
           {topic.title}
         </h2>
+
         <p className="text-sm md:text-base text-sage/85 max-w-xl font-roboto">
           {topic.subtitle}
         </p>
@@ -134,11 +128,11 @@ const CombinedTopicCard: React.FC<{
             </div>
 
             <div className="flex flex-wrap gap-1 sm:gap-2 text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.25em] text-sage/60 font-roboto justify-center text-center">
-              <span>Motion Capture</span>
+              <span>Details TBA</span>
               <span className="opacity-40">•</span>
-              <span>Adaptive AI</span>
+              <span>Reveal Soon</span>
               <span className="opacity-40">•</span>
-              <span>Real-time Feedback</span>
+              <span>Stay Tuned</span>
             </div>
           </div>
         </div>
@@ -165,14 +159,12 @@ const HackathonTopicsCarousel: React.FC = () => {
     setActiveIndex(newIndex);
   };
 
-  // restart autoplay whenever activeIndex changes (keeps timing consistent after manual navigation)
   useEffect(() => {
     if (autoPlayRef.current) {
       window.clearInterval(autoPlayRef.current);
     }
 
     if (!isPaused) {
-      // slower, smooth autoplay
       autoPlayRef.current = window.setInterval(nextSlide, 6000);
     }
 
@@ -210,14 +202,14 @@ const HackathonTopicsCarousel: React.FC = () => {
               <span className="text-lime font-[impact]">Topic </span>.
             </h1>
             <p className="mt-3 text-xs sm:text-sm md:text-base text-sage/80 max-w-full sm:max-w-xl md:max-w-2xl font-roboto leading-relaxed sm:leading-relaxed">
-              Discover cutting-edge hackathon tracks designed to challenge your innovation skills and push technological boundaries.
+              Exciting challenges are coming — get ready to innovate!
             </p>
           </div>
 
           <div className="inline-flex items-center gap-3 px-3 sm:px-4 py-2 rounded-full bg-bgBlack/80 border border-sage/40 backdrop-blur-md self-start">
             <span className="w-2 h-2 rounded-full bg-lime shadow-[0_0_10px_rgba(147,205,45,0.8)] animate-pulse" />
             <span className="text-[10px] sm:text-[11px] md:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase text-sage/80 font-roboto">
-              Swipe, scroll or tap through the realms
+              Reveal Soon – Stay Tuned
             </span>
           </div>
         </header>
@@ -231,7 +223,6 @@ const HackathonTopicsCarousel: React.FC = () => {
             }}
           >
             <div className="relative w-full h-full min-h-112.25 md:min-h-115 lg:min-h-120">
-              {/* overlapping enter/exit for seamless transitions */}
               <AnimatePresence initial={false} custom={direction}>
                 <CombinedTopicCard
                   key={activeIndex}
@@ -261,16 +252,7 @@ const HackathonTopicsCarousel: React.FC = () => {
 
           <div className="mt-6 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              {/* Left gradient nav replaces the small blue/indicator buttons. Click triggers previous slide. */}
-              {/* <button
-                onClick={prevSlide}
-                className="left-gradient-nav"
-                aria-label="Previous topic"
-              >
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M15 6L9 12L15 18" stroke="#042" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button> */}
+              {/* Left gradient nav (optional) */}
             </div>
 
             <div className="flex items-center gap-3">
