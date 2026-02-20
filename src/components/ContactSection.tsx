@@ -111,7 +111,7 @@ export default function ContactSection() {
                 <h3 className="card-title">Hisham Haskar</h3>
                 <div className="card-underline" />
                 <p className="person-role">Chairperson, ACM</p>
-                <p className="person-phone">+91 1234567890</p>
+                <p className="person-phone">+91 8078313514</p>
               </div>
             </div>
 
