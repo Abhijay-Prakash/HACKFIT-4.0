@@ -17,7 +17,7 @@ const faqItems = [
   {
     question: "Who can register for HackFit 2026?",
     answer:
-      "Students, indie builders, and early-stage founders who can prove an active project or prototype can register. Mixed teams are welcome as long as every member is ready to build on-site.",
+      "HackFit is open exclusively to undergraduate and postgraduate students currently enrolled in recognized colleges or universities. Participants must carry a valid student ID. Mixed teams across different colleges are welcome, provided all members are eligible students and ready to build on-site.",
   },
   {
     question: "What tracks are in the 2026 edition?",
