@@ -28,14 +28,12 @@ const WhatIsHackfit: React.FC = () => {
               Build bold. Sleep later.
             </h2>
             <p className="font-[progress] text-slate-200/90 tracking-widest text-sm sm:text-base md:text-lg max-w-2xl">
-              Hackfit is a neon-fueled sprint where teams ship real solutions in
-              hours—not weeks. Expect fast tracks, live mentors, and a runway to
-              launch ideas under pressure.
+              Hackfit is a  national level hackathon conducted by DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING - FISAT IN ASSOCIATION WITH FISAT HORIZON CLUB, ACM STUDENT CHAPTER FISAT AND FISAT FREE SOFTWARE CELL.
             </p>
             <div className="hackfit-pill-row">
               <div className="hackfit-pill">
                 <span className="dot" />
-                48h Sprint
+                36h Sprint
               </div>
               <div className="hackfit-pill accent">
                 <span className="dot" />
@@ -43,7 +41,7 @@ const WhatIsHackfit: React.FC = () => {
               </div>
               <div className="hackfit-pill">
                 <span className="dot" />
-                Team Size: 2-4
+                Team Size: 2-5
               </div>
             </div>
           </div>
