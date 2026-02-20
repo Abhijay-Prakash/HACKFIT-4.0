@@ -4,7 +4,13 @@ import "./Registration.css";
 import { processRegistrationSubmission } from "../../form_handler/registrationHandler";
 import type { MemberData } from "../../form_handler/registrationHandler";
 
-const PRICES: Record<number, number> = { 3: 1099, 4: 1349, 5: 1599 };
+const PRICES: Record<number, number> = { 
+  2: 1099,   // same price as team size 3
+  3: 1099, 
+  4: 1349, 
+  5: 1599 
+};
+
 const STORAGE_KEY = "hackfit_registration_draft";
 
 const INITIAL_MEMBER_DATA: MemberData = {
@@ -29,7 +35,9 @@ export default function RegistrationWizard() {
 
   const [teamSize, setTeamSize] = useState<number>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? (JSON.parse(saved).teamSize ?? 3) : 3;
+    const savedSize = saved ? (JSON.parse(saved).teamSize ?? 3) : 3;
+    // Ensure saved size is valid (2–5)
+    return [2, 3, 4, 5].includes(savedSize) ? savedSize : 3;
   });
 
   const [formData, setFormData] = useState<MemberData>(() => {
@@ -224,7 +232,7 @@ export default function RegistrationWizard() {
       );
 
       setIsSuccess(true);
-      localStorage.removeItem(STORAGE_KEY); // clear draft on success
+      localStorage.removeItem(STORAGE_KEY);
 
     } catch (err: any) {
       setSubmitError(err.message || "Registration failed. Please try again.");
@@ -289,7 +297,9 @@ export default function RegistrationWizard() {
 
               <div className="wizard-form-card">
                 <h3 className="wizard-form-title">
-                  {memberEntryIndex === 0 ? "TEAM LEAD" : `MEMBER ${memberEntryIndex + 1}`}
+                  {memberEntryIndex === 0 
+                    ? "TEAM LEAD" 
+                    : `MEMBER ${memberEntryIndex + 1} of ${teamSize}`}
                 </h3>
 
                 {memberEntryIndex === 0 && (
@@ -415,7 +425,9 @@ export default function RegistrationWizard() {
 
                 <button className="wizard-next-btn" onClick={handleNextMember}>
                   {memberEntryIndex === 0
-                    ? "+ MEMBER 2 DETAILS"
+                    ? teamSize === 2
+                      ? "FINISH → PAYMENT"
+                      : "+ MEMBER 2 DETAILS"
                     : memberEntryIndex === teamSize - 1
                     ? "FINISH → PAYMENT"
                     : `+ MEMBER ${memberEntryIndex + 2} DETAILS`}
