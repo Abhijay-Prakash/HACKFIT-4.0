@@ -4,7 +4,7 @@ import "./Registration.css";
 import { processRegistrationSubmission } from "../../form_handler/registrationHandler";
 import type { MemberData } from "../../form_handler/registrationHandler";
 
-// Import local QR images from src/assets/qr/
+// Import local QR images (JPEG format)
 import qr1099 from "../../assets/qr/qr_1099.jpeg";
 import qr1349 from "../../assets/qr/qr_1349.jpeg";
 import qr1599 from "../../assets/qr/qr_1599.jpeg";
@@ -12,15 +12,15 @@ import qr1599 from "../../assets/qr/qr_1599.jpeg";
 // Price mapping
 const PRICES: Record<number, number> = { 
   2: 1099,
-  3: 1099, 
-  4: 1349, 
+  3: 1099,   // same price as team of 2
+  4: 1349,
   5: 1599 
 };
 
 // Map team size → local QR image
 const QR_CODES: Record<number, string> = {
   2: qr1099,
-  3: qr1099,
+  3: qr1099,     // same QR for 2 & 3 (same price)
   4: qr1349,
   5: qr1599,
 };
@@ -247,6 +247,7 @@ export default function RegistrationWizard() {
       setIsSuccess(true);
       localStorage.removeItem(STORAGE_KEY);
       
+      // Scroll to top so success message is visible
       window.scrollTo({ top: 0, behavior: "smooth" });
 
     } catch (err: any) {
@@ -276,8 +277,6 @@ export default function RegistrationWizard() {
     if (index === 0 && !data.teamName?.trim()) return false;
     return true;
   };
-
-
 
   return (
     <div className="wizard-container">
@@ -489,17 +488,17 @@ export default function RegistrationWizard() {
                   <h3 className="wizard-payment-title">REGISTRATION FEE</h3>
                   <p className="wizard-payment-amount">₹ {PRICES[teamSize]}</p>
 
-                  {/* Payment details text above QR */}
+                  {/* Payment details */}
                   <div style={{
                     background: "#1e2937",
-                    padding: "1rem",
-                    borderRadius: "8px",
-                    margin: "1rem 0",
+                    padding: "1.25rem",
+                    borderRadius: "10px",
+                    margin: "1.25rem 0",
                     border: "1px solid #334155",
                     fontSize: "0.95rem",
                     color: "#e2e8f0",
                   }}>
-                    <p style={{ margin: "0.5rem 0", fontWeight: 500 }}>
+                    <p style={{ margin: "0 0 0.75rem", fontWeight: 600, fontSize: "1.05rem" }}>
                       Make payment to:
                     </p>
                     <p style={{ margin: "0.5rem 0", wordBreak: "break-all" }}>
@@ -508,12 +507,12 @@ export default function RegistrationWizard() {
                     <p style={{ margin: "0.5rem 0" }}>
                       <strong>GPay Number:</strong> +91 85903 04391
                     </p>
-                    <p style={{ margin: "0.75rem 0 0.25rem", fontSize: "0.85rem", color: "#94a3b8" }}>
+                    <p style={{ margin: "1rem 0 0.25rem", fontSize: "0.9rem", color: "#94a3b8" }}>
                       After payment, upload the screenshot below.
                     </p>
                   </div>
 
-                  {/* Local QR image */}
+                  {/* Dynamic local QR image */}
                   <img
                     src={QR_CODES[teamSize]}
                     className="wizard-qr"
