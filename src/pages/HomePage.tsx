@@ -27,7 +27,7 @@ const faqItems = [
   {
     question: "How large can each squad be?",
     answer:
-      "Teams can have three to five members. Solo sign-ups are allowed, but you will be matched with a squad during the pre-briefing sync.",
+      "Teams can have two to five members.",
   },
   {
     question: "What support is available on-site?",
