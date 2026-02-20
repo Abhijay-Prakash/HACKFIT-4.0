@@ -5,9 +5,9 @@ import { processRegistrationSubmission } from "../../form_handler/registrationHa
 import type { MemberData } from "../../form_handler/registrationHandler";
 
 
-import qr1099 from "../../assets/qr/qr_1099.png";
-import qr1349 from "../../assets/qr/qr_1349.png";
-import qr1599 from "../../assets/qr/qr_1599.png";
+import qr1099 from "../../assets/qr/qr_1099.jpeg";
+import qr1349 from "../../assets/qr/qr_1349.jpeg";
+import qr1599 from "../../assets/qr/qr_1599.jpeg";
 
 const PRICES: Record<number, number> = { 
   2: 1099,
