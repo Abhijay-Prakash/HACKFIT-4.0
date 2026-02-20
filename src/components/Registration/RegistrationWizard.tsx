@@ -4,11 +4,12 @@ import "./Registration.css";
 import { processRegistrationSubmission } from "../../form_handler/registrationHandler";
 import type { MemberData } from "../../form_handler/registrationHandler";
 
-
+// Import local QR images from src/assets/qr/
 import qr1099 from "../../assets/qr/qr_1099.jpeg";
 import qr1349 from "../../assets/qr/qr_1349.jpeg";
 import qr1599 from "../../assets/qr/qr_1599.jpeg";
 
+// Price mapping
 const PRICES: Record<number, number> = { 
   2: 1099,
   3: 1099, 
@@ -16,6 +17,7 @@ const PRICES: Record<number, number> = {
   5: 1599 
 };
 
+// Map team size → local QR image
 const QR_CODES: Record<number, string> = {
   2: qr1099,
   3: qr1099,
@@ -274,6 +276,7 @@ export default function RegistrationWizard() {
     if (index === 0 && !data.teamName?.trim()) return false;
     return true;
   };
+
 
 
   return (

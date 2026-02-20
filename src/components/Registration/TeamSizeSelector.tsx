@@ -9,7 +9,7 @@ export default function TeamSizeSelector({
   teamSize,
   setTeamSize,
 }: TeamSizeSelectorProps) {
-  const MIN_SIZE = 2; // ← changed from 3 to 2
+  const MIN_SIZE = 2; 
   const MAX_SIZE = 5;
   const BASE_PRICE = 1099;
   const EXTRA_MEMBER_PRICE = 250;
