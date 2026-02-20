@@ -5,7 +5,7 @@ import { processRegistrationSubmission } from "../../form_handler/registrationHa
 import type { MemberData } from "../../form_handler/registrationHandler";
 
 const PRICES: Record<number, number> = { 
-  2: 1099,   // same price as team size 3
+  2: 1099,
   3: 1099, 
   4: 1349, 
   5: 1599 
@@ -36,7 +36,6 @@ export default function RegistrationWizard() {
   const [teamSize, setTeamSize] = useState<number>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     const savedSize = saved ? (JSON.parse(saved).teamSize ?? 3) : 3;
-    // Ensure saved size is valid (2–5)
     return [2, 3, 4, 5].includes(savedSize) ? savedSize : 3;
   });
 
@@ -233,6 +232,9 @@ export default function RegistrationWizard() {
 
       setIsSuccess(true);
       localStorage.removeItem(STORAGE_KEY);
+      
+      // Fix: Scroll to top so success message is visible immediately
+      window.scrollTo({ top: 0, behavior: "smooth" });
 
     } catch (err: any) {
       setSubmitError(err.message || "Registration failed. Please try again.");
