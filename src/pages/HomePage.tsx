@@ -22,7 +22,7 @@ const faqItems = [
   {
     question: "What tracks are in the 2026 edition?",
     answer:
-      "We are running GenAI Resilience, Cyber-Bio Fusion, FinSec Automation, and Sustainability Infra. Each track ships curated APIs, mentors, and telemetry dashboards.",
+      "Tracks will be revealed soon",
   },
   {
     question: "How large can each squad be?",
