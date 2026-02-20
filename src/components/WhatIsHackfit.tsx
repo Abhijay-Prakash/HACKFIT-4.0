@@ -28,7 +28,9 @@ const WhatIsHackfit: React.FC = () => {
               Build bold. Sleep later.
             </h2>
             <p className="font-[progress] text-slate-200/90 tracking-widest text-sm sm:text-base md:text-lg max-w-2xl">
-              Hackfit is a  national level hackathon conducted by DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING - FISAT IN ASSOCIATION WITH FISAT HORIZON CLUB, ACM STUDENT CHAPTER FISAT AND FISAT FREE SOFTWARE CELL.
+              HackFit is a national-level hackathon organized by the Department of Computer Science and Engineering, FISAT, in collaboration with FISAT Horizon Club, ACM Student Chapter FISAT, and FISAT Free Software Cell.
+
+Bringing together innovators, developers, and problem-solvers from across the country, HackFit is a platform to build impactful solutions, collaborate with like-minded peers, and push the boundaries of creativity and technology.
             </p>
             <div className="hackfit-pill-row">
               <div className="hackfit-pill">
