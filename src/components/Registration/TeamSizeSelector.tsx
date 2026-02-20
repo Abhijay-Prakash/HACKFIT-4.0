@@ -9,7 +9,7 @@ export default function TeamSizeSelector({
   teamSize,
   setTeamSize,
 }: TeamSizeSelectorProps) {
-  const MIN_SIZE = 3;
+  const MIN_SIZE = 2; // ← changed from 3 to 2
   const MAX_SIZE = 5;
   const BASE_PRICE = 1099;
   const EXTRA_MEMBER_PRICE = 250;
@@ -92,7 +92,9 @@ export default function TeamSizeSelector({
           <div className="ts-pricing">
             <p className="ts-price-total">TOTAL PER TEAM: ₹{totalPrice}</p>
             <p className="ts-price-extra">
-              EACH ADDITIONAL MEMBER: +₹{EXTRA_MEMBER_PRICE}
+              {teamSize > MIN_SIZE 
+                ? `EACH ADDITIONAL MEMBER: +₹${EXTRA_MEMBER_PRICE}`
+                : "Base price for team"}
             </p>
           </div>
         </div>
