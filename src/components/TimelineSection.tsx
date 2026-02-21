@@ -27,7 +27,7 @@ const items: TimelineItem[] = [
   {
     phase: "Phase 3",
     title: "Hackfit Weekend",
-    body: "March 6, 6:00 PM – March 8, 6:00 AM. 48 hours of non-stop building, shipping, and demoing to the jury.",
+    body: "March 6, 6:00 PM – March 8, 6:00 AM. 36 hours of non-stop building, shipping, and demoing to the jury.",
     accent: "lime",
   },
 ];
