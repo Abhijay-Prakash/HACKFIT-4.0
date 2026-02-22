@@ -5,9 +5,9 @@ import { processRegistrationSubmission } from "../../form_handler/registrationHa
 import type { MemberData } from "../../form_handler/registrationHandler";
 
 // Import local QR images (JPEG format)
-import qr1099 from "../../assets/qr/qr_1099.jpeg";
-import qr1349 from "../../assets/qr/qr_1349.jpeg";
-import qr1599 from "../../assets/qr/qr_1599.jpeg";
+import qr1099 from "../../assets/qr/an_1099.jpeg";
+import qr1349 from "../../assets/qr/an_1349.jpeg";
+import qr1599 from "../../assets/qr/an_1599.jpeg";
 
 // Price mapping
 const PRICES: Record<number, number> = { 
@@ -502,10 +502,10 @@ export default function RegistrationWizard() {
                       Make payment to:
                     </p>
                     <p style={{ margin: "0.5rem 0", wordBreak: "break-all" }}>
-                      <strong>UPI ID:</strong> annrosepalathingal@okhdfcbank
+                      <strong>UPI ID:</strong> anushaachu2005@okicici
                     </p>
                     <p style={{ margin: "0.5rem 0" }}>
-                      <strong>GPay Number:</strong> +91 85903 04391
+                      <strong>GPay Number:</strong> +91 88914 57709
                     </p>
                     <p style={{ margin: "1rem 0 0.25rem", fontSize: "0.9rem", color: "#94a3b8" }}>
                       After payment, upload the screenshot below.
